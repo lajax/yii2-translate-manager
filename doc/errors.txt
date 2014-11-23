@@ -1,0 +1,234 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 115
+            [file] => vendor/lajax/yii2-translate-manager/Module.php
+            [message] => Method beforeAction has no parent to inherit from in lajax\translatemanager\Module.
+        )
+
+    [1] => Array
+        (
+            [line] => 19
+            [file] => vendor/lajax/yii2-translate-manager/controllers/LanguageController.php
+            [message] => No short description for element '$module'
+        )
+
+    [2] => Array
+        (
+            [line] => 24
+            [file] => vendor/lajax/yii2-translate-manager/controllers/LanguageController.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\controllers\LanguageController.
+        )
+
+    [3] => Array
+        (
+            [line] => 32
+            [file] => vendor/lajax/yii2-translate-manager/controllers/LanguageController.php
+            [message] => Method behaviors has no parent to inherit from in lajax\translatemanager\controllers\LanguageController.
+        )
+
+    [4] => Array
+        (
+            [line] => 51
+            [file] => vendor/lajax/yii2-translate-manager/controllers/LanguageController.php
+            [message] => Method actions has no parent to inherit from in lajax\translatemanager\controllers\LanguageController.
+        )
+
+    [5] => Array
+        (
+            [line] => 18
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No docblock for element '$index'
+        )
+
+    [6] => Array
+        (
+            [line] => 18
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No short description for element '$index'
+        )
+
+    [7] => Array
+        (
+            [line] => 19
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No docblock for element '$files'
+        )
+
+    [8] => Array
+        (
+            [line] => 19
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No short description for element '$files'
+        )
+
+    [9] => Array
+        (
+            [line] => 21
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No docblock for element 'indexFiles'
+        )
+
+    [10] => Array
+        (
+            [line] => 57
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No docblock for element 'generateFileInfo'
+        )
+
+    [11] => Array
+        (
+            [line] => 73
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/Indexer.php
+            [message] => No docblock for element 'exportJs'
+        )
+
+    [12] => Array
+        (
+            [line] => 20
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/analyzer/HtmlAnalyzer.php
+            [message] => No docblock for element '$headWeight'
+        )
+
+    [13] => Array
+        (
+            [line] => 20
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/analyzer/HtmlAnalyzer.php
+            [message] => No short description for element '$headWeight'
+        )
+
+    [14] => Array
+        (
+            [line] => 21
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/analyzer/HtmlAnalyzer.php
+            [message] => No docblock for element '$titleWeight'
+        )
+
+    [15] => Array
+        (
+            [line] => 21
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/analyzer/HtmlAnalyzer.php
+            [message] => No short description for element '$titleWeight'
+        )
+
+    [16] => Array
+        (
+            [line] => 22
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/analyzer/HtmlAnalyzer.php
+            [message] => No docblock for element '$textWeight'
+        )
+
+    [17] => Array
+        (
+            [line] => 22
+            [file] => vendor/lajax/yii2-translate-manager/doc/assets/4b8ffcd5/lib/analyzer/HtmlAnalyzer.php
+            [message] => No short description for element '$textWeight'
+        )
+
+    [18] => Array
+        (
+            [line] => 57
+            [file] => vendor/lajax/yii2-translate-manager/models/Language.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [19] => Array
+        (
+            [line] => 64
+            [file] => vendor/lajax/yii2-translate-manager/models/Language.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [20] => Array
+        (
+            [line] => 77
+            [file] => vendor/lajax/yii2-translate-manager/models/Language.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [21] => Array
+        (
+            [line] => 29
+            [file] => vendor/lajax/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [22] => Array
+        (
+            [line] => 36
+            [file] => vendor/lajax/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [23] => Array
+        (
+            [line] => 46
+            [file] => vendor/lajax/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [24] => Array
+        (
+            [line] => 28
+            [file] => vendor/lajax/yii2-translate-manager/models/LanguageTranslate.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\LanguageTranslate.
+        )
+
+    [25] => Array
+        (
+            [line] => 35
+            [file] => vendor/lajax/yii2-translate-manager/models/LanguageTranslate.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\LanguageTranslate.
+        )
+
+    [26] => Array
+        (
+            [line] => 47
+            [file] => vendor/lajax/yii2-translate-manager/models/LanguageTranslate.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\LanguageTranslate.
+        )
+
+    [27] => Array
+        (
+            [line] => 19
+            [file] => vendor/lajax/yii2-translate-manager/models/searches/LanguageSearch.php
+            [message] => No docblock for element 'rules'
+        )
+
+    [28] => Array
+        (
+            [line] => 26
+            [file] => vendor/lajax/yii2-translate-manager/models/searches/LanguageSearch.php
+            [message] => No docblock for element 'scenarios'
+        )
+
+    [29] => Array
+        (
+            [line] => 31
+            [file] => vendor/lajax/yii2-translate-manager/models/searches/LanguageSearch.php
+            [message] => No docblock for element 'search'
+        )
+
+    [30] => Array
+        (
+            [line] => 21
+            [file] => vendor/lajax/yii2-translate-manager/models/searches/LanguageSourceSearch.php
+            [message] => No docblock for element 'rules'
+        )
+
+    [31] => Array
+        (
+            [line] => 28
+            [file] => vendor/lajax/yii2-translate-manager/models/searches/LanguageSourceSearch.php
+            [message] => No docblock for element 'scenarios'
+        )
+
+    [32] => Array
+        (
+            [line] => 33
+            [file] => vendor/lajax/yii2-translate-manager/models/searches/LanguageSourceSearch.php
+            [message] => No docblock for element 'search'
+        )
+
+)

@@ -1,0 +1,27 @@
+{
+    "name": "lajax/yii2-translate-manager",
+    "description": "Online Translate",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "extension", "translate", "language", "module"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/lajax/yii2-translate-manager/issues?state=open",
+		"source": "https://github.com/lajax/yii2-translate-manager"
+	},
+    "authors": [
+        {
+            "name": "Lajos Molnar",
+            "email": "lajax.m@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "phpspec/php-diff": ">=1.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "lajax\\translatemanager\\": ""
+        }
+    }
+}

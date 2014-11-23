@@ -1,0 +1,25 @@
+/**
+ * Created on : 2014.08.24., 5:26:26
+ * Author     : Lajos Molnar <lajax.m@gmail.com>
+ */
+
+span.statistic {
+    height:18px;
+    background:#D9534F;
+    display:block;
+    position:relative;
+    cursor:help;
+}
+span.statistic span {
+    height:18px;
+    background:#5CB85C;
+    display:block;
+}
+
+span.statistic i {
+    color:#FFF;
+    position:absolute;
+    top:0;
+    right:5px;
+    font-weight:bold;
+}
