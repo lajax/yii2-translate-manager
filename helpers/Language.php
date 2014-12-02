@@ -104,4 +104,25 @@ class Language {
         return Yii::t(Scanner::CATEGORY_DATABASE, $message, $params, $language);
     }
 
+    /**
+     * Saveing new language element by category.
+     * @param string $message Language element save in database.
+     * @param string $category the message category.
+     */
+    public static function set($message, $category = 'database') {
+        $languageSources = \lajax\translatemanager\models\LanguageSource::find()->where(['category' => $category])->all();
+
+        $messages = [];
+        foreach ($languageSources as $languageSource) {
+            $messages[$languageSource->message] = $languageSource->id;
+        }
+
+        if (empty($messages[$message])) {
+            $languageSource = new \lajax\translatemanager\models\LanguageSource;
+            $languageSource->category = $category;
+            $languageSource->message = $message;
+            $languageSource->save();
+        }
+    }
+
 }

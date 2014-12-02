@@ -5,6 +5,8 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
+ * Language Plugin asset bundle
+ * 
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */

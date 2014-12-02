@@ -13,18 +13,9 @@ use yii\filters\AccessControl;
 class LanguageController extends Controller {
 
     /**
-     * TranslateManager module
-     * @var \yii\gii\Module
+     * @var \lajax\translatemanager\Module TranslateManager module
      */
     public $module;
-
-    /**
-     * @inheritdoc
-     */
-    public function init() {
-        parent::init();
-    }
-
 
     /**
      * @inheritdoc

@@ -187,6 +187,71 @@ public function getGenders() {
 }
 ```
 
+PHP Database:
+
+```
+namespace common\models;
+
+use lajax\translatemanager\helpers\Language;
+
+/**
+ * This is the model class for table "category".
+ *
+ * @property string $category_id
+ * @property string $name
+ * @property string $description
+ */
+class Category extends \yii\db\ActiveRecord {
+
+    // afterFind & beforeSave:
+
+    /**
+     * @var Returning the ‘name’ attribute on the site’s own language.
+     */
+    public $name_t;
+
+    /**
+     * @var Returning the ‘description’ attribute on the site’s own language.
+     */
+    public $description_t;
+
+    ...
+
+    public function afterFind() {
+        $this->name_t = Language::d($this->name);
+        $this->description_t = Language::d($this->descrioption);
+        parent::afterFind();
+    }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            Language::set($this->name);
+            Language::set($this->description);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // or GETTERS:
+
+    /**
+     * @return string Returning the ‘name’ attribute on the site’s own language.
+     */
+    public function getName($params = [], $language = null) {
+        return Language::d($this->name, $params, $language);
+    }
+
+    /**
+     * @return string Returning the ‘description’ attribute on the site’s own language.
+     */
+    public function getDescription($params = [], $language = null) {
+        return Language::d($this->description, $params, $language);
+    }
+}
+```
+
 URLs for the translating tool:
 
 ```

@@ -6,6 +6,8 @@ use Yii;
 use yii\web\ForbiddenHttpException;
 
 /**
+ * This is the main module class for the TranslateManager module.
+ * 
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
