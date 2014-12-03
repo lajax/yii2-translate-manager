@@ -225,8 +225,8 @@ class Category extends \yii\db\ActiveRecord {
 
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            Language::set($this->name);
-            Language::set($this->description);
+            Language::saveMessage($this->name);
+            Language::saveMessage($this->description);
 
             return true;
         }

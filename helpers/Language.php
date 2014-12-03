@@ -108,8 +108,9 @@ class Language {
      * Saveing new language element by category.
      * @param string $message Language element save in database.
      * @param string $category the message category.
+     * @return integer LanguageSource id
      */
-    public static function set($message, $category = 'database') {
+    public static function saveMessage($message, $category = 'database') {
         $languageSources = \lajax\translatemanager\models\LanguageSource::find()->where(['category' => $category])->all();
 
         $messages = [];
@@ -122,7 +123,11 @@ class Language {
             $languageSource->category = $category;
             $languageSource->message = $message;
             $languageSource->save();
+
+            return $languageSource->id;
         }
+
+        return $messages[$message];
     }
 
 }
