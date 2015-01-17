@@ -17,12 +17,12 @@ use lajax\translatemanager\services\Scanner;
  *  [
  *      'connection' => 'db',
  *      'table' => 'language',
- *      columns => ['name’, ‘name_ascii']
+ *      'columns' => ['name', 'name_ascii']
  *  ],
  *  [
  *      'connection' => 'db',
  *      'table' => 'category',
- *      columns => ['name’, ‘description']
+ *      'columns' => ['name', 'description']
  *  ],
  * ]
  * ~~~
@@ -50,7 +50,7 @@ class ScannerDatabase {
         $this->_languageItems = $languageItems;
         $this->_tables = Yii::$app->getModule('translatemanager')->tables;
         
-        if (is_array($this->_tables)) {
+        if (!empty($this->_tables) && is_array($this->_tables)) {
             foreach ($this->_tables as $tables) {
                 if (empty($tables['connection'])) {
                     throw new InvalidConfigException('Incomplete database  configuration: connection ');
