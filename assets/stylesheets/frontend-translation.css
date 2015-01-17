@@ -44,10 +44,6 @@ span.language-item.translatable {
     margin:0 0 10px;
 }
 
-#translate-manager-dialog .translate-manager-message label {
-    display: block;
-}
-
 #translate-manager-dialog .translate-manager-message textarea {
     width:100%;
     border:1px solid #FFCC66;
