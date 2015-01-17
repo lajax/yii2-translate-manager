@@ -7,20 +7,29 @@ use yii\helpers\FileHelper;
 use lajax\translatemanager\services\Scanner;
 
 /**
- * <pre>Class for processing PHP and JavaScript files.
+ * Class for processing PHP and JavaScript files.
  * Language elements detected in JavaScript files:
+ * 
+ * ~~~
  * lajax.t('language element);
  * lajax.t('language element {replace}', {replace:'String'});
  * lajax.t("language element");
  * lajax.t("language element {replace}", {replace:'String'});
+ * ~~~
+ * 
  * Language elements detected in PHP files:
  * "t" functions:
+ * 
+ * ~~~
  * ::t(‘category of language element', 'language element');
  * ::t('category of language element', 'language element {replace}', ['replace' => 'String']);
  * ::t('category of language element', "language element");
  * ::t('category of language element', "language element {replace}", ['replace' => 'String']);
+ * ~~~
+ * 
  * Language elements detected in constant arrays:
  * 
+ * ~~~
  *  /**
  *   * @translate
  *   *\/
@@ -32,12 +41,21 @@ use lajax\translatemanager\services\Scanner;
  *      self::STATUS_ACTIVE => 'Active',
  *      self::STATUS_INACTIVE => 'Inactive'
  *   ];
+ * ~~~
+ * 
  * Translation of constant arrays:
  * Translation to site language:
+ * 
+ * ~~~
  * $genders = \lajax\translatemanager\helpers\Language::a($this->_GENDERS);
+ * ~~~
+ * 
  * Translating to the language of your coice:
+ * 
+ * ~~~
  * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de_DE');
- * </pre>
+ * ~~~
+ * 
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
@@ -136,7 +154,7 @@ class ScannerFile {
      * @param string $category
      * @return boolean
      */
-    public function _isValidCategory($category) {
+    private function _isValidCategory($category) {
         return !in_array($category, $this->_module->ignoredCategories);
     }
 

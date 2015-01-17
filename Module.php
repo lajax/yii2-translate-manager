@@ -9,10 +9,15 @@ use yii\web\ForbiddenHttpException;
  * This is the main module class for the TranslateManager module.
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.1
  */
 class Module extends \yii\base\Module {
 
+    /**
+     * Session key for storing front end translating privileges.
+     */
+    const SESSION_KEY_ENABLE_TRANSLATE = 'frontendTranslation_EnableTranslate';
+    
     /**
      * @inheritdoc
      */
@@ -125,7 +130,7 @@ class Module extends \yii\base\Module {
     /**
      * @return boolean whether the module can be accessed by the current user
      */
-    protected function checkAccess() {
+    public function checkAccess() {
         $ip = Yii::$app->request->getUserIP();
         foreach ($this->allowedIPs as $filter) {
             if ($filter === '*' || $filter === $ip || (($pos = strpos($filter, '*')) !== false && !strncmp($ip, $filter, $pos))) {

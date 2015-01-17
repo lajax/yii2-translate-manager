@@ -2,7 +2,7 @@
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.1
  */
 
 namespace lajax\translatemanager\models;
@@ -67,6 +67,41 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
         }
 
         return $languageTranslate;
+    }
+
+    /**
+     * @return array The name of languages the language element has been translated into.
+     */
+    public function getTranslatedLanguageNames() {
+        $translatedLanguages = $this->getTranslatedLanguages();
+        
+        $data = [];
+        foreach ($translatedLanguages as $languageTranslate) {
+            $data[$languageTranslate->language] = $languageTranslate->getLanguageName(); 
+        }
+        
+        return $data;
+    }
+    
+    /**
+     * Returns the language element in all other languages.
+     * @return LanguageTranslate
+     */
+    public function getTranslatedLanguages() {
+        return static::find()->where('id = :id AND language != :language', [':id' => $this->id, 'language' => $this->language])->all();
+    }
+
+    /**
+     * @staticvar array $language_names caching the list of languages.
+     * @return string
+     */
+    public function getLanguageName() {
+        static $language_names;
+        if (!$language_names || empty($language_names[$this->language])) {
+            $language_names = Language::getLanguageNames();
+        }
+        
+        return empty($language_names[$this->language]) ? $this->language : $language_names[$this->language];
     }
 
     /**

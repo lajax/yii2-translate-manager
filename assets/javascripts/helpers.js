@@ -51,10 +51,10 @@ var helpers = (function() {
             if ($('#alert-tooltip').length === 0) {
                 var $alert = $('<div>')
                         .attr({id: 'alert-tooltip'})
-                        .addClass(data.length < 3 ? 'green' : 'red')
+                        .addClass(data.length === 0 ? 'green' : 'red')
                         .append($('<span>')
                                 .addClass('glyphicon')
-                                .addClass(data.length < 3 ? ' glyphicon-ok' : 'glyphicon-remove'));
+                                .addClass(data.length === 0 ? ' glyphicon-ok' : 'glyphicon-remove'));
 
                 $('body').append($alert);
                 _hideTooltip();

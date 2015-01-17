@@ -4,7 +4,7 @@
  * @since 1.0
  */
 
-$this->title = Yii::t('language', 'Optimising database');
+$this->title = Yii::t('language', 'Optimise database');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="language-default-index">

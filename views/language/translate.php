@@ -8,7 +8,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
-$this->title = Yii::t('language', 'Translate {language_id}', ['language_id' => $language_id]);
+$this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>

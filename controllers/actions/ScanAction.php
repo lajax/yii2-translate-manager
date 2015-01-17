@@ -12,7 +12,7 @@ use lajax\translatemanager\services\Scanner;
  * @since 1.0
  */
 
-class ScannAction extends Action {
+class ScanAction extends Action {
 
     /**
      * Detecting new language elements.
@@ -27,7 +27,7 @@ class ScannAction extends Action {
         Yii::$app->session->setFlash('info', $message);
 
 
-        return $this->controller->render('scann');
+        return $this->controller->render('scan');
     }
 
 

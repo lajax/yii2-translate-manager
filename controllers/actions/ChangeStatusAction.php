@@ -16,7 +16,7 @@ use lajax\translatemanager\models\Language;
 class ChangeStatusAction extends Action {
 
     /**
-     * Modifying tha state of language.
+     * Modifying the state of language.
      * @return Json
      */
     public function run() {
@@ -31,7 +31,7 @@ class ChangeStatusAction extends Action {
             }
         }
 
-        return Json::encode($language->getErrors());
+        return $language->getErrors();
     }
 
 }

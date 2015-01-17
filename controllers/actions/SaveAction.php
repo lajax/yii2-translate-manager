@@ -25,7 +25,7 @@ class SaveAction extends Action {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $id = Yii::$app->request->post('id', 0);
-        $languageId = Yii::$app->request->post('language_id', '');
+        $languageId = Yii::$app->request->post('language_id', Yii::$app->language);
 
         $languageTranslate = LanguageTranslate::getLanguageTranslateByIdAndLanguageId($id, $languageId);
         $languageTranslate->translation = Yii::$app->request->post('translation', '');
@@ -35,7 +35,7 @@ class SaveAction extends Action {
             $generator->generate();
         }
 
-        return Json::encode($languageTranslate->getErrors());
+        return $languageTranslate->getErrors();
     }
 
 }

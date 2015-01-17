@@ -8,9 +8,11 @@ use lajax\translatemanager\services\Scanner;
 
 
 /**
- * <pre>Detecting existing language elements in database.
+ * Detecting existing language elements in database.
  * The connection ids of the scanned databases and the table/field names can be defined in the configuration file of translateManager
  * examples:
+ * 
+ * ~~~
  * 'tables' [
  *  [
  *      'connection' => 'db',
@@ -23,7 +25,9 @@ use lajax\translatemanager\services\Scanner;
  *      columns => ['name’, ‘description']
  *  ],
  * ]
- * </pre>
+ * ~~~
+ * 
+ * 
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */

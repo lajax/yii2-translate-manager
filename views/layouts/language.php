@@ -40,7 +40,7 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => Yii::t('language', 'Home'), 'url' => ['/']],
                 ['label' => Yii::t('language', 'Languages'), 'url' => ['/translatemanager/language/list']],
-                ['label' => Yii::t('language', 'Scann'), 'url' => ['/translatemanager/language/scann']],
+                ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
                 ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
             ];
             echo Nav::widget([
@@ -67,7 +67,6 @@ AppAsset::register($this);
                 <p class="pull-right"><?= Yii::powered() ?></p>
             </div>
         </footer>
-
         <?php $this->endBody() ?>
     </body>
 </html>

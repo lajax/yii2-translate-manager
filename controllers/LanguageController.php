@@ -24,11 +24,11 @@ class LanguageController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['list', 'change-status', 'optimizer', 'scann', 'translate', 'save'],
+                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['list', 'change-status', 'optimizer', 'scann', 'translate', 'save'],
+                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save'],
                         'roles' => $this->module->roles,
                     ],
                 ],
@@ -53,14 +53,20 @@ class LanguageController extends Controller {
             'optimizer' => [
                 'class' => 'lajax\translatemanager\controllers\actions\OptimizerAction',
             ],
-            'scann' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ScannAction',
+            'scan' => [
+                'class' => 'lajax\translatemanager\controllers\actions\ScanAction',
             ],
             'translate' => [
                 'class' => 'lajax\translatemanager\controllers\actions\TranslateAction',
             ],
             'save' => [
                 'class' => 'lajax\translatemanager\controllers\actions\SaveAction',
+            ],
+            'dialog' => [
+                'class' => 'lajax\translatemanager\controllers\actions\DialogAction',
+            ],
+            'message' => [
+                'class' => 'lajax\translatemanager\controllers\actions\MessageAction',
             ],
         ];
     }

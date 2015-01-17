@@ -16,20 +16,49 @@ use lajax\translatemanager\bundles\TranslationPluginAsset;
  * For translating database tables.
  * 
  * @author Lajos Molnar <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.1
  */
 class Language {
 
+    /**
+     * @var string parent span for front end translation.
+     */
+    private static $_template = '<span class="language-item" data-category="{category}" data-hash="{hash}" data-language_id="{language_id}" data-params="{params}">{message}</span>';
+    
     /**
      * Registering JavaScripts for client side multilingual support.
      */
     public static function registerAssets() {
         TranslationPluginAsset::register(Yii::$app->view);
     }
+    
+    /**
+     * @param string $category the message category.
+     * @param string $message the message to be translated.
+     * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
+     * @param string $language the language code (e.g. `en-US`, `en`).
+     * If this is null, the current [[\yii\base\Application::language|application language]] will be used.
+     * @return string the translated message.
+     */
+    public static function t($category, $message, $params = [], $language = null) {
+        if (self::isEnabledTranslate()) {
+            return strtr(self::$_template, [
+                '{language_id}' => $language ? $language : Yii::$app->language,
+                '{category}' => $category,
+                '{message}' => Yii::t($category, $message, $params, $language),
+                '{params}' => \yii\helpers\Html::encode(\yii\helpers\Json::encode($params)),
+                '{hash}' => md5($message)
+            ]);
+        } else {
+            return Yii::t($category, $message, $params, $language);
+        }
+    }
 
     /**
      * Translating one dimensional array.
      * e.g.:
+     * 
+     * ~~~
      * $array = [
      *      'hello' => 'Hello {name}!',
      *      'hi' => 'Hi {name}',
@@ -51,6 +80,7 @@ class Language {
      *  'hello' => 'Hello World',
      *  'hi' => 'Hi Jenny',
      * ]
+     * ~~~
      * 
      * @param array $array One-dimensonal array to be translated.
      * @param array $params List of parameters to be changed.
@@ -78,6 +108,8 @@ class Language {
      * For translating language elements stored in a database.
      * Enable translating databases in config before use.
      * e.g.:
+     * 
+     * ~~~
      * 'modules' => [
      *      'translatemanager' => [
      *          'class' => 'lajax\translatemanager\Module',
@@ -95,6 +127,9 @@ class Language {
      *          ]
      *      ]
      * ]
+     * ~~~
+     * 
+     * 
      * @param string $message Language element stored in database.
      * @param array $params Parameters to be changed.
      * @param string $language Language of translation.
@@ -102,6 +137,14 @@ class Language {
      */
     public static function d($message, $params = [], $language = null) {
         return Yii::t(Scanner::CATEGORY_DATABASE, $message, $params, $language);
+    }
+
+    /**
+     * Determines whether the translation mode is active.
+     * @return boolean
+     */
+    public static function isEnabledTranslate() {
+        return Yii::$app->session->has(\lajax\translatemanager\Module::SESSION_KEY_ENABLE_TRANSLATE);
     }
 
     /**

@@ -6,9 +6,11 @@ Introduction
 ------------
 
 This module provides a simple translating interface for the multilingual elements of your project. It can auto-detect new language elements (project scan).
-Duplications are filtered out automatically during the project scanning.
+Duplications are filtered out automatically during project scanning.
 Unused language elements can be removed from the database with a single click (database optimisation).
 It is possible to translate client side messages too (those stored in JavaScript files) as the project scan collects language elements to be translated from JavaScript files as well.
+
+It also allows you to translate text on the client side (on the live webpage) without having to log in to the translating interface. (frontendTranslation).
 
 On the server side it can handle database or one-dimensional array elements and Yii::t functions. 
 You can exclude files, folders or categories to prevent them from being translated.
@@ -35,7 +37,7 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Config
+###Config
 
 A simple exmple of turning on Yii database multilingual.
 
@@ -75,29 +77,40 @@ Simple example:
 A more complex example including database table with multilingual support is below:
 ```
 'modules' => [
-        'translatemanager' => [
-            'class' => 'lajax\translatemanager\Module',
-            'root' => '@app',               // The root directory of the project scan.
-            'layout' => 'language',         // Name of the used layout. If using own layout use ‘null’.
-            'allowedIPs' => ['127.0.0.1']   // IP addresses from which the translation interface is accessible.
-            'roles' => ['@']                // For setting access levels to the translating interface.
-            'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
-                                            // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
-            'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
-            'ignoredItems' => ['config'],   // these files will not be processed.
-            'tables' => [                   // Properties of individual tables
-                [
-                    'connection' => 'db',   // connection identifier
-                    'table' => 'language',  // table name
-                    'fields' => ['name', 'name_ascii']  //names of multilingual fields
-                ]
+    'translatemanager' => [
+        'class' => 'lajax\translatemanager\Module',
+        'root' => '@app',               // The root directory of the project scan.
+        'layout' => 'language',         // Name of the used layout. If using own layout use ‘null’.
+        'allowedIPs' => ['127.0.0.1']   // IP addresses from which the translation interface is accessible.
+        'roles' => ['@']                // For setting access levels to the translating interface.
+        'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
+                                        // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
+        'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
+        'ignoredItems' => ['config'],   // these files will not be processed.
+        'tables' => [                   // Properties of individual tables
+            [
+                'connection' => 'db',   // connection identifier
+                'table' => 'language',  // table name
+                'fields' => ['name', 'name_ascii']  //names of multilingual fields
             ]
-        ],
+        ]
     ],
+],
 ```
 
-Migration
----------
+Front end translation:
+
+```
+'bootstrap' => ['translatemanager'],
+'component' => [
+    'translatemanager' => [
+        'class' => 'lajax\translatemanager\Component'
+    ]
+]
+```
+
+###Migration
+
 
 Run the following command in Terminal for database migration:
 
@@ -111,7 +124,7 @@ Windows:
 yii.bat migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migrations
 ```
 
-To translate static messages in JavaScript files it is necessary to register the files.
+###To translate static messages in JavaScript files it is necessary to register the files.
 
 To register your scripts, call the following method in each action:
 
@@ -135,7 +148,25 @@ class Controller extends \yii\web\Controller {
 }
 ```
 
-Placing multilingual elements in the source code.
+###Simple example for displaying a button to switch to front end translation mode.
+(The button will only appear for users who have the necessary privileges for translating!)
+
+```
+\lajax\translatemanager\widgets\ToggleTranslate::widget();
+```
+
+A more complex example for displaying the button:
+
+```
+\lajax\translatemanager\widgets\ToggleTranslate::widget([
+ 'position' => \lajax\translatemanager\widgets\ToggleTranslate::POSITION_TOP_RIGHT,
+ 'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}"><i></i> {text}</a><div id="translate-manager-div"></div>',
+ 'frontendTranslationAsset' => 'lajax\translatemanager\bundles\FrontendTranslationAsset',
+ 'frontendTranslationPluginAsset' => 'lajax\translatemanager\bundles\FrontendTranslationPluginAsset',
+]);
+```
+
+###Placing multilingual elements in the source code.
 
 JavaScript:
 
@@ -151,6 +182,16 @@ PHP methods:
 Yii::t('category', 'Apple');
 Yii::t('category', 'Hello {name}!', ['name' => 'World']);
 Yii::t('category', "Don't be so upset.");
+```
+
+PHP functions for front end translation:
+
+```
+use lajax\translatemanager\helpers\Language as Lx;
+
+Lx::t('category', 'Apple');
+Lx::t('category', 'Hello {name}!', ['name' => 'World']);
+Lx::t('category', "Don't be so upset.");
 ```
 
 PHP arrays:
@@ -252,11 +293,13 @@ class Category extends \yii\db\ActiveRecord {
 }
 ```
 
+###URLs
+
 URLs for the translating tool:
 
 ```
 /translatemanager/language/list         // List of languages and modifying their status
-/translatemanager/language/scann        // Scan the project for new multilingual elements
+/translatemanager/language/scan         // Scan the project for new multilingual elements
 /translatemanager/language/optimizer    // Optimise the database
 ```
 
@@ -266,8 +309,42 @@ Example implementation of the Yii2 menu into your own menu.
 $menuItems[] = [
     'label' => Yii::t('language', 'Language'), 'items' => [
         ['label' => Yii::t('language', 'Languages'), 'url' => ['/translatemanager/language/list']],
-        ['label' => Yii::t('language', 'Scann'), 'url' => ['/translatemanager/language/scann']],
+        ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
         ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
     ]
 ];
 ```
+
+Screenshots
+-----------
+
+###List of languages
+![translate-manager-0 2-screen-1](https://res.cloudinary.com/lajax/image/upload/v1421343987/admin-languages_ikxjqz.png)
+
+
+###Scanning project
+![translate-manager-0 2-screen-2](https://res.cloudinary.com/lajax/image/upload/v1421343979/admin-scan_xunrxy.png)
+
+
+###Optimise database
+![translate-manager-0 2-screen-3](https://res.cloudinary.com/lajax/image/upload/v1421381627/admin-optimise_khywpn.png)
+
+
+###Translate on the admin interface
+![translate-manager-0 2-screen-4](https://res.cloudinary.com/lajax/image/upload/v1421382395/admin-translation_p9uavl.png)
+
+
+###Front end in translating mode
+![translate-manager-0 2-screen-6](https://res.cloudinary.com/lajax/image/upload/v1421343986/frontend-translation-toggle_fsqflh.png)
+
+
+###Translate on the front end
+![translate-manager-0 2-screen-7](https://res.cloudinary.com/lajax/image/upload/v1421343987/frontend-translation-dialog_jivgkh.png)
+
+
+Links
+-----
+
+- [GitHub](https://github.com/lajax/yii2-translate-manager)
+- [Packagist](https://packagist.org/packages/lajax/yii2-translate-manager)
+- [Yii Extensions](http://www.yiiframework.com/extension/yii2-translate-manager)
