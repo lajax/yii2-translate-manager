@@ -137,7 +137,7 @@ class Module extends \yii\base\Module {
                 return true;
             }
         }
-        Yii::warning('Access to Translate is denied due to IP address restriction. The requested IP is {ip}' . $ip, __METHOD__);
+        Yii::warning('Access to Translate is denied due to IP address restriction. The requested IP is ' .  $ip, __METHOD__);
 
         return false;
     }
