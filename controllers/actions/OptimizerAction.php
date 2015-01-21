@@ -19,11 +19,10 @@ class OptimizerAction extends Action {
      */
     public function run() {
         $optimizer = new Optimizer;
-        $items_count = $optimizer->optimization();
-        $message = Yii::t('language', '{n, plural, =0{No entries} =1{One entry} other{# entries}} were removed!', ['n' => $items_count]);
-        Yii::$app->session->setFlash('info', $message);
 
-        return $this->controller->render('optimizer');
+        return $this->controller->render('optimizer', [
+            'items_count' => $optimizer->optimization()
+        ]);
     }
 
 }

@@ -3,18 +3,17 @@
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\widgets\Alert;
+use lajax\translatemanager\bundles\TranslateManagerAsset;
 
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
-AppAsset::register($this);
+TranslateManagerAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -56,7 +55,6 @@ AppAsset::register($this);
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
                 ?>
-                <?= Alert::widget() ?>
                 <?= $content ?>
             </div>
         </div>

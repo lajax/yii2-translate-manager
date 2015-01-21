@@ -21,13 +21,9 @@ class ScanAction extends Action {
     public function run() {
 
         $scanner = new Scanner;
-        $items_count = $scanner->scanning();
-
-        $message = Yii::t('language', '{n, plural, =0{No new entries} =1{One new entry} other{# new entries}} were added!', ['n' => $items_count]);
-        Yii::$app->session->setFlash('info', $message);
-
-
-        return $this->controller->render('scan');
+        return $this->controller->render('scan', [
+            'items_count' => $scanner->scanning()
+        ]);
     }
 
 
