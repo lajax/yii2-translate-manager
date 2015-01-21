@@ -115,7 +115,7 @@ A more complex example including database table with multilingual support is bel
 ],
 ```
 
-Using the [assetManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
+Using the [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
 
 
 Front end translation:
