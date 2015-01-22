@@ -12,9 +12,9 @@ $(document).ready(function () {
  */
 var FrontendTranslation = {
     enabledTranslate: false,
-    dialogURL: '/translatemanager/language/dialog',
-    saveURL: '/translatemanager/language/save',
-    messageURL: '/translatemanager/language/message',
+    dialogURL: '../translatemanager/language/dialog',
+    saveURL: '../translatemanager/language/save',
+    messageURL: '../translatemanager/language/message',
     params: '',
     dialog: function ($language_item) {
         this.params = $language_item.data('params');
