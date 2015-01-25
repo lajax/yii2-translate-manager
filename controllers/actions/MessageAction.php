@@ -19,20 +19,23 @@ class MessageAction extends Action {
      * @return string
      */
     public function run() {
+
         $languageTranslate = LanguageTranslate::findOne([
-            'id' => Yii::$app->getRequest()->post('id', 0),
-            'language' => Yii::$app->request->post('language_id', ''),
+                    'id' => Yii::$app->request->get('id', 0),
+                    'language' => Yii::$app->request->get('language_id', '')
         ]);
-        
-        try {
+
+        if ($languageTranslate) {
             $translation = $languageTranslate->translation;
-        } catch (Exception $ex) {
-            $languageSource = LanguageSource::findOne(['id' => Yii::$app->getRequest()->post('id', 0)]);
-            $translation = $languageSource->message;
+        } else {
+            $languageSource = LanguageSource::findOne([
+                        'id' => Yii::$app->request->get('id', 0)
+            ]);
+
+            $translation = $languageSource ? $languageSource->message : '';
         }
-        
+
         return $translation;
     }
 
 }
-        
