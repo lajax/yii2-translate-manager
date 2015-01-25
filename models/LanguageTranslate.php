@@ -34,8 +34,10 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['id'], 'required'],
+            [['id', 'language'], 'required'],
             [['id'], 'integer'],
+            [['id'], 'exist', 'targetClass' => '\lajax\translatemanager\models\LanguageSource'],
+            [['language'], 'exist', 'targetClass' => '\lajax\translatemanager\models\Language', 'targetAttribute' => 'language_id'],
             [['translation'], 'string'],
             [['language'], 'string', 'max' => 5]
         ];
@@ -55,15 +57,16 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
     /**
      * Returnes language object by id and language_id. If not found, creates a new one.
      * @param integer $id
-     * @param string $language_id
+     * @param string $languageId
      * @return \common\models\LanguageTranslate
      */
-    public static function getLanguageTranslateByIdAndLanguageId($id, $language_id) {
-        $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $language_id]);
+    public static function getLanguageTranslateByIdAndLanguageId($id, $languageId) {
+
+        $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]);
         if ($languageTranslate === null) {
             $languageTranslate = new LanguageTranslate;
             $languageTranslate->id = $id;
-            $languageTranslate->language = $language_id;
+            $languageTranslate->language = $languageId;
         }
 
         return $languageTranslate;
