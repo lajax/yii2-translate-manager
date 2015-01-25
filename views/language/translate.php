@@ -21,41 +21,41 @@ $this->params['breadcrumbs'][] = $this->title;
         'id' => 'translates'
     ]);
     echo GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'category',
-            [
-                'format' => 'text',
-                'attribute' => 'message',
-                'filterInputOptions' => ['class' => 'form-control', 'id' => 'message'],
-                'label' => Yii::t('language', 'Source'),
-                'content' => function ($data) {
-            return Html::activeTextarea($data, 'message', ['name' => 'LanguageSource[' . $data->id . ']', 'class' => 'form-control source', 'readonly' => 'readonly']);
-        },
-            ],
-            [
-                'format' => 'text',
-                'attribute' => 'translation',
-                'filterInputOptions' => ['class' => 'form-control', 'id' => 'translation'],
-                'label' => Yii::t('language', 'Translation'),
-                'content' => function ($data) {
-            if ($data->languageTranslate === null) {
-                return Html::textarea('LanguageTranslate[' . $data->id . ']', '', ['class' => 'form-control translation', 'tabindex' => $data->id]);
-            }
-
-            return Html::activeTextarea($data->languageTranslate, 'translation', ['name' => 'LanguageTranslate[' . $data->id . ']', 'class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]);
-        },
-            ],
-            [
-                'format' => 'html',
-                'attribute' => Yii::t('language', 'Action'),
-                'content' => function ($data) {
-                    return Html::button(Yii::t('language', 'Save'), ['type' => 'button', 'data-id' => $data['id'], 'class' => 'btn btn-lg btn-success']);
-                },
-                    ],
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'category',
+                [
+                    'format' => 'text',
+                    'attribute' => 'message',
+                    'filterInputOptions' => ['class' => 'form-control', 'id' => 'message'],
+                    'label' => Yii::t('language', 'Source'),
+                    'content' => function ($data) {
+                        return Html::activeTextarea($data, 'message', ['name' => 'LanguageSource[' . $data->id . ']', 'class' => 'form-control source', 'readonly' => 'readonly']);
+                    },
                 ],
+                [
+                    'format' => 'text',
+                    'attribute' => 'translation',
+                    'filterInputOptions' => ['class' => 'form-control', 'id' => 'translation'],
+                    'label' => Yii::t('language', 'Translation'),
+                    'content' => function ($data) {
+                        if ($data->languageTranslate === null) {
+                            return Html::textarea('LanguageTranslate[' . $data->id . ']', '', ['class' => 'form-control translation', 'tabindex' => $data->id]);
+                        }
+
+                        return Html::activeTextarea($data->languageTranslate, 'translation', ['name' => 'LanguageTranslate[' . $data->id . ']', 'class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]);
+                    },
+                ],
+                [
+                    'format' => 'html',
+                    'attribute' => Yii::t('language', 'Action'),
+                    'content' => function ($data) {
+                        return Html::button(Yii::t('language', 'Save'), ['type' => 'button', 'data-id' => $data['id'], 'class' => 'btn btn-lg btn-success']);
+                    },
+                ],
+            ],
         ]);
         Pjax::end();
         ?>

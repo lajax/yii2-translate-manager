@@ -115,7 +115,7 @@ A more complex example including database table with multilingual support is bel
 ],
 ```
 
-Using the [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
+Using the [assetManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
 
 
 Front end translation:
@@ -165,7 +165,7 @@ A more complex example for displaying the button:
 ```
 \lajax\translatemanager\widgets\ToggleTranslate::widget([
  'position' => \lajax\translatemanager\widgets\ToggleTranslate::POSITION_TOP_RIGHT,
- 'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}"><i></i> {text}</a><div id="translate-manager-div"></div>',
+ 'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>',
  'frontendTranslationAsset' => 'lajax\translatemanager\bundles\FrontendTranslationAsset',
  'frontendTranslationPluginAsset' => 'lajax\translatemanager\bundles\FrontendTranslationPluginAsset',
 ]);

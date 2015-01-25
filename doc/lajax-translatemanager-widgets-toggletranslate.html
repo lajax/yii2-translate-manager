@@ -98,7 +98,7 @@ yii\base\Widget</td></tr>
 </code></pre>
 <p>Example for changing template and skin:</p>
 <pre><code>\lajax\translatemanager\widgets\ToggleTranslate::widget([
- 'template' =&gt; '&lt;a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}"&gt;&lt;i&gt;&lt;/i&gt; {text}&lt;/a&gt;&lt;div id="translate-manager-div"&gt;&lt;/div&gt;',
+ 'template' =&gt; '&lt;a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"&gt;&lt;i&gt;&lt;/i&gt; {text}&lt;/a&gt;&lt;div id="translate-manager-div"&gt;&lt;/div&gt;',
  'frontendTranslationAsset' =&gt; 'lajax\translatemanager\bundles\FrontendTranslationAsset',
 ]);
 </code></pre>
@@ -191,6 +191,13 @@ yii\base\Widget</td></tr>
     <tr>
         <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
     </tr>
+            <tr id="DIALOG_URL">
+          <td>DIALOG_URL<a name="DIALOG_URL-detail"></a></td>
+          <td>'/translatemanager/language/dialog'</td>
+          <td>Url of the dialog window.
+</td>
+          <td><a href="lajax-translatemanager-widgets-toggletranslate.html">lajax\translatemanager\widgets\ToggleTranslate</a></td>
+        </tr>
             <tr id="POSITION_BOTTOM_LEFT">
           <td>POSITION_BOTTOM_LEFT<a name="POSITION_BOTTOM_LEFT-detail"></a></td>
           <td>'bottom-left'</td>
@@ -281,7 +288,7 @@ Pre-defined positions: bottom-left (default), bottom-right, top-left, top-tright
                     </span>
     </div>
 
-    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-widgets-toggletranslate.html#$template-detail">$template</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="javascript:void(0);"&nbsp;id="toggle-translate"&nbsp;class="{position}"&nbsp;data-language="{language}"&gt;&lt;i&gt;&lt;/i&gt;&nbsp;{text}&lt;/a&gt;&lt;div&nbsp;id="translate-manager-div"&gt;&lt;/div&gt;'</span></div>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-widgets-toggletranslate.html#$template-detail">$template</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="javascript:void(0);"&nbsp;id="toggle-translate"&nbsp;class="{position}"&nbsp;data-language="{language}"&nbsp;data-url="{url}"&gt;&lt;i&gt;&lt;/i&gt;&nbsp;{text}&lt;/a&gt;&lt;div&nbsp;id="translate-manager-div"&gt;&lt;/div&gt;'</span></div>
 
     <p>The template of the translate mode switch button.</p>
 
@@ -351,7 +358,7 @@ Pre-defined positions: bottom-left (default), bottom-right, top-left, top-tright
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 21 Jan 2015 02:43:19 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 25 Jan 2015 09:59:22 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {
