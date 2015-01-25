@@ -13,8 +13,6 @@ $(document).ready(function () {
 var FrontendTranslation = {
     enabledTranslate: false,
     dialogURL: '/translatemanager/language/dialog',
-    saveURL: '/translatemanager/language/save',
-    messageURL: '/translatemanager/language/message',
     params: '',
     dialog: function ($language_item) {
         this.params = $language_item.data('params');
@@ -28,25 +26,29 @@ var FrontendTranslation = {
                     text: lajax.t('Save'),
                     click: $.proxy(
                             function () {
-                                var translation = $('#translate-manager-translation').val();
-                                $.post(this.saveURL, {
-                                    id: $('#translate-manager-id').val(),
-                                    language_id: $('#translate-manager-language_id').val(),
-                                    translation: translation
-                                }, $.proxy(
-                                        function (errors) {
-                                            if (errors.length === 0) {
-                                                $('span[data-hash=' + $language_item.data('hash') + ']').html(lajax.t(translation, this.params));
-                                            }
-                                        }, this));
-                                $('#translate-manager-div').dialog('close');
-                            }, this)
-
+                            var $form = $('#transslate-manager-translation-form');
+                                $.ajax({
+                                    type: $form.attr('method'),
+                                    url: $form.attr('action'),
+                                    data:$form.serialize(),
+                                    dataType: 'json',
+                                    success: $.proxy(function(errors) {
+                                        if (errors.length === 0) {
+                                            $('span[data-hash=' + $language_item.data('hash') + ']').html(lajax.t($.trim($form.find('textarea').val()), this.params));
+                                            $('#translate-manager-div').dialog('close');
+                                        } else {
+                                            helpers.showErrorMessages(errors, '#languagetranslate-');
+                                        }
+                                    },this)
+                        
+                                });
+                                
+                        }, this)
                 },
                 {
                     text: lajax.t('Close'),
                     click: function () {
-                        $(this).dialog('close')
+                        $(this).dialog('close');
                     }
                 }
             ],
@@ -64,10 +66,8 @@ var FrontendTranslation = {
         });
     },
     changeSourceLanguage: function (languageId) {
-        $('#translate-manager-message').load(this.messageURL, {
-            id: $('#translate-manager-id').val(),
-            language_id: languageId
-        });
+        var $form = $('#transslate-manager-change-source-form');
+        $('#translate-manager-message').load($form.attr('action'), $form.serialize());
     },
     addClick: function() {
         $('span.language-item.translatable').click($.proxy(function (event) {
@@ -91,7 +91,9 @@ var FrontendTranslation = {
         $('body').on('click', '#toggle-translate', $.proxy(function () {
             this.toggleTranslate();
         }, this));
+
+        if (typeof($('#toggle-translate').data('url')) !== 'undefined') {
+            this.dialogURL = $('#toggle-translate').data('url');
+        }
     }
 }
-
-
