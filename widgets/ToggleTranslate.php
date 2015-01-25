@@ -35,7 +35,7 @@ use lajax\translatemanager\Module;
  * 
  * ~~~
  * \lajax\translatemanager\widgets\ToggleTranslate::widget([
- *  'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}"><i></i> {text}</a><div id="translate-manager-div"></div>',
+ *  'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>',
  *  'frontendTranslationAsset' => 'lajax\translatemanager\bundles\FrontendTranslationAsset',
  * ]);
  * ~~~
@@ -44,6 +44,11 @@ use lajax\translatemanager\Module;
  * @since 1.0
  */
 class ToggleTranslate extends Widget {
+
+    /**
+     * Url of the dialog window.
+     */
+    const DIALOG_URL = '/translatemanager/language/dialog';
 
     /**
      * Button in top left corner.
@@ -74,7 +79,7 @@ class ToggleTranslate extends Widget {
     /**
      * @var string The template of the translate mode switch button.
      */
-    public $template = '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}"><i></i> {text}</a><div id="translate-manager-div"></div>';
+    public $template = '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>';
 
     /**
      * example: http://www.yiiframework.com/doc-2.0/guide-structure-assets.html
@@ -102,6 +107,7 @@ class ToggleTranslate extends Widget {
             '{text}' => Yii::t('language', 'Toggle translate'),
             '{position}' => $this->position,
             '{language}' => Yii::$app->language,
+            '{url}' => Yii::$app->urlManager->createUrl(self::DIALOG_URL),
         ]);
     }
 

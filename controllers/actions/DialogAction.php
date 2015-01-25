@@ -19,6 +19,7 @@ class DialogAction extends Action {
      * @return View
      */
     public function run() {
+
         $languageSource = LanguageSource::findOne([
                     'category' => Yii::$app->request->post('category', ''),
                     'MD5(message)' => Yii::$app->request->post('hash', '')
@@ -30,8 +31,8 @@ class DialogAction extends Action {
 
         $languageTranslate = LanguageTranslate::getLanguageTranslateByIdAndLanguageId($languageSource->id, Yii::$app->request->post('language_id', ''));
         return $this->controller->renderPartial('dialog', [
-            'languageSource' => $languageSource,
-            'languageTranslate' => $languageTranslate,
+                    'languageSource' => $languageSource,
+                    'languageTranslate' => $languageTranslate,
         ]);
     }
 
