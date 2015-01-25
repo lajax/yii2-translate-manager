@@ -21,6 +21,7 @@ class FrontendTranslationPluginAsset extends AssetBundle {
      * @inheritdoc
      */
     public $js = [
+        'javascripts/helpers.js',
         'javascripts/frontend-translation.js',
     ];
 
