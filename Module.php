@@ -8,6 +8,70 @@ use yii\web\ForbiddenHttpException;
 /**
  * This is the main module class for the TranslateManager module.
  * 
+ * Initialisation example:
+ * 
+ * Simple example:
+ * 
+ * ~~~
+ * 'modules' => [
+ *     'translatemanager' => [
+ *         'class' => 'lajax\translatemanager\Module',
+ *     ],
+ * ],
+ * ~~~
+ * 
+ * Complex example:
+ * 
+ * ~~~
+ * 'modules' => [
+ *     'translatemanager' => [
+ *         'class' => 'lajax\translatemanager\Module',
+ *         'root' => '@app',               // The root directory of the project scan.
+ *         'layout' => 'language',         // Name of the used layout. If using own layout use ‘null’.
+ *         'allowedIPs' => ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
+ *         'roles' => ['@'],               // For setting access levels to the translating interface.
+ *         'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
+ *                                         // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
+ *         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
+ *         'ignoredItems' => ['config'],   // these files will not be processed.
+ *         'tables' => [                   // Properties of individual tables
+ *             [
+ *                 'connection' => 'db',   // connection identifier
+ *                 'table' => 'language',  // table name
+ *                 'columns' => ['name', 'name_ascii']  //names of multilingual fields
+ *             ]
+ *         ]
+ *     ],
+ * ],
+ * ~~~
+ * 
+ * IMPORTANT: If you want to modify the value of roles (in other words to start using user roles) you need to enable authManager in the common config.
+ * 
+ * Using of authManager: http://www.yiiframework.com/doc-2.0/guide-security-authorization.html
+ * 
+ * examples:
+ * 
+ * PhpManager:
+ * 
+ * ~~~
+ * 'components' => [
+ *      'authManager' => [
+ *          'class' => 'yii\rbac\PhpManager',
+ *      ],
+ * ],
+ * ~~~
+ * 
+ * DbManager:
+ * 
+ * ~~~
+ * 'components' => [
+ *      'authManager' => [
+ *          'class' => 'yii\rbac\DbManager',
+ *      ],
+ * ],
+ * ~~~
+ * 
+ * 
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.1
  */
@@ -35,6 +99,8 @@ class Module extends \yii\base\Module {
 
     /**
      * @var array the list of rights that are allowed to access this module.
+     * If you modify, you also need to enable authManager.
+     * http://www.yiiframework.com/doc-2.0/guide-security-authorization.html
      */
     public $roles = [];
 

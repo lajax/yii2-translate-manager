@@ -84,10 +84,10 @@ Simple example:
 
 ```
 'modules' => [
-        'translatemanager' => [
-            'class' => 'lajax\translatemanager\Module',
-        ],
+    'translatemanager' => [
+        'class' => 'lajax\translatemanager\Module',
     ],
+],
 ```
 
 A more complex example including database table with multilingual support is below:
@@ -99,7 +99,6 @@ A more complex example including database table with multilingual support is bel
         'layout' => 'language',         // Name of the used layout. If using own layout use ‘null’.
         'allowedIPs' => ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
         'roles' => ['@'],               // For setting access levels to the translating interface.
-                                        // IMPORTANT: if you modify roles, you also need to enable authManager.
         'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
                                         // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
@@ -115,8 +114,31 @@ A more complex example including database table with multilingual support is bel
 ],
 ```
 
-Using the [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
+IMPORTANT: If you want to modify the value of roles (in other words to start using user roles) you need to enable authManager in the common config.
 
+Using of [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
+
+examples:
+
+PhpManager:
+```
+'components' => [
+    'authManager' => [
+        'class' => 'yii\rbac\PhpManager',
+    ],
+    // ...
+],
+```
+
+DbManager:
+```
+'components' => [
+    'authManager' => [
+        'class' => 'yii\rbac\DbManager',
+    ],
+    // ...
+],
+```
 
 Front end translation:
 
