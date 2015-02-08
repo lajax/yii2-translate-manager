@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/1e018d9b/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/361d5cd7/style.css" rel="stylesheet">
-<script src="./assets/4f282bca/jquery.js"></script>
-<script src="./assets/1e018d9b/js/bootstrap.js"></script>
-<script src="./assets/4e96ebc8/jssearch.js"></script>    <title>Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/8067b7df/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/96d031ef/style.css" rel="stylesheet">
+<script src="./assets/b9575682/jquery.js"></script>
+<script src="./assets/8067b7df/js/bootstrap.js"></script>
+<script src="./assets/b0f55ffc/jssearch.js"></script>    <title>Module, lajax\translatemanager\Module - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -60,7 +60,10 @@
 <a class="list-group-item" href="./lajax-translatemanager-services-optimizer.html">Optimizer</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-scanner.html">Scanner</a></div>
 <a class="list-group-item" href="#navigation-8" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services\scanners <b class="caret"></b></a><div id="navigation-8" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerdatabase.html">ScannerDatabase</a>
-<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerfile.html">ScannerFile</a></div>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerfile.html">ScannerFile</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerjavascriptfunction.html">ScannerJavaScriptFunction</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerphparray.html">ScannerPhpArray</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerphpfunction.html">ScannerPhpFunction</a></div>
 <a class="list-group-item" href="#navigation-9" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\widgets <b class="caret"></b></a><div id="navigation-9" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-widgets-toggletranslate.html">ToggleTranslate</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class lajax\translatemanager\Module</h1>
@@ -78,7 +81,7 @@
     </colgroup>
             <tr><th>Inheritance</th><td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a> &raquo;
 yii\base\Module</td></tr>
-                                    <tr><th>Available since version</th><td>1.1</td></tr>
+                                    <tr><th>Available since version</th><td>1.2</td></tr>
         </table>
 
 <div id="classDescription">
@@ -96,11 +99,14 @@ yii\base\Module</td></tr>
     'translatemanager' =&gt; [
         'class' =&gt; 'lajax\translatemanager\Module',
         'root' =&gt; '@app',               // The root directory of the project scan.
-        'layout' =&gt; 'language',         // Name of the used layout. If using own layout use ‘null’.
+        'layout' =&gt; 'language',         // Name of the used layout. If using own layout use 'null'.
         'allowedIPs' =&gt; ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
         'roles' =&gt; ['@'],               // For setting access levels to the translating interface.
         'tmpDir' =&gt; '@runtime',         // Writable directory for the client-side temporary language files.
                                         // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
+        'phpTranslators' =&gt; ['::t'],    // list of the php function for translating messages.
+        'jsTranslators' =&gt; ['lajax.t'], // list of the js function for translating messages.
+        'patterns' =&gt; ['*.js', '*.php'],// list of file extensions that contain language elements.
         'ignoredCategories' =&gt; ['yii'], // these categories won’t be included in the language database.
         'ignoredItems' =&gt; ['config'],   // these files will not be processed.
         'tables' =&gt; [                   // Properties of individual tables
@@ -133,7 +139,7 @@ yii\base\Module</td></tr>
 
     </div>
 
-<a name="properties"></a>
+<a id="properties"></a>
 
 <div class="summary doc-property">
 <h2>Public Properties</h2>
@@ -174,6 +180,12 @@ yii\base\Module</td></tr>
         <td>Directories/files being ignored.</td>
         <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
     </tr>
+            <tr id="$jsTranslators">
+        <td><a href="lajax-translatemanager-module.html#$jsTranslators-detail">$jsTranslators</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td>List of the JavaScript function for translating messages.</td>
+        <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
+    </tr>
             <tr id="$layout">
         <td><a href="lajax-translatemanager-module.html#$layout-detail">$layout</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
@@ -192,6 +204,12 @@ yii\base\Module</td></tr>
         <td>PHP Regular expression to detect langualge elements within arrays.</td>
         <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
     </tr>
+            <tr id="$patternArrayTranslator">
+        <td><a href="lajax-translatemanager-module.html#$patternArrayTranslator-detail">$patternArrayTranslator</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>PHP Regular expression to match arrays containing language elements to translate.</td>
+        <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
+    </tr>
             <tr id="$patternJs">
         <td><a href="lajax-translatemanager-module.html#$patternJs-detail">$patternJs</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
@@ -208,6 +226,12 @@ yii\base\Module</td></tr>
         <td><a href="lajax-translatemanager-module.html#$patterns-detail">$patterns</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
         <td>List of file extensions that contain language elements.</td>
+        <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
+    </tr>
+            <tr id="$phpTranslators">
+        <td><a href="lajax-translatemanager-module.html#$phpTranslators-detail">$phpTranslators</a></td>
+        <td><a href="http://www.php.net/language.types.array">array</a></td>
+        <td>List of the PHP function for translating messages.</td>
         <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
     </tr>
             <tr id="$roles">
@@ -243,7 +267,7 @@ yii\base\Module</td></tr>
     </table>
 </div>
 
-<a name="methods"></a>
+<a id="methods"></a>
 
 <div class="summary doc-method">
 <h2>Public Methods</h2>
@@ -277,9 +301,9 @@ yii\base\Module</td></tr>
     </table>
 </div>
 
-<a name="events"></a>
+<a id="events"></a>
 
-<a name="constants"></a>
+<a id="constants"></a>
 <div class="summary doc-const">
     <h2>Constants</h2>
 
@@ -296,7 +320,7 @@ yii\base\Module</td></tr>
         <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
     </tr>
             <tr id="SESSION_KEY_ENABLE_TRANSLATE">
-          <td>SESSION_KEY_ENABLE_TRANSLATE<a name="SESSION_KEY_ENABLE_TRANSLATE-detail"></a></td>
+          <td id="SESSION_KEY_ENABLE_TRANSLATE-detail">SESSION_KEY_ENABLE_TRANSLATE</td>
           <td>'frontendTranslation_EnableTranslate'</td>
           <td>Session key for storing front end translating privileges.
 </td>
@@ -362,9 +386,24 @@ yii\base\Module</td></tr>
                     </span>
     </div>
 
-    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$ignoredItems-detail">$ignoredItems</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'.svn'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.git'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/messages'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/BaseYii.php'</span><span style="color: #007700">]</span></div>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$ignoredItems-detail">$ignoredItems</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'.svn'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.git'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/messages'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/BaseYii.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'runtime'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'bower'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'nikic'</span><span style="color: #007700">]</span></div>
 
     <p>Directories/files being ignored.</p>
+
+    
+
+    <div class="detail-header h3" id="$jsTranslators-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-module.html#$jsTranslators-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $jsTranslators        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$jsTranslators-detail">$jsTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'lajax.t'</span><span style="color: #007700">]</span></div>
+
+    <p>List of the JavaScript function for translating messages.</p>
 
     
 
@@ -413,6 +452,21 @@ yii\base\Module</td></tr>
 
     
 
+    <div class="detail-header h3" id="$patternArrayTranslator-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternArrayTranslator-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $patternArrayTranslator        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$patternArrayTranslator-detail">$patternArrayTranslator</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#\@translate[^\$]+(?P&lt;translator&gt;[\w\d\s_]+[^\(\[]+)#s'</span></div>
+
+    <p>PHP Regular expression to match arrays containing language elements to translate.</p>
+
+    
+
     <div class="detail-header h3" id="$patternJs-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternJs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -456,6 +510,21 @@ yii\base\Module</td></tr>
 
     <p>List of file extensions that contain language elements.
 Only files with these extensions will be processed.</p>
+
+    
+
+    <div class="detail-header h3" id="$phpTranslators-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-module.html#$phpTranslators-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $phpTranslators        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$phpTranslators-detail">$phpTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'::t'</span><span style="color: #007700">]</span></div>
+
+    <p>List of the PHP function for translating messages.</p>
 
     
 
@@ -661,7 +730,7 @@ If you modify, you also need to enable authManager.
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 28 Jan 2015 15:28:32 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 08 Feb 2015 17:17:43 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

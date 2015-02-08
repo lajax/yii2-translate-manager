@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/1e018d9b/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/361d5cd7/style.css" rel="stylesheet">
-<script src="./assets/4f282bca/jquery.js"></script>
-<script src="./assets/1e018d9b/js/bootstrap.js"></script>
-<script src="./assets/4e96ebc8/jssearch.js"></script>    <title>Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/8067b7df/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/96d031ef/style.css" rel="stylesheet">
+<script src="./assets/b9575682/jquery.js"></script>
+<script src="./assets/8067b7df/js/bootstrap.js"></script>
+<script src="./assets/b0f55ffc/jssearch.js"></script>    <title>ScannerDatabase, lajax\translatemanager\services\scanners\ScannerDatabase - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -60,7 +60,10 @@
 <a class="list-group-item" href="./lajax-translatemanager-services-optimizer.html">Optimizer</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-scanner.html">Scanner</a></div>
 <a class="list-group-item active" href="#navigation-56" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services\scanners <b class="caret"></b></a><div id="navigation-56" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./lajax-translatemanager-services-scanners-scannerdatabase.html">ScannerDatabase</a>
-<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerfile.html">ScannerFile</a></div>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerfile.html">ScannerFile</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerjavascriptfunction.html">ScannerJavaScriptFunction</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerphparray.html">ScannerPhpArray</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerphpfunction.html">ScannerPhpFunction</a></div>
 <a class="list-group-item" href="#navigation-57" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\widgets <b class="caret"></b></a><div id="navigation-57" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-widgets-toggletranslate.html">ToggleTranslate</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class lajax\translatemanager\services\scanners\ScannerDatabase</h1>
@@ -98,9 +101,9 @@ examples:</p>
 
     </div>
 
-<a name="properties"></a>
+<a id="properties"></a>
 
-<a name="methods"></a>
+<a id="methods"></a>
 
 <div class="summary doc-method">
 <h2>Public Methods</h2>
@@ -121,17 +124,17 @@ examples:</p>
         <td></td>
         <td><a href="lajax-translatemanager-services-scanners-scannerdatabase.html">lajax\translatemanager\services\scanners\ScannerDatabase</a></td>
     </tr>
-            <tr id="scanning()">
-        <td><a href="lajax-translatemanager-services-scanners-scannerdatabase.html#scanning()-detail">scanning()</a></td>
+            <tr id="run()">
+        <td><a href="lajax-translatemanager-services-scanners-scannerdatabase.html#run()-detail">run()</a></td>
         <td>Scanning database tables defined in configuration file. Searching for language elements yet to be translated.</td>
         <td><a href="lajax-translatemanager-services-scanners-scannerdatabase.html">lajax\translatemanager\services\scanners\ScannerDatabase</a></td>
     </tr>
     </table>
 </div>
 
-<a name="events"></a>
+<a id="events"></a>
 
-<a name="constants"></a>
+<a id="constants"></a>
 
 <h2>Method Details</h2>
 
@@ -154,21 +157,21 @@ examples:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerdatabase.html#__construct()-detail">__construct</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$languageItems&nbsp;</span><span style="color: #007700">=&nbsp;[]&nbsp;)</span></td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerdatabase.html#__construct()-detail">__construct</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;\</span><span style="color: #0000BB">lajax</span><span style="color: #007700">\</span><span style="color: #0000BB">translatemanager</span><span style="color: #007700">\</span><span style="color: #0000BB">services</span><span style="color: #007700">\</span><span style="color: #0000BB">Scanner&nbsp;$scanner&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
-                  <td class="param-name-col"><span style="color: #0000BB">$languageItems</span></td>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-name-col"><span style="color: #0000BB">$scanner</span></td>
+                  <td class="param-type-col">\lajax\translatemanager\services\scanners\Scaner</td>
                   <td class="param-desc-col"></td>
                 </tr>
                                                 </table>
 
 <!--	-->
 
-    <div class="detail-header h3" id="scanning()-detail">
+    <div class="detail-header h3" id="run()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="lajax-translatemanager-services-scanners-scannerdatabase.html#scanning()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-services-scanners-scannerdatabase.html#run()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        scanning()
+        run()
         <span class="detail-header-tag small">
             public            method
                     </span>
@@ -181,7 +184,7 @@ examples:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.array">array</a> <strong><a href="lajax-translatemanager-services-scanners-scannerdatabase.html#scanning()-detail">scanning</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerdatabase.html#run()-detail">run</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
             </table>
 
 <!--	-->
@@ -224,7 +227,7 @@ examples:</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 28 Jan 2015 15:28:32 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 08 Feb 2015 17:17:43 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {
