@@ -6,7 +6,6 @@ use Yii;
 use yii\base\InvalidConfigException;
 use lajax\translatemanager\services\Scanner;
 
-
 /**
  * Detecting existing language elements in database.
  * The connection ids of the scanned databases and the table/field names can be defined in the configuration file of translateManager
@@ -39,17 +38,17 @@ class ScannerDatabase {
     private $_tables;
 
     /**
-     * @var array array containing the detected language elements
+     * @var Scanner object containing the detected language elements
      */
-    private $_languageItems;
+    private $_scanner;
 
     /**
-     * @param array $languageItems
+     * @param Scaner $scanner
      */
-    public function __construct($languageItems = []) {
-        $this->_languageItems = $languageItems;
+    public function __construct(Scanner $scanner) {
+        $this->_scanner = $scanner;
         $this->_tables = Yii::$app->getModule('translatemanager')->tables;
-        
+
         if (!empty($this->_tables) && is_array($this->_tables)) {
             foreach ($this->_tables as $tables) {
                 if (empty($tables['connection'])) {
@@ -65,16 +64,15 @@ class ScannerDatabase {
 
     /**
      * Scanning database tables defined in configuration file. Searching for language elements yet to be translated.
-     * @return array
      */
-    public function scanning() {
+    public function run() {
+
         if (is_array($this->_tables)) {
             foreach ($this->_tables as $tables) {
                 $this->_scanningTable($tables);
             }
         }
 
-        return $this->_languageItems;
     }
 
     /**
@@ -82,15 +80,15 @@ class ScannerDatabase {
      * @param array $tables
      */
     private function _scanningTable($tables) {
-        $data = (new \yii\db\Query())
-                ->select($tables['columns'])
+        $query = new \yii\db\Query();
+        $data = $query->select($tables['columns'])
                 ->from($tables['table'])
                 ->createCommand(Yii::$app->$tables['connection'])
                 ->queryAll();
         foreach ($data as $columns) {
             $columns = array_map('trim', $columns);
             foreach ($columns as $column) {
-                $this->_languageItems[Scanner::CATEGORY_DATABASE][$column] = true;
+                $this->_scanner->addLanguageItem(Scanner::CATEGORY_DATABASE, $column);
             }
         }
     }

@@ -21,7 +21,7 @@ use lajax\translatemanager\services\Scanner;
  * "t" functions:
  * 
  * ~~~
- * ::t(‘category of language element', 'language element');
+ * ::t('category of language element', 'language element');
  * ::t('category of language element', 'language element {replace}', ['replace' => 'String']);
  * ::t('category of language element', "language element");
  * ::t('category of language element', "language element {replace}", ['replace' => 'String']);
@@ -57,96 +57,127 @@ use lajax\translatemanager\services\Scanner;
  * ~~~
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.1
  */
-class ScannerFile {
+abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
     /**
-     * @var array storing language elements to be translated.
+     * Extension of PHP files.
      */
-    private $_languageItems = [];
+    const EXTENSION = '*.php';
+
+    /**
+     * @var Scanner object.
+     */
+    public $scanner;
 
     /**
      * @var \lajax\translatemanager\Module TranslateManager Module
      */
-    private $_module;
+    public $module;
 
     /**
-     * @param array $languageItems
+     * @var array Array to store patsh to project files.
      */
-    public function __construct($languageItems = []) {
-        $this->_module = Yii::$app->getModule('translatemanager');
-        $this->_languageItems = $languageItems;
+    protected static $files = ['*.php' => [], '*.js' => []];
+
+    /**
+     * @param Scanner $scanner
+     */
+    public function __construct(Scanner $scanner) {
+        parent::__construct('language', Yii::$app->getModule('translatemanager'), [
+            'scanner' => $scanner
+        ]);
     }
 
     /**
-     * Scans files searching for language elements not yet translated.
+     * @inheritdoc Initialise the $files static array.
      */
-    public function scanning() {
-        $files = FileHelper::findFiles(realpath($this->_getRoot()), [
-                    'except' => $this->_module->ignoredItems,
-                    'only' => $this->_module->patterns,
-        ]);
-        foreach ($files as $filename) {
-            $file = file_get_contents($filename);
-            if (pathinfo($filename, PATHINFO_EXTENSION) === 'php') {
-                $this->_regex($this->_module->patternPhp, $file);
-                $this->_regex($this->_module->patternArray, $file, true);
-            } else {
-                $this->_regex($this->_module->patternJs, $file);
-            }
+    public function init() {
+
+        if (empty(self::$files[static::EXTENSION]) && in_array(static::EXTENSION, $this->module->patterns)) {
+            self::$files[static::EXTENSION] = FileHelper::findFiles(realpath($this->_getRoot()), [
+                        'except' => $this->module->ignoredItems,
+                        'only' => [static::EXTENSION],
+            ]);
         }
 
-        return $this->_languageItems;
+        parent::init();
     }
 
     /**
-     * Collects language elements stored in file.
-     * @param string $pattern regular expression for detecting language elements
-     * @param string $subject source file to scan
-     * @param boolean $recursive True if search is recursive.
+     * Extracts messages from a file
+     *
+     * @param string $fileName name of the file to extract messages from
+     * @param array $options Definition of the parameters required to identify language elements.
+     * example: 
+     * ~~~
+     * [
+     *      'translator' => ['Yii::t', 'Lx::t'],
+     *      'begin' => '(',
+     *      'end' => ')'
+     * ]
+     * ~~~
      */
-    private function _regex($pattern, $subject, $recursive = false) {
-        preg_match_all($pattern, $subject, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+    protected function extractMessages($fileName, $options) {
+        $subject = file_get_contents($fileName);
+        if (static::EXTENSION !== '*.php') {
+            $subject = "<?php\n" . $subject;
+        }
 
-        foreach ($matches as $language_item) {
-            if (!$this->_isLanguageItem($language_item['text'][0])) {
-                continue;
-            } else if ($recursive) {
-                $this->_regex($this->_module->patternArrayRecursive, $language_item['text'][0]);
-            } else {
+        foreach ($options['translator'] as $currentTranslator) {
+            $translatorTokens = token_get_all('<?php ' . $currentTranslator);
+            array_shift($translatorTokens);
 
-                $category = $this->_getLanguageItemCategory($language_item);
-                if ($this->_isValidCategory($category)) {
-                    $message = eval("return {$language_item['text'][0]};");
-                    $this->_languageItems[$category][$message] = true;
+            $translatorTokensCount = count($translatorTokens);
+            $matchedTokensCount = 0;
+            $buffer = [];
+            $tokens = token_get_all($subject);
+
+            foreach ($tokens as $token) {
+                // finding out translator call
+                if ($matchedTokensCount < $translatorTokensCount) {
+                    if ($this->tokensEqual($token, $translatorTokens[$matchedTokensCount])) {
+                        $matchedTokensCount++;
+                    } else {
+                        $matchedTokensCount = 0;
+                    }
+                } elseif ($matchedTokensCount === $translatorTokensCount) {
+                    // translator found
+                    // end of translator call or end of something that we can't extract
+                    if ($this->tokensEqual($options['end'], $token)) {
+
+                        $languageItems = $this->getLanguageItem($buffer);
+                        if ($languageItems) {
+                            $this->scanner->addLanguageItems($languageItems);
+                        }
+
+                        // prepare for the next match
+                        $matchedTokensCount = 0;
+                        $buffer = [];
+                    } elseif ($token !== $options['begin'] && isset($token[0]) && !in_array($token[0], [T_WHITESPACE, T_COMMENT])) {
+                        // ignore comments, whitespaces and beginning of function call
+                        $buffer[] = $token;
+                    }
                 }
             }
         }
     }
 
     /**
+     * Returns language elements in the token buffer.
+     * If there is no recognisable language element in the array, returns null.
+     */
+    abstract protected function getLanguageItem($buffer);
+
+    /**
      * Returns the root directory of the project.
      * @return string
      */
     private function _getRoot() {
-        $directories = explode('/', Yii::getAlias($this->_module->root));
+        $directories = explode('/', Yii::getAlias($this->module->root));
         array_pop($directories);
         return implode('/', $directories);
-    }
-
-    /**
-     * Returns the category of the given language.
-     * @param array $data Contents of the matches array returned by preg_match_all
-     * @return string The name of the category in the category key of the array received as a parameter.
-     * If there is no such key, the file was a JavaScript file.
-     */
-    private function _getLanguageItemCategory($data) {
-        if (isset($data['category'][0])) {
-            return empty($data['category'][0]) ? Scanner::CATEGORY_ARRAY : substr($data['category'][0], 1, -1);
-        }
-
-        return Scanner::CATEGORY_JAVASCRIPT;
     }
 
     /**
@@ -154,21 +185,8 @@ class ScannerFile {
      * @param string $category
      * @return boolean
      */
-    private function _isValidCategory($category) {
-        return !in_array($category, $this->_module->ignoredCategories);
-    }
-
-    /**
-     * Determines whether the text received as a parameter has to be translated.
-     * @param string $language_item
-     * @return boolean
-     */
-    private function _isLanguageItem($language_item) {
-        if (mb_strlen(trim($language_item)) != 0) {
-            return true;
-        }
-
-        return false;
+    protected function isValidCategory($category) {
+        return !in_array($category, $this->module->ignoredCategories);
     }
 
 }

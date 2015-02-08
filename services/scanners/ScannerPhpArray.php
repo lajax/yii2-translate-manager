@@ -1,0 +1,120 @@
+<?php
+
+namespace lajax\translatemanager\services\scanners;
+
+use lajax\translatemanager\services\Scanner;
+
+/**
+ * Class for processing PHP files.
+ * 
+ * Language elements detected in constant arrays:
+ * 
+ * ~~~
+ *  /**
+ *   * @translate
+ *   *\/
+ *  private $_GENDERS = ['Male', 'Female'];
+ *  /**
+ *   * @translate
+ *   *\/
+ *   private $_STATUSES = [
+ *      self::STATUS_ACTIVE => 'Active',
+ *      self::STATUS_INACTIVE => 'Inactive'
+ *   ];
+ * ~~~
+ * 
+ * Translation of constant arrays:
+ * Translation to site language:
+ * 
+ * ~~~
+ * $genders = \lajax\translatemanager\helpers\Language::a($this->_GENDERS);
+ * ~~~
+ * 
+ * Translating to the language of your coice:
+ * 
+ * ~~~
+ * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de_DE');
+ * ~~~
+ *
+ * @author Lajos Molnár <lajax.m@gmail.com>
+ * @since 1.0
+ */
+class ScannerPhpArray extends ScannerFile {
+
+    /**
+     * Extension of PHP files.
+     */
+    const EXTENSION = '*.php';
+
+    /**
+     * Start scanning PHP files.
+     */
+    public function run() {
+
+        foreach (self::$files[static::EXTENSION] as $file) {
+            foreach ($this->_getTranslators($file) as $translator) {
+                $this->extractMessages($file, [
+                    'translator' => [$translator],
+                    'begin' => (preg_match('#array\s*$#i', $translator) != false) ? '(' : '[',
+                    'end' => ';'
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Returns the names of the arrays storing the language elements to be translated.
+     * @param string $file Path to the file to scan.
+     * @return array List of arrays storing the language elements to be translated.
+     */
+    private function _getTranslators($file) {
+        $subject = file_get_contents($file);
+        preg_match_all($this->module->patternArrayTranslator, $subject, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+        $translators = [];
+        foreach ($matches as $data) {
+            if (isset($data['translator'][0])) {
+                $translators[$data['translator'][0]] = true;
+            }
+        }
+
+        return array_keys($translators);
+    }
+
+    /**
+     * Returns language elements in the token buffer.
+     * If there are no recognisable language elements in the array, returns null
+     * @param array $buffer
+     * @return array|null
+     */
+    protected function getLanguageItem($buffer) {
+
+        $index = 0;
+        $messages = [];
+        foreach ($buffer as $key => $data) {
+            if (isset($data[0], $data[1]) && $data[0] === T_CONSTANT_ENCAPSED_STRING) {
+                $message = stripcslashes($data[1]);
+                $message = mb_substr($message, 1, mb_strlen($message) - 2);
+                if (isset($buffer[$key - 1][0]) && $buffer[$key - 1][0] === '.') {
+                    $messages[$index][] = $message;
+                } else {
+                    $messages[++$index][] = $message;
+                }
+            }
+        }
+
+        if (!empty($messages)) {
+            $languageItems = [];
+            foreach ($messages as $index => $message) {
+                $languageItems[] = [
+                    'category' => Scanner::CATEGORY_ARRAY,
+                    'message' => implode('', $message)
+                ];
+            }
+
+            return $languageItems;
+        }
+
+        return null;
+    }
+
+}
