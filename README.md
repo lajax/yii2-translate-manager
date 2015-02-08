@@ -12,7 +12,7 @@ It is possible to translate client side messages too (those stored in JavaScript
 
 It also allows you to translate text on the client side (on the live webpage) without having to log in to the translating interface. (frontendTranslation).
 
-On the server side it can handle database or one-dimensional array elements and Yii::t functions. 
+On the server side it can handle database or one-dimensional/multidimensional array elements and Yii::t functions. 
 You can exclude files, folders or categories to prevent them from being translated.
 
 Installation
@@ -96,11 +96,14 @@ A more complex example including database table with multilingual support is bel
     'translatemanager' => [
         'class' => 'lajax\translatemanager\Module',
         'root' => '@app',               // The root directory of the project scan.
-        'layout' => 'language',         // Name of the used layout. If using own layout use ‘null’.
+        'layout' => 'language',         // Name of the used layout. If using own layout use 'null'.
         'allowedIPs' => ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
         'roles' => ['@'],               // For setting access levels to the translating interface.
         'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
                                         // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
+        'phpTranslators' => ['::t'],    // list of the php function for translating messages.
+        'jsTranslators' => ['lajax.t'], // list of the js function for translating messages.
+        'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
         'ignoredItems' => ['config'],   // these files will not be processed.
         'tables' => [                   // Properties of individual tables

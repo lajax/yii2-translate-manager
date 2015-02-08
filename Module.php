@@ -27,11 +27,14 @@ use yii\web\ForbiddenHttpException;
  *     'translatemanager' => [
  *         'class' => 'lajax\translatemanager\Module',
  *         'root' => '@app',               // The root directory of the project scan.
- *         'layout' => 'language',         // Name of the used layout. If using own layout use ‘null’.
+ *         'layout' => 'language',         // Name of the used layout. If using own layout use 'null'.
  *         'allowedIPs' => ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
  *         'roles' => ['@'],               // For setting access levels to the translating interface.
  *         'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
  *                                         // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
+ *         'phpTranslators' => ['::t'],    // list of the php function for translating messages.
+ *         'jsTranslators' => ['lajax.t'], // list of the js function for translating messages.
+ *         'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
  *         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
  *         'ignoredItems' => ['config'],   // these files will not be processed.
  *         'tables' => [                   // Properties of individual tables
@@ -73,7 +76,7 @@ use yii\web\ForbiddenHttpException;
  * 
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.1
+ * @since 1.2
  */
 class Module extends \yii\base\Module {
 
@@ -121,6 +124,9 @@ class Module extends \yii\base\Module {
         '.hgkeep',
         '/messages',
         '/BaseYii.php',
+        'runtime',
+        'bower',
+        'nikic',
     ];
 
     /**
@@ -146,23 +152,43 @@ class Module extends \yii\base\Module {
 
     /**
      * @var string Regular expression to match PHP Yii::t functions.
+     * @deprecated since version 2.0
      */
     public $patternPhp = '#::t\s*\(\s*(?P<category>\'[\w\d\s_-]+?(?<!\\\\)\'|"[\w\d\s_-]+?(?<!\\\\)"?)\s*,\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*[,\)]#s';
 
     /**
      * @var string PHP Regular expression to match arrays containing language elements to translate.
+     * @deprecated since version 2.0
      */
     public $patternArray = "#\@translate[^\$]+\$(?P<text>.+?)[\]\)];#smui";
 
     /**
      * @var string PHP Regular expression to detect langualge elements within arrays.
+     * @deprecated since version 2.0
      */
     public $patternArrayRecursive = '#(?P<category>)(\[|\(|>|,|)\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*(,|$)#s';
 
     /**
      * @var string Regular expression to detect JavaScript lajax.t functions.
+     * @deprecated since version 2.0
      */
     public $patternJs = '#lajax\.t\s*\(\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*[,\)]#s';
+
+    /**
+     * @var array List of the PHP function for translating messages.
+     */
+    public $phpTranslators = ['::t'];
+
+    /**
+     * @var array List of the JavaScript function for translating messages.
+     */
+    public $jsTranslators = ['lajax.t'];
+
+    /**
+     *
+     * @var string PHP Regular expression to match arrays containing language elements to translate.
+     */
+    public $patternArrayTranslator = '#\@translate[^\$]+(?P<translator>[\w\d\s_]+[^\(\[]+)#s';
 
     /**
      * examples:
@@ -189,7 +215,7 @@ class Module extends \yii\base\Module {
         if ($this->checkAccess()) {
             return parent::beforeAction($action);
         } else {
-            throw new ForbiddenHttpException('language', 'You are not allowed to access this page.');
+            throw new ForbiddenHttpException('You are not allowed to access this page.');
         }
     }
 
