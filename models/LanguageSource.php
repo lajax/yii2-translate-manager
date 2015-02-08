@@ -81,6 +81,15 @@ class LanguageSource extends \yii\db\ActiveRecord {
     }
 
     /**
+     * @param string $language
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguageTranslateByLanguage($language) {
+        return $this->hasOne(LanguageTranslate::className(), ['id' => 'id'])
+                ->where('language = :language', ['language' => $language]);
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getLanguageTranslate() {

@@ -56,17 +56,19 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
 
     /**
      * Returnes language object by id and language_id. If not found, creates a new one.
-     * @param integer $id
-     * @param string $languageId
-     * @return \common\models\LanguageTranslate
+     * @param integer $id LanguageSource id
+     * @param string $languageId Language language_id
+     * @return LanguageTranslate
+     * @deprecated since version 2.0
      */
     public static function getLanguageTranslateByIdAndLanguageId($id, $languageId) {
 
         $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]);
-        if ($languageTranslate === null) {
-            $languageTranslate = new LanguageTranslate;
-            $languageTranslate->id = $id;
-            $languageTranslate->language = $languageId;
+        if (!$languageTranslate) {
+            $languageTranslate = new LanguageTranslate([
+                'id' => $id,
+                'language' => $languageId,
+            ]);
         }
 
         return $languageTranslate;
@@ -77,15 +79,15 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
      */
     public function getTranslatedLanguageNames() {
         $translatedLanguages = $this->getTranslatedLanguages();
-        
+
         $data = [];
         foreach ($translatedLanguages as $languageTranslate) {
-            $data[$languageTranslate->language] = $languageTranslate->getLanguageName(); 
+            $data[$languageTranslate->language] = $languageTranslate->getLanguageName();
         }
-        
+
         return $data;
     }
-    
+
     /**
      * Returns the language element in all other languages.
      * @return LanguageTranslate
@@ -103,7 +105,7 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
         if (!$language_names || empty($language_names[$this->language])) {
             $language_names = Language::getLanguageNames();
         }
-        
+
         return empty($language_names[$this->language]) ? $this->language : $language_names[$this->language];
     }
 
