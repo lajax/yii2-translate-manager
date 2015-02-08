@@ -2,8 +2,6 @@
 
 namespace lajax\translatemanager\controllers\actions;
 
-use Yii;
-use yii\base\Action;
 use lajax\translatemanager\services\Scanner;
 
 /**
@@ -12,7 +10,7 @@ use lajax\translatemanager\services\Scanner;
  * @since 1.0
  */
 
-class ScanAction extends Action {
+class ScanAction extends \yii\base\Action {
 
     /**
      * Detecting new language elements.

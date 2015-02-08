@@ -3,7 +3,6 @@
 namespace lajax\translatemanager\controllers\actions;
 
 use Yii;
-use yii\base\Action;
 use lajax\translatemanager\models\searches\LanguageSearch;
 use lajax\translatemanager\bundles\LanguageAsset;
 use lajax\translatemanager\bundles\LanguagePluginAsset;
@@ -13,7 +12,7 @@ use lajax\translatemanager\bundles\LanguagePluginAsset;
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
-class ListAction extends Action {
+class ListAction extends \yii\base\Action {
 
     /**
      * List of languages

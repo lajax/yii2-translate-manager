@@ -3,8 +3,6 @@
 namespace lajax\translatemanager\controllers\actions;
 
 use Yii;
-use yii\base\Action;
-use yii\helpers\Json;
 use yii\web\Response;
 use lajax\translatemanager\models\Language;
 
@@ -13,7 +11,7 @@ use lajax\translatemanager\models\Language;
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
-class ChangeStatusAction extends Action {
+class ChangeStatusAction extends \yii\base\Action {
 
     /**
      * Modifying the state of language.

@@ -2,8 +2,6 @@
 
 namespace lajax\translatemanager\controllers\actions;
 
-use Yii;
-use yii\base\Action;
 use lajax\translatemanager\services\Optimizer;
 
 /**
@@ -11,7 +9,7 @@ use lajax\translatemanager\services\Optimizer;
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
-class OptimizerAction extends Action {
+class OptimizerAction extends \yii\base\Action {
 
     /**
      * Removing unused language elements.

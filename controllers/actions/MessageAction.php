@@ -3,7 +3,6 @@
 namespace lajax\translatemanager\controllers\actions;
 
 use Yii;
-use yii\base\Action;
 use lajax\translatemanager\models\LanguageSource;
 use lajax\translatemanager\models\LanguageTranslate;
 
@@ -12,7 +11,7 @@ use lajax\translatemanager\models\LanguageTranslate;
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
-class MessageAction extends Action {
+class MessageAction extends \yii\base\Action {
 
     /**
      * Returning messages in the given language
