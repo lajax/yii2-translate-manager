@@ -345,6 +345,22 @@ $menuItems[] = [
 ];
 ```
 
+###Console commands
+ 
+Register the command
+
+```
+'controllerMap'       => [
+    'translate' => \lajax\translatemanager\commands\TranslatemanagerController::className()
+],
+```
+
+Use it with the Yii CLI
+
+```
+./yii translate/scan
+./yii translate/optimize
+```
 
 Screenshots
 -----------
