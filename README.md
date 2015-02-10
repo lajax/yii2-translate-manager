@@ -350,7 +350,7 @@ $menuItems[] = [
 Register the command
 
 ```
-'controllerMap'       => [
+'controllerMap' => [
     'translate' => \lajax\translatemanager\commands\TranslatemanagerController::className()
 ],
 ```
