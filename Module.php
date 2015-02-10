@@ -91,6 +91,11 @@ class Module extends \yii\base\Module {
     public $controllerNamespace = 'lajax\translatemanager\controllers';
 
     /**
+     * @inheritdoc
+     */
+    public $defaultRoute = 'language/list';
+
+    /**
      * @var string name of the used layout. If you want to use the site default layout set value null.
      */
     public $layout = 'language';
