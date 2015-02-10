@@ -48,8 +48,11 @@ class ScannerPhpArray extends ScannerFile {
 
     /**
      * Start scanning PHP files.
+     * @param string $route
+     * @param array $params
+     * @inheritdoc
      */
-    public function run() {
+    public function run($route, $params = array()) {
 
         foreach (self::$files[static::EXTENSION] as $file) {
             foreach ($this->_getTranslators($file) as $translator) {
@@ -88,33 +91,24 @@ class ScannerPhpArray extends ScannerFile {
      */
     protected function getLanguageItem($buffer) {
 
-        $index = 0;
-        $messages = [];
+        $index = -1;
+        $languageItems = [];
         foreach ($buffer as $key => $data) {
             if (isset($data[0], $data[1]) && $data[0] === T_CONSTANT_ENCAPSED_STRING) {
                 $message = stripcslashes($data[1]);
                 $message = mb_substr($message, 1, mb_strlen($message) - 2);
                 if (isset($buffer[$key - 1][0]) && $buffer[$key - 1][0] === '.') {
-                    $messages[$index][] = $message;
+                    $languageItems[$index]['message'] .= $message;
                 } else {
-                    $messages[++$index][] = $message;
+                    $languageItems[++$index] = [
+                        'category' => Scanner::CATEGORY_ARRAY,
+                        'message' => $message
+                    ];
                 }
             }
         }
 
-        if (!empty($messages)) {
-            $languageItems = [];
-            foreach ($messages as $index => $message) {
-                $languageItems[] = [
-                    'category' => Scanner::CATEGORY_ARRAY,
-                    'message' => implode('', $message)
-                ];
-            }
-
-            return $languageItems;
-        }
-
-        return null;
+        return $languageItems ? : null;
     }
 
 }

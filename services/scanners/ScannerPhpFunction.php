@@ -27,16 +27,22 @@ class ScannerPhpFunction extends ScannerFile {
 
     /**
      * Start scanning PHP files.
+     * @param string $route
+     * @param array $params
+     * @inheritdoc
      */
-    public function run() {
+    public function run($route, $params = array()) {
 
         foreach (self::$files[static::EXTENSION] as $file) {
-            $this->extractMessages($file, [
-                'translator' => (array) $this->module->phpTranslators,
-                'begin' => '(',
-                'end' => ')',
-            ]);
+            if (preg_match('#' . preg_quote(implode('\s*\(|', $this->module->phpTranslators)) . '\s*\(#i', file_get_contents($file)) != false) {
+                $this->extractMessages($file, [
+                    'translator' => (array) $this->module->phpTranslators,
+                    'begin' => '(',
+                    'end' => ')',
+                ]);
+            }
         }
+
     }
 
     /**

@@ -78,7 +78,7 @@ class Scanner {
     private function _scanningProject() {
         foreach ($this->_SCANNERS as $scanner) {
             $object = new $scanner($this);
-            $object->run();
+            $object->run('');
         }
 
     }

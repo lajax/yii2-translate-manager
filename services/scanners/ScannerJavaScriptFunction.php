@@ -27,14 +27,19 @@ class ScannerJavaScriptFunction extends ScannerFile {
 
     /**
      * Start scanning JavaScript files.
+     * @param string $route
+     * @param array $params
+     * @inheritdoc
      */
-    public function run() {
+    public function run($route, $params = array()) {
         foreach (self::$files[static::EXTENSION] as $file) {
-            $this->extractMessages($file, [
-                'translator' => (array) $this->module->jsTranslators,
-                'begin' => '(',
-                'end' => ')'
-            ]);
+            if (preg_match('#' . preg_quote(implode('\s*\(|', $this->module->jsTranslators)) . '\s*\(#i', file_get_contents($file)) != false) {
+                $this->extractMessages($file, [
+                    'translator' => (array) $this->module->jsTranslators,
+                    'begin' => '(',
+                    'end' => ')'
+                ]);
+            }
         }
     }
 
