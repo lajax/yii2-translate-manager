@@ -49,9 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'format' => 'html',
-                'attribute' => Yii::t('language', 'Translate'),
+                'attribute' => Yii::t('language', 'Action'),
                 'content' => function ($language) {
-                    return Html::a(Yii::t('language', 'Translate'), Url::toRoute(['language/translate', 'language_id' => $language->language_id]), ['class' => 'translate btn btn-xs btn-success']);
+                    return Html::a(Yii::t('language', 'Translate'), Url::toRoute(['language/translate', 'language_id' => $language->language_id]), ['class' => 'translate btn btn-xs btn-success']) . ' ' .
+                           Html::a(Yii::t('language', 'View'), Url::toRoute(['language/view', 'id' => $language->language_id]), ['class' => 'translate btn btn-xs btn-success']);
                 },
                     ],
                 ],

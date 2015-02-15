@@ -5,6 +5,7 @@
  */
 
 $this->title = Yii::t('language', 'Scanning project');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="w2-info" class="alert-info alert fade in">

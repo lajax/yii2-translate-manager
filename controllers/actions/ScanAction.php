@@ -9,7 +9,6 @@ use lajax\translatemanager\services\Scanner;
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
-
 class ScanAction extends \yii\base\Action {
 
     /**
@@ -20,9 +19,8 @@ class ScanAction extends \yii\base\Action {
 
         $scanner = new Scanner;
         return $this->controller->render('scan', [
-            'items_count' => $scanner->scanning()
+                    'items_count' => $scanner->scanning()
         ]);
     }
-
 
 }

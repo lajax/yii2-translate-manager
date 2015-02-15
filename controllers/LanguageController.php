@@ -20,15 +20,20 @@ class LanguageController extends Controller {
     /**
      * @inheritdoc
      */
+    public $defaultAction = 'list';
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save'],
+                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save'],
+                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete'],
                         'roles' => $this->module->roles,
                     ],
                 ],
@@ -68,7 +73,34 @@ class LanguageController extends Controller {
             'message' => [
                 'class' => 'lajax\translatemanager\controllers\actions\MessageAction',
             ],
+            'view' => [
+                'class' => 'lajax\translatemanager\controllers\actions\ViewAction',
+            ],
+            'create' => [
+                'class' => 'lajax\translatemanager\controllers\actions\CreateAction',
+            ],
+            'update' => [
+                'class' => 'lajax\translatemanager\controllers\actions\UpdateAction',
+            ],
+            'delete' => [
+                'class' => 'lajax\translatemanager\controllers\actions\DeleteAction',
+            ],
         ];
+    }
+
+    /**
+     * Finds the Language model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param string $id
+     * @return Language the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function findModel($id) {
+        if (($model = \lajax\translatemanager\models\Language::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 }

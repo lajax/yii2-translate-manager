@@ -25,7 +25,7 @@ class SaveAction extends \yii\base\Action {
         $id = Yii::$app->request->post('id', 0);
         $languageId = Yii::$app->request->post('language_id', Yii::$app->language);
 
-        $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]) ?:
+        $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]) ? :
                 new LanguageTranslate(['id' => $id, 'language' => $languageId]);
 
         $languageTranslate->translation = Yii::$app->request->post('translation', '');

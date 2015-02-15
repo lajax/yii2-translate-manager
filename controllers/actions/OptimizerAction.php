@@ -19,7 +19,7 @@ class OptimizerAction extends \yii\base\Action {
         $optimizer = new Optimizer;
 
         return $this->controller->render('optimizer', [
-            'items_count' => $optimizer->optimization()
+                    'items_count' => $optimizer->optimization()
         ]);
     }
 
