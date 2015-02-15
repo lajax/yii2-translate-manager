@@ -9,7 +9,7 @@ use lajax\translatemanager\models\Language;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="language-form">
+<div class="language-form col-sm-6">
 
     <?php $form = ActiveForm::begin([
         'enableAjaxValidation' => true
