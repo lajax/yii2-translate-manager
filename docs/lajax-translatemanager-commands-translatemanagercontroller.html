@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/8067b7df/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/96d031ef/style.css" rel="stylesheet">
-<script src="./assets/b9575682/jquery.js"></script>
-<script src="./assets/8067b7df/js/bootstrap.js"></script>
-<script src="./assets/b0f55ffc/jssearch.js"></script>    <title>TranslatemanagerController, lajax\translatemanager\commands\TranslatemanagerController - Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/c0f64b0c/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/a29a9621/style.css" rel="stylesheet">
+<script src="./assets/3698fc90/jquery.js"></script>
+<script src="./assets/c0f64b0c/js/bootstrap.js"></script>
+<script src="./assets/780a7f8/jssearch.js"></script>    <title>TranslatemanagerController, lajax\translatemanager\commands\TranslatemanagerController - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -44,13 +44,17 @@
 <a class="list-group-item active" href="#navigation-119" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\commands <b class="caret"></b></a><div id="navigation-119" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./lajax-translatemanager-commands-translatemanagercontroller.html">TranslatemanagerController</a></div>
 <a class="list-group-item" href="#navigation-120" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\controllers <b class="caret"></b></a><div id="navigation-120" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-controllers-languagecontroller.html">LanguageController</a></div>
 <a class="list-group-item" href="#navigation-121" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\controllers\actions <b class="caret"></b></a><div id="navigation-121" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-controllers-actions-changestatusaction.html">ChangeStatusAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-createaction.html">CreateAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-deleteaction.html">DeleteAction</a>
 <a class="list-group-item" href="./lajax-translatemanager-controllers-actions-dialogaction.html">DialogAction</a>
 <a class="list-group-item" href="./lajax-translatemanager-controllers-actions-listaction.html">ListAction</a>
 <a class="list-group-item" href="./lajax-translatemanager-controllers-actions-messageaction.html">MessageAction</a>
 <a class="list-group-item" href="./lajax-translatemanager-controllers-actions-optimizeraction.html">OptimizerAction</a>
 <a class="list-group-item" href="./lajax-translatemanager-controllers-actions-saveaction.html">SaveAction</a>
 <a class="list-group-item" href="./lajax-translatemanager-controllers-actions-scanaction.html">ScanAction</a>
-<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-translateaction.html">TranslateAction</a></div>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-translateaction.html">TranslateAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-updateaction.html">UpdateAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-viewaction.html">ViewAction</a></div>
 <a class="list-group-item" href="#navigation-122" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\helpers <b class="caret"></b></a><div id="navigation-122" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-helpers-language.html">Language</a></div>
 <a class="list-group-item" href="#navigation-123" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\models <b class="caret"></b></a><div id="navigation-123" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-models-language.html">Language</a>
 <a class="list-group-item" href="./lajax-translatemanager-models-languagesource.html">LanguageSource</a>
@@ -86,7 +90,16 @@ yii\console\Controller</td></tr>
 
 <div id="classDescription">
     <p><strong>Command for scanning and optimizing project translations</strong></p>
-    
+    <p>Register the command</p>
+<pre><code>'controllerMap' =&gt; [
+    'translate' =&gt; \lajax\translatemanager\commands\TranslatemanagerController::className()
+],
+</code></pre>
+<p>Use it with the Yii CLI</p>
+<pre><code>./yii translate/scan
+./yii translate/optimize
+</code></pre>
+
     </div>
 
 <a id="properties"></a>
@@ -279,7 +292,7 @@ yii\console\Controller</td></tr>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 10 Feb 2015 15:31:38 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 15 Feb 2015 11:58:53 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

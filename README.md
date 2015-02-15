@@ -329,6 +329,7 @@ URLs for the translating tool:
 
 ```
 /translatemanager/language/list         // List of languages and modifying their status
+/translatemanager/language/create       // Create languages
 /translatemanager/language/scan         // Scan the project for new multilingual elements
 /translatemanager/language/optimizer    // Optimise the database
 ```
@@ -336,12 +337,14 @@ URLs for the translating tool:
 Example implementation of the Yii2 menu into your own menu. 
 
 ```
-$menuItems[] = [
-    'label' => Yii::t('language', 'Language'), 'items' => [
-        ['label' => Yii::t('language', 'Languages'), 'url' => ['/translatemanager/language/list']],
-        ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
-        ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
-    ]
+$menuItems = [
+    ['label' => Yii::t('language', 'Language'), 'items' => [    // jogosultságokra figyelj :)
+            ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
+            ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create']],
+        ]
+    ],
+    ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
+    ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
 ];
 ```
 

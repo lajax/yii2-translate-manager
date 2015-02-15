@@ -45,7 +45,7 @@ class Language extends \yii\db\ActiveRecord {
      * @var array
      * @translate
      */
-    private static $_STATUSES = [
+    private static $_CONDITIONS = [
         self::STATUS_INACTIVE => 'Inactive',
         self::STATUS_ACTIVE => 'Active',
         self::STATUS_BETA => 'Beta',
@@ -64,10 +64,15 @@ class Language extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['language_id', 'language', 'country', 'name', 'name_ascii', 'status'], 'required'],
-            [['status'], 'integer'],
             [['language_id'], 'string', 'max' => 5],
+            [['language_id'], 'unique'],
+            [['language_id'], 'match', 'pattern' => '/^([a-z]{2}[_-][A-Z]{2}|[a-z]{2})$/'],
             [['language', 'country'], 'string', 'max' => 2],
-            [['name', 'name_ascii'], 'string', 'max' => 32]
+            [['language', 'country'], 'match', 'pattern' => '/^[a-z]{2}$/i'],
+            
+            [['name', 'name_ascii'], 'string', 'max' => 32],
+            [['status'], 'integer'],
+            [['status'], 'in', 'range' => array_keys(Language::$_CONDITIONS)]
         ];
     }
 
@@ -117,7 +122,7 @@ class Language extends \yii\db\ActiveRecord {
      * @return string
      */
     public function getStatusName() {
-        return Yii::t('array', self::$_STATUSES[$this->status]);
+        return Yii::t('array', self::$_CONDITIONS[$this->status]);
     }
 
     /**
@@ -125,7 +130,7 @@ class Language extends \yii\db\ActiveRecord {
      * @return array
      */
     public static function getStatusNames() {
-        return \lajax\translatemanager\helpers\Language::a(self::$_STATUSES);
+        return \lajax\translatemanager\helpers\Language::a(self::$_CONDITIONS);
     }
 
    /**

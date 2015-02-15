@@ -14,7 +14,7 @@
             "email": "lajax.m@gmail.com"
         }
     ],
-"require": {
+    "require": {
         "yiisoft/yii2": "*",
         "yiisoft/yii2-jui": "*",
         "yiisoft/yii2-bootstrap": "*",
