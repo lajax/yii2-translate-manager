@@ -38,7 +38,7 @@ TranslateManagerAsset::register($this);
             ]);
             $menuItems = [
                 ['label' => Yii::t('language', 'Home'), 'url' => ['/']],
-                ['label' => Yii::t('language', 'Language'), 'items' => [    // jogosultságokra figyelj :)
+                ['label' => Yii::t('language', 'Language'), 'items' => [
                         ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
                         ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create']],
                     ]
