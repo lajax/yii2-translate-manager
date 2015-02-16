@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'status'],
                 'label' => Yii::t('language', 'Status'),
                 'content' => function ($language) {
-            return Html::activeDropDownList($language, 'status', Language::getStatusNames(), ['class' => 'status', 'id' => $language->language_id]);
+            return Html::activeDropDownList($language, 'status', Language::getStatusNames(), ['class' => 'status', 'id' => $language->language_id, 'data-url' => Yii::$app->urlManager->createUrl('/translatemanager/language/change-status')]);
         },
             ],
             [

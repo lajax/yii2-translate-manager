@@ -4,29 +4,24 @@
  */
 
 $(document).ready(function() {
-    language.init();
+    Language.init();
 });
 
-var language = (function() {
-
+var Language = {
+    init: function() {
+        $('#languages').on('change', 'select.status', $.proxy(function(event) {
+            this.changeStatus($(event.currentTarget));
+        }, this));
+    },
     /**
      * Change language status.
-     * @param object $this
+     * @param object $object
      */
-    function _changeStatus($this) {
-        var data = {
-            language_id: $this.attr('id'),
-            status: $this.val()
+    changeStatus: function($object) {
+        var $data = {
+            language_id: $object.attr('id'),
+            status: $object.val()
         };
-
-        helpers.post('change-status', data);
+        helpers.post($object.data('url'), $data);
     }
-
-    return {
-        init: function() {
-            $('#languages').on('change', 'select.status', function() {
-                _changeStatus($(this));
-            });
-        }
-    }
-})();
+}

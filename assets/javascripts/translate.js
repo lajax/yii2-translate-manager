@@ -24,7 +24,7 @@ var translate = (function () {
             translation: $.trim($this.closest('tr').find('.translation').val())
         };
 
-        helpers.post('save', data);
+        helpers.post($('#language_id').data('url'), data);
     }
 
     /**
