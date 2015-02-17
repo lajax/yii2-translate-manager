@@ -175,9 +175,9 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      * @return string
      */
     private function _getRoot() {
-        $directories = explode('/', Yii::getAlias($this->module->root));
+        $directories = explode(DIRECTORY_SEPARATOR, Yii::getAlias($this->module->root));
         array_pop($directories);
-        return implode('/', $directories);
+        return implode(DIRECTORY_SEPARATOR, $directories);
     }
 
     /**
