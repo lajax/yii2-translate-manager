@@ -3,6 +3,7 @@
 namespace lajax\translatemanager\services\scanners;
 
 use Yii;
+use yii\helpers\Console;
 use yii\helpers\FileHelper;
 use lajax\translatemanager\services\Scanner;
 
@@ -120,6 +121,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      * ~~~
      */
     protected function extractMessages($fileName, $options) {
+        $this->scanner->stdout('Extracting messages from ' . $fileName, Console::FG_GREEN);
         $subject = file_get_contents($fileName);
         if (static::EXTENSION !== '*.php') {
             $subject = "<?php\n" . $subject;

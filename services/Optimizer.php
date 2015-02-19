@@ -2,6 +2,7 @@
 
 namespace lajax\translatemanager\services;
 
+use yii\helpers\Console;
 use lajax\translatemanager\services\Scanner;
 use lajax\translatemanager\models\LanguageSource;
 
@@ -40,6 +41,7 @@ class Optimizer {
 
         $scanner = new Scanner;
         $this->_languageItems = $scanner->getLanguageItems();
+        $scanner->stdout('Optimizing translations - BEGIN', Console::FG_RED);
 
         $this->_createLanguageSource();
 
@@ -54,14 +56,17 @@ class Optimizer {
         }
 
         $ids = [];
-        foreach ($this->_languageSources as $messages) {
-            foreach ($messages as $id) {
+        foreach ($this->_languageSources as $category => $messages) {
+            foreach ($messages as $message => $id) {
                 $ids[$id] = true;           // Duplication filtering
+                $message = Console::ansiFormat($message, [Console::FG_RED]);
+                $scanner->stdout('Remove message: ' . $message);
             }
         }
 
         LanguageSource::deleteAll(['IN', 'id', array_keys($ids)]);
 
+        $scanner->stdout('Optimizing translations - END', Console::FG_RED);
         return count($ids);
     }
 

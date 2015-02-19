@@ -2,6 +2,8 @@
 
 namespace lajax\translatemanager\services\scanners;
 
+use yii\helpers\Console;
+
 /**
  * Class for processing PHP files.
  * 
@@ -32,7 +34,7 @@ class ScannerPhpFunction extends ScannerFile {
      * @inheritdoc
      */
     public function run($route, $params = array()) {
-
+        $this->scanner->stdout('Detect PhpFunction - BEGIN', Console::FG_CYAN);
         foreach (self::$files[static::EXTENSION] as $file) {
             if (preg_match('#' . preg_quote(implode('\s*\(|', $this->module->phpTranslators)) . '\s*\(#i', file_get_contents($file)) != false) {
                 $this->extractMessages($file, [
@@ -43,6 +45,7 @@ class ScannerPhpFunction extends ScannerFile {
             }
         }
 
+        $this->scanner->stdout('Detect PhpFunction - END', Console::FG_CYAN);
     }
 
     /**

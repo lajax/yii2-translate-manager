@@ -2,6 +2,7 @@
 
 namespace lajax\translatemanager\services\scanners;
 
+use yii\helpers\Console;
 use lajax\translatemanager\services\Scanner;
 
 /**
@@ -53,7 +54,7 @@ class ScannerPhpArray extends ScannerFile {
      * @inheritdoc
      */
     public function run($route, $params = array()) {
-
+        $this->scanner->stdout('Detect PhpArray - BEGIN', Console::FG_BLUE);
         foreach (self::$files[static::EXTENSION] as $file) {
             foreach ($this->_getTranslators($file) as $translator) {
                 $this->extractMessages($file, [
@@ -63,6 +64,8 @@ class ScannerPhpArray extends ScannerFile {
                 ]);
             }
         }
+
+        $this->scanner->stdout('Detect PhpArray - END', Console::FG_BLUE);
     }
 
     /**

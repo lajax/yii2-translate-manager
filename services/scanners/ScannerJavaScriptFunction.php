@@ -2,6 +2,7 @@
 
 namespace lajax\translatemanager\services\scanners;
 
+use yii\helpers\Console;
 use lajax\translatemanager\services\Scanner;
 
 /**
@@ -32,6 +33,7 @@ class ScannerJavaScriptFunction extends ScannerFile {
      * @inheritdoc
      */
     public function run($route, $params = array()) {
+        $this->scanner->stdout('Detect JavaScriptFunction - BEGIN', Console::FG_YELLOW);
         foreach (self::$files[static::EXTENSION] as $file) {
             if (preg_match('#' . preg_quote(implode('\s*\(|', $this->module->jsTranslators)) . '\s*\(#i', file_get_contents($file)) != false) {
                 $this->extractMessages($file, [
@@ -41,6 +43,8 @@ class ScannerJavaScriptFunction extends ScannerFile {
                 ]);
             }
         }
+
+        $this->scanner->stdout('Detect JavaScriptFunction - END', Console::FG_YELLOW);
     }
 
     /**

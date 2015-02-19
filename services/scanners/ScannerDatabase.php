@@ -3,6 +3,7 @@
 namespace lajax\translatemanager\services\scanners;
 
 use Yii;
+use yii\helpers\Console;
 use yii\base\InvalidConfigException;
 use lajax\translatemanager\services\Scanner;
 
@@ -66,13 +67,14 @@ class ScannerDatabase {
      * Scanning database tables defined in configuration file. Searching for language elements yet to be translated.
      */
     public function run() {
-
+        $this->_scanner->stdout('Detect DatabaseTable - BEGIN', Console::FG_GREY);
         if (is_array($this->_tables)) {
             foreach ($this->_tables as $tables) {
                 $this->_scanningTable($tables);
             }
         }
-
+        
+        $this->_scanner->stdout('Detect DatabaseTable - END', Console::FG_GREY);
     }
 
     /**
@@ -80,6 +82,7 @@ class ScannerDatabase {
      * @param array $tables
      */
     private function _scanningTable($tables) {
+        $this->_scanner->stdout('Extracting mesages from ' . $tables['table'] . '.' . implode(',', $tables['columns']), Console::FG_GREEN);
         $query = new \yii\db\Query();
         $data = $query->select($tables['columns'])
                 ->from($tables['table'])

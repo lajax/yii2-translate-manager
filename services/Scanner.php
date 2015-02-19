@@ -2,6 +2,8 @@
 
 namespace lajax\translatemanager\services;
 
+use Yii;
+use yii\helpers\Console;
 use lajax\translatemanager\models\LanguageSource;
 
 /**
@@ -80,7 +82,6 @@ class Scanner {
             $object = new $scanner($this);
             $object->run('');
         }
-
     }
 
     /**
@@ -90,6 +91,11 @@ class Scanner {
      */
     public function addLanguageItem($category, $message) {
         $this->_languageItems[$category][$message] = true;
+
+        $category = Console::ansiFormat($category, [Console::FG_PURPLE]);
+        $message = Console::ansiFormat($message, [Console::FG_PURPLE]);
+
+        $this->stdout('category: ' . $category . ', message: ' . $message);
     }
 
     /**
@@ -111,7 +117,24 @@ class Scanner {
      */
     public function addLanguageItems($languageItems) {
         foreach ($languageItems as $languageItem) {
-            $this->_languageItems[$languageItem['category']][$languageItem['message']] = true;
+            $this->addLanguageItem($languageItem['category'], $languageItem['message']);
         }
     }
+
+    /**
+     * Prints a string to STDOUT
+     * @param string $string
+     */
+    public function stdout($string) {
+        if (Yii::$app->request->isConsoleRequest) {
+            if (Console::streamSupportsAnsiColors(STDOUT)) {
+                $args = func_get_args();
+                array_shift($args);
+                $string = Console::ansiFormat($string, $args);
+            }
+
+            Console::stdout($string . "\n");
+        }
+    }
+
 }
