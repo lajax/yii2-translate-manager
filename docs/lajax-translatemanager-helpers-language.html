@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
         <link href="./assets/c0f64b0c/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/a29a9621/style.css" rel="stylesheet">
+<link href="./assets/4ab9c99f/style.css" rel="stylesheet">
 <script src="./assets/3698fc90/jquery.js"></script>
 <script src="./assets/c0f64b0c/js/bootstrap.js"></script>
-<script src="./assets/780a7f8/jssearch.js"></script>    <title>Language, lajax\translatemanager\helpers\Language - Yii Framework 2.0 API Documentation</title>
+<script src="./assets/c7a27835/jssearch.js"></script>    <title>Language, lajax\translatemanager\helpers\Language - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -114,7 +114,7 @@
 </tr>
         <tr id="a()">
         <td><a href="lajax-translatemanager-helpers-language.html#a()-detail">a()</a></td>
-        <td>Translating one dimensional array.</td>
+        <td>Translating one-dimensional array.</td>
         <td><a href="lajax-translatemanager-helpers-language.html">lajax\translatemanager\helpers\Language</a></td>
     </tr>
             <tr id="d()">
@@ -164,7 +164,7 @@
     </div>
 
     <div class="doc-description">
-        <p><strong>Translating one dimensional array.</strong></p>
+        <p><strong>Translating one-dimensional array.</strong></p>
 
         <p>e.g.:</p>
 <pre><code>$array = [
@@ -174,19 +174,63 @@
 
 $params = [
      'hello' =&gt; [
-         'name' =&gt; 'World,
+         'name' =&gt; 'World',
      ],
      'hi' =&gt; [
          'name' =&gt; 'Jenny',
      ],
 ];
 $result = \lajax\translatemanager\helpers\Language::a($array, $params);
-
-The result:
-
-[
+</code></pre>
+<p>The result:</p>
+<pre><code>[
  'hello' =&gt; 'Hello World',
  'hi' =&gt; 'Hi Jenny',
+]
+</code></pre>
+<p>Translating multi-dimensional array.
+e.g.:</p>
+<pre><code>$array = [
+     self::GENDER_MALE =&gt; [
+         self::MATERIALSTATUS_MARRIED =&gt; 'Mr. {name}',
+         self::MATERIALSTATUS_SINGLE =&gt; 'Mr. {name}'
+     ],
+     self::GENDER_FEMALE =&gt; [
+         self::MATERIALSTATUS_MARRIED =&gt; 'Mrs. {name}',
+         self::MATERIALSTATUS_SINGLE =&gt; 'Miss {name}'
+     ]
+];
+
+$params = [
+     self::GENDER_MALE =&gt; [
+         self::MATERIALSTATUS_MARRIED =&gt; [
+             'name' =&gt; 'Smith'
+         ],
+         self::MATERIALSTATUS_SINGLE =&gt; [
+             'name' =&gt; 'Stark'
+         ]
+     ],
+     self::GENDER_FEMALE =&gt; [
+         self::MATERIALSTATUS_MARRIED =&gt; [
+             'name' =&gt; 'Smith'
+         ],
+         self::MATERIALSTATUS_SINGLE =&gt; [
+             'name' =&gt; 'Potts'
+         ]
+     ]
+];
+$result = \lajax\translatemanager\helpers\Language::a($array, $params);
+</code></pre>
+<p>The result:</p>
+<pre><code>[
+ self::GENDER_MALE =&gt; [
+         self::MATERIALSTATUS_MARRIED =&gt; 'Mr. Smith',
+         self::MATERIALSTATUS_SINGLE =&gt; 'Mr. Stark'
+ ],
+ self::GENDER_FEMALE =&gt; [
+         self::MATERIALSTATUS_MARRIED =&gt; 'Mrs. Smith',
+         self::MATERIALSTATUS_SINGLE =&gt; 'Miss Potts'
+ ]
 ]
 </code></pre>
 
@@ -197,7 +241,7 @@ The result:
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$array</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>One-dimensonal array to be translated.</p>
+                  <td class="param-desc-col"><p>One-dimensonal or Multi-dimensional array to be translated.</p>
 </td>
                 </tr>
                             <tr>
@@ -457,7 +501,7 @@ If this is null, the current <span class="broken-link">\yii\base\Application::la
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 15 Feb 2015 11:58:53 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Fri, 20 Feb 2015 16:48:06 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

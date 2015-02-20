@@ -15,7 +15,7 @@ var Language = {
     },
     /**
      * Change language status.
-     * @param object $object
+     * @param {object} $object
      */
     changeStatus: function($object) {
         var $data = {

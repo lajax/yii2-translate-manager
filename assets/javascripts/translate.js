@@ -15,7 +15,7 @@ var translate = (function () {
     var _originalMessage;
 
     /**
-     * @param object $this
+     * @param {object} $this
      */
     function _translateLanguage($this) {
         var data = {
@@ -28,7 +28,7 @@ var translate = (function () {
     }
 
     /**
-     * @param object $this
+     * @param {object} $this
      */
     function _copySourceToTranslation($this) {
         if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {

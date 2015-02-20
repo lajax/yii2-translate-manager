@@ -38,8 +38,8 @@ var helpers = (function () {
 
     return {
         /**
-         * @param string url
-         * @param json data
+         * @param {string} url
+         * @param {json} data
          */
         post: function (url, data) {
             if (_load === false) {
@@ -52,7 +52,7 @@ var helpers = (function () {
         },
         /**
          * Show alert tooltip.
-         * @param json data
+         * @param {json} data
          */
         showTooltip: function ($data) {
 
@@ -70,8 +70,8 @@ var helpers = (function () {
         },
         /**
          * Show messages.
-         * @param json data
-         * @param conteiner string
+         * @param {json} data
+         * @param {string} conteiner
          */
         showMessages: function ($data, container) {
 
@@ -84,8 +84,8 @@ var helpers = (function () {
         },
         /**
          * Show error messages.
-         * @param json $data
-         * @param string prefix
+         * @param {json} $data
+         * @param {string} prefix
          */
         showErrorMessages: function ($data, prefix) {
             for (i in $data) {
@@ -105,8 +105,8 @@ var helpers = (function () {
         },
         /**
          * Show error message.
-         * @param string message
-         * @param string id
+         * @param {string} message
+         * @param {string} id
          */
         showErrorMessage: function (message, id) {
             $(id).next().html(_createMessage(message, 'alert-danger'));

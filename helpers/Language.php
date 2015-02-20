@@ -24,14 +24,14 @@ class Language {
      * @var string parent span for front end translation.
      */
     private static $_template = '<span class="language-item" data-category="{category}" data-hash="{hash}" data-language_id="{language_id}" data-params="{params}">{message}</span>';
-    
+
     /**
      * Registering JavaScripts for client side multilingual support.
      */
     public static function registerAssets() {
         TranslationPluginAsset::register(Yii::$app->view);
     }
-    
+
     /**
      * @param string $category the message category.
      * @param string $message the message to be translated.
@@ -55,7 +55,7 @@ class Language {
     }
 
     /**
-     * Translating one dimensional array.
+     * Translating one-dimensional array.
      * e.g.:
      * 
      * ~~~
@@ -66,23 +66,72 @@ class Language {
      * 
      * $params = [
      *      'hello' => [
-     *          'name' => 'World,
+     *          'name' => 'World',
      *      ],
      *      'hi' => [
      *          'name' => 'Jenny',
      *      ],
      * ];
      * $result = \lajax\translatemanager\helpers\Language::a($array, $params);
-     * 
+     * ~~~
      * The result:
-     * 
+     * ~~~
      * [
      *  'hello' => 'Hello World',
      *  'hi' => 'Hi Jenny',
      * ]
      * ~~~
      * 
-     * @param array $array One-dimensonal array to be translated.
+     * Translating multi-dimensional array.
+     * e.g.:
+     * ~~~
+     * $array = [
+     *      self::GENDER_MALE => [
+     *          self::MATERIALSTATUS_MARRIED => 'Mr. {name}',
+     *          self::MATERIALSTATUS_SINGLE => 'Mr. {name}'
+     *      ],
+     *      self::GENDER_FEMALE => [
+     *          self::MATERIALSTATUS_MARRIED => 'Mrs. {name}',
+     *          self::MATERIALSTATUS_SINGLE => 'Miss {name}'
+     *      ]
+     * ];
+     * 
+     * $params = [
+     *      self::GENDER_MALE => [
+     *          self::MATERIALSTATUS_MARRIED => [
+     *              'name' => 'Smith'
+     *          ],
+     *          self::MATERIALSTATUS_SINGLE => [
+     *              'name' => 'Stark'
+     *          ]
+     *      ],
+     *      self::GENDER_FEMALE => [
+     *          self::MATERIALSTATUS_MARRIED => [
+     *              'name' => 'Smith'
+     *          ],
+     *          self::MATERIALSTATUS_SINGLE => [
+     *              'name' => 'Potts'
+     *          ]
+     *      ]
+     * ];
+     * $result = \lajax\translatemanager\helpers\Language::a($array, $params);
+     * ~~~
+     * 
+     * The result:
+     * ~~~
+     * [
+     *  self::GENDER_MALE => [
+     *          self::MATERIALSTATUS_MARRIED => 'Mr. Smith',
+     *          self::MATERIALSTATUS_SINGLE => 'Mr. Stark'
+     *  ],
+     *  self::GENDER_FEMALE => [
+     *          self::MATERIALSTATUS_MARRIED => 'Mrs. Smith',
+     *          self::MATERIALSTATUS_SINGLE => 'Miss Potts'
+     *  ]
+     * ]
+     * ~~~
+     * 
+     * @param array $array One-dimensonal or Multi-dimensional array to be translated.
      * @param array $params List of parameters to be changed.
      * @param string $language Language of translation.
      * @return array The translated array.
@@ -90,16 +139,13 @@ class Language {
     public static function a($array, $params = [], $language = null) {
         $data = [];
 
-        if (empty($params)) {
-            foreach ($array as $key => $message) {
-                $data[$key] = Yii::t(Scanner::CATEGORY_ARRAY, $message, [], $language);
-            }
-        } else {
-            foreach ($array as $key => $message) {
-                $data[$key] = Yii::t(Scanner::CATEGORY_ARRAY, $message, $params[$key], $language);
+        foreach ($array as $key => $message) {
+            if (!is_array($message)) {
+                $data[$key] = Yii::t(Scanner::CATEGORY_ARRAY, $message, isset($params[$key]) ? $params[$key] : [], $language);
+            } else {
+                $data[$key] = self::a($message, isset($params[$key]) ? $params[$key] : [], $language);
             }
         }
-
 
         return $data;
     }
