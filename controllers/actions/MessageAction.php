@@ -9,7 +9,7 @@ use lajax\translatemanager\models\LanguageTranslate;
 /**
  * Class for returning messages in the given language
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.2
  */
 class MessageAction extends \yii\base\Action {
 

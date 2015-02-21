@@ -10,7 +10,7 @@ use lajax\translatemanager\models\LanguageSource;
  * Scanner class for scanning project, detecting new language elements
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.1
+ * @since 1.0
  */
 class Scanner {
 
@@ -47,20 +47,42 @@ class Scanner {
     /**
      * Scanning project for text not stored in database.
      * @return integer The number of new language elements.
+     * @deprecated since version 1.4
      */
     public function scanning() {
 
+        return $this->run();
+    }
+
+    /**
+     * Scanning project for text not stored in database.
+     * @return integer|array The number of new language elements, or new and old language elements.
+     */
+    public function run() {
         $this->_scanningProject();
 
         $languageSources = LanguageSource::find()->all();
+
+        $languageSourceIds = [];
         foreach ($languageSources as $languageSource) {
             if (isset($this->_languageItems[$languageSource->category][$languageSource->message])) {
                 unset($this->_languageItems[$languageSource->category][$languageSource->message]);
+            } else {
+                $languageSourceIds[$languageSource->id] = true;
             }
         }
 
         $languageSource = new LanguageSource;
-        return $languageSource->insertLanguageItems($this->_languageItems);
+        $result = $languageSource->insertLanguageItems($this->_languageItems);
+
+        if (Yii::$app->request->isConsoleRequest) {
+            return $result;
+        } else {
+            return [
+                'new' => $this->_languageItems,
+                'old' => $languageSourceIds
+            ];
+        }
     }
 
     /**

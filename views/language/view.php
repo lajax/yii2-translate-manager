@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Lajos Molnár <lajax.m@gmail.com>
+ * @since 1.3
+ */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;

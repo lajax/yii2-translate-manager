@@ -99,6 +99,13 @@ class LanguageSource extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getLanguageTranslates() {
+        return $this->hasMany(LanguageTranslate::className(), ['id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getLanguages() {
         return $this->hasMany(Language::className(), ['language_id' => 'language'])
                 ->viaTable(LanguageTranslate::tableName(), ['id' => 'id']);

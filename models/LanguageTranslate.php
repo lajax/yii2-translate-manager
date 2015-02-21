@@ -2,7 +2,7 @@
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.1
+ * @since 1.0
  */
 
 namespace lajax\translatemanager\models;
@@ -59,7 +59,7 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
      * @param integer $id LanguageSource id
      * @param string $languageId Language language_id
      * @return LanguageTranslate
-     * @deprecated since version 2.0
+     * @deprecated since version 1.2.7
      */
     public static function getLanguageTranslateByIdAndLanguageId($id, $languageId) {
 

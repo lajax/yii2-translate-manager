@@ -8,7 +8,7 @@ use lajax\translatemanager\models\LanguageSource;
 /**
  * Class for creating front end translation dialoge box
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.2
  */
 class DialogAction extends \yii\base\Action {
 

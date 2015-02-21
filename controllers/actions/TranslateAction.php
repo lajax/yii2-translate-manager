@@ -15,6 +15,16 @@ use lajax\translatemanager\models\searches\LanguageSourceSearch;
 class TranslateAction extends \yii\base\Action {
 
     /**
+     * @inheritdoc
+     */
+    public function init() {
+
+        TranslateAsset::register(Yii::$app->controller->view);
+        TranslatePluginAsset::register(Yii::$app->controller->view);
+        parent::init();
+    }
+
+    /**
      * List of language elements.
      * @return string
      */
@@ -22,9 +32,6 @@ class TranslateAction extends \yii\base\Action {
 
         $searchModel = new LanguageSourceSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-
-        TranslateAsset::register(Yii::$app->controller->view);
-        TranslatePluginAsset::register(Yii::$app->controller->view);
 
         return $this->controller->render('translate', [
                     'dataProvider' => $dataProvider,

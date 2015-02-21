@@ -17,9 +17,10 @@ class OptimizerAction extends \yii\base\Action {
      */
     public function run() {
         $optimizer = new Optimizer;
+        $languageSources = $optimizer->run();
 
         return $this->controller->render('optimizer', [
-                    'items_count' => $optimizer->optimization()
+                    'newDataProvider' => $this->controller->createLanguageSourceDataProvider($languageSources)
         ]);
     }
 

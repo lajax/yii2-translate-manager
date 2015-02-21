@@ -5,12 +5,12 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * TranslateManager asset bundle
+ * Scan Plugin asset bundle
  * 
- * @author Lajos Molnar <lajax.m@gmail.com>
- * @since 1.0
+ * @author Lajos Molnár <lajax.m@gmail.com>
+ * @since 1.4
  */
-class TranslateManagerAsset extends AssetBundle {
+class ScanPluginAsset extends AssetBundle {
 
     /**
      * @inheritdoc
@@ -20,16 +20,16 @@ class TranslateManagerAsset extends AssetBundle {
     /**
      * @inheritdoc
      */
-    public $css = [
-        'stylesheets/translate-manager.css',
+    public $js = [
+        'javascripts/scan.js',
     ];
 
     /**
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\web\JqueryAsset',
+        'lajax\translatemanager\bundles\TranslationPluginAsset',
     ];
 
 }

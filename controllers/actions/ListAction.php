@@ -15,6 +15,16 @@ use lajax\translatemanager\bundles\LanguagePluginAsset;
 class ListAction extends \yii\base\Action {
 
     /**
+     * @inheritdoc
+     */
+    public function init() {
+
+        LanguageAsset::register($this->controller->view);
+        LanguagePluginAsset::register($this->controller->view);
+        parent::init();
+    }
+
+    /**
      * List of languages
      * @return string
      */
@@ -22,9 +32,6 @@ class ListAction extends \yii\base\Action {
 
         $searchModel = new LanguageSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-
-        LanguageAsset::register($this->controller->view);
-        LanguagePluginAsset::register($this->controller->view);
 
         return $this->controller->render('list', [
                     'dataProvider' => $dataProvider,

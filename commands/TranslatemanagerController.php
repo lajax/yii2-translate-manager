@@ -34,7 +34,7 @@ class TranslatemanagerController extends Controller {
         $this->stdout("Scanning translations...\n", Console::BOLD);
         $scanner = new Scanner();
 
-        $items = $scanner->scanning();
+        $items = $scanner->run();
         $this->stdout("{$items} new item(s) inserted into database.\n");
     }
 
@@ -44,7 +44,7 @@ class TranslatemanagerController extends Controller {
     public function actionOptimize() {
         $this->stdout("Optimizing translations...\n", Console::BOLD);
         $optimizer = new Optimizer();
-        $items = $optimizer->optimization();
+        $items = $optimizer->run();
         $this->stdout("{$items} removed from database.\n");
     }
 

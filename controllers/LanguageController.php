@@ -29,11 +29,11 @@ class LanguageController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete'],
+                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete', 'delete-source'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete', 'delete-source'],
                         'roles' => $this->module->roles,
                     ],
                 ],
@@ -85,6 +85,9 @@ class LanguageController extends Controller {
             'delete' => [
                 'class' => 'lajax\translatemanager\controllers\actions\DeleteAction',
             ],
+            'delete-source' => [
+                'class' => 'lajax\translatemanager\controllers\actions\DeleteSourceAction',
+            ]
         ];
     }
 
@@ -101,6 +104,30 @@ class LanguageController extends Controller {
         } else {
             throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    
+    /**
+     * 
+     * @param array $languageSources
+     * @return \yii\data\ArrayDataProvider
+     */
+    public function createLanguageSourceDataProvider($languageSources) {
+
+        $data = [];
+        foreach ($languageSources as $category => $messages) {
+            foreach ($messages as $message => $boolean) {
+                $data[] = [
+                    'category' => $category,
+                    'message' => $message
+                ];
+            }
+        }
+
+        return new \yii\data\ArrayDataProvider([
+            'allModels' => $data,
+            'pagination' => false
+        ]);
     }
 
 }

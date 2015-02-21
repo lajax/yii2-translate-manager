@@ -76,7 +76,7 @@ use yii\web\ForbiddenHttpException;
  * 
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.2
+ * @since 1.0
  */
 class Module extends \yii\base\Module {
 
@@ -157,25 +157,25 @@ class Module extends \yii\base\Module {
 
     /**
      * @var string Regular expression to match PHP Yii::t functions.
-     * @deprecated since version 2.0
+     * @deprecated since version 1.2.7
      */
     public $patternPhp = '#::t\s*\(\s*(?P<category>\'[\w\d\s_-]+?(?<!\\\\)\'|"[\w\d\s_-]+?(?<!\\\\)"?)\s*,\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*[,\)]#s';
 
     /**
      * @var string PHP Regular expression to match arrays containing language elements to translate.
-     * @deprecated since version 2.0
+     * @deprecated since version 1.2.7
      */
     public $patternArray = "#\@translate[^\$]+\$(?P<text>.+?)[\]\)];#smui";
 
     /**
      * @var string PHP Regular expression to detect langualge elements within arrays.
-     * @deprecated since version 2.0
+     * @deprecated since version 1.2.7
      */
     public $patternArrayRecursive = '#(?P<category>)(\[|\(|>|,|)\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*(,|$)#s';
 
     /**
      * @var string Regular expression to detect JavaScript lajax.t functions.
-     * @deprecated since version 2.0
+     * @deprecated since version 1.2.7
      */
     public $patternJs = '#lajax\.t\s*\(\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*[,\)]#s';
 

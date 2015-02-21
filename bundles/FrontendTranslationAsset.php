@@ -8,7 +8,7 @@ use yii\web\AssetBundle;
  * FrontendTranslation asset bundle
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
- * @since 1.0
+ * @since 1.2
  */
 class FrontendTranslationAsset extends AssetBundle {
 

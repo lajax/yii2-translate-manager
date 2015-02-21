@@ -1,14 +1,18 @@
 <?php
-
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
+
 use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use lajax\translatemanager\models\Language;
 use yii\widgets\Pjax;
+
+/* @var $this \yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $searchModel lajax\translatemanager\models\searches\LanguageSearch */
 
 $this->title = Yii::t('language', 'List of languages');
 $this->params['breadcrumbs'][] = $this->title;

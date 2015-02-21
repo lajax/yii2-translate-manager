@@ -11,7 +11,7 @@ class DeleteAction extends \yii\base\Action {
 
     /**
      * Deletes an existing Language model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * If deletion is successful, the browser will be redirected to the 'list' page.
      * @param string $id
      * @return mixed
      */

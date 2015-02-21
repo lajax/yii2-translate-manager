@@ -1,14 +1,20 @@
 <?php
-
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.0
  */
+
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
-$this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);
+/* @var $this \yii\web\View */
+/* @var $language_id integer */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $searchModel lajax\translatemanager\models\searches\LanguageSourceSearch */
+
+$this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>

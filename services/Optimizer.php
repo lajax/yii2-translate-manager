@@ -2,6 +2,7 @@
 
 namespace lajax\translatemanager\services;
 
+use Yii;
 use yii\helpers\Console;
 use lajax\translatemanager\services\Scanner;
 use lajax\translatemanager\models\LanguageSource;
@@ -27,23 +28,24 @@ class Optimizer {
     /**
      * Removing unused language elements from database.
      * @return int Number of unused language elements detected.
+     * @deprecated since version 1.4
      */
     public function optimization() {
 
-        return $this->_optimizeDatabase();
+        return $this->run();
     }
-
+    
     /**
      * Removing unused language elements from database.
-     * @return integer The number of removed language elements.
+     * @return integer|array The number of removed language elements, or removed language elements.
      */
-    private function _optimizeDatabase() {
+    public function run() {
 
         $scanner = new Scanner;
         $this->_languageItems = $scanner->getLanguageItems();
         $scanner->stdout('Optimizing translations - BEGIN', Console::FG_RED);
 
-        $this->_createLanguageSource();
+        $this->_initLanguageSources();
 
         // Removing active elements from array.
         // Only removable inactive elements left in array.
@@ -67,13 +69,14 @@ class Optimizer {
         LanguageSource::deleteAll(['IN', 'id', array_keys($ids)]);
 
         $scanner->stdout('Optimizing translations - END', Console::FG_RED);
-        return count($ids);
+        
+        return (Yii::$app->request->isConsoleRequest) ? count($ids) : $this->_languageSources;
     }
 
     /**
      * Creating _languageSources array.
      */
-    private function _createLanguageSource() {
+    private function _initLanguageSources() {
         $languageSources = LanguageSource::find()->all();
         foreach ($languageSources as $languageSource) {
             $this->_languageSources[$languageSource->category][$languageSource->message] = $languageSource->id;
