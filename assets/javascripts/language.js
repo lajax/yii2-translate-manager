@@ -1,6 +1,7 @@
 /** 
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
+ * since 1.0
  */
 
 $(document).ready(function() {
@@ -24,4 +25,4 @@ var Language = {
         };
         helpers.post($object.data('url'), $data);
     }
-}
+};

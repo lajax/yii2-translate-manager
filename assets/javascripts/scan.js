@@ -1,12 +1,17 @@
 /** 
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
+ * since 1.4
  */
 
 $(document).ready(function () {
     scan.init();
 });
 
+/**
+ * Object for removing non-used language elements.
+ * @type {object}
+ */
 var scan = {
     object: null,
     checked: false,
@@ -35,7 +40,7 @@ var scan = {
 
         this.object = $('#delete-source').find('input.language-source-cb:checked');
         this.object.each(function () {
-            $ids.push($(this).val())
+            $ids.push($(this).val());
         });
 
         this.delete($ids);
@@ -58,5 +63,5 @@ var scan = {
     remove: function () {
         this.object.closest('tr').remove();
     }
-}
+};
 

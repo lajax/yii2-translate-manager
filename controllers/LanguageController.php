@@ -108,7 +108,7 @@ class LanguageController extends Controller {
     
     
     /**
-     * 
+     * Returns an ArrayDataProvider consisting of language elements.
      * @param array $languageSources
      * @return \yii\data\ArrayDataProvider
      */

@@ -61,8 +61,18 @@ class Generator {
     /**
      * Generating JavaScript language file.
      * @return int
+     * @deprecated since version 1.4
      */
     public function generate() {
+
+        return $this->run();
+    }
+
+    /**
+     * Generating JavaScript language file.
+     * @return int
+     */
+    public function run() {
 
         $this->_generateJSFile();
 

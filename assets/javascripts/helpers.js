@@ -1,6 +1,7 @@
 /** 
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
+ * since 1.0
  */
 
 var helpers = (function () {
@@ -39,12 +40,12 @@ var helpers = (function () {
     return {
         /**
          * @param {string} url
-         * @param {json} data
+         * @param {json} $data
          */
-        post: function (url, data) {
+        post: function (url, $data) {
             if (_load === false) {
                 _load = true;
-                $.post(url, data, $.proxy(function (data) {
+                $.post(url, $data, $.proxy(function (data) {
                     _load = false;
                     this.showTooltip(data);
                 }, this), 'json');
@@ -52,7 +53,7 @@ var helpers = (function () {
         },
         /**
          * Show alert tooltip.
-         * @param {json} data
+         * @param {json} $data
          */
         showTooltip: function ($data) {
 
@@ -70,8 +71,8 @@ var helpers = (function () {
         },
         /**
          * Show messages.
-         * @param {json} data
-         * @param {string} conteiner
+         * @param {json} $data
+         * @param {string} container
          */
         showMessages: function ($data, container) {
 
@@ -111,5 +112,5 @@ var helpers = (function () {
         showErrorMessage: function (message, id) {
             $(id).next().html(_createMessage(message, 'alert-danger'));
         }
-    }
+    };
 })();

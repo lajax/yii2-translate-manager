@@ -32,7 +32,7 @@ class SaveAction extends \yii\base\Action {
         if ($languageTranslate->validate() && $languageTranslate->save()) {
             $generator = new Generator($this->controller->module, $languageId);
 
-            $generator->generate();
+            $generator->run();
         }
 
         return $languageTranslate->getErrors();

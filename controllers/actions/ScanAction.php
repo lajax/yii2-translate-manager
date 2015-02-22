@@ -42,9 +42,9 @@ class ScanAction extends \yii\base\Action {
     }
 
     /**
-     * 
+     * Returns an ArrayDataProvider consisting of language elements.
      * @param array $languageSourceIds
-     * @return LanguageSource
+     * @return ArrayDataProvider
      */
     private function _createLanguageSourceDataProvider($languageSourceIds) {
         $languageSources = LanguageSource::find()->with()->where(['id' => array_keys($languageSourceIds)])->all();

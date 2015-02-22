@@ -1,6 +1,7 @@
 /** 
  * Created on : 2014.12.04., 16:58:40
  * Author     : Lajos Molnar <lajax.m@gmail.com>
+ * since 1.2
  */
 
 $(document).ready(function () {
@@ -58,14 +59,14 @@ var FrontendTranslation = {
                             hash: $language_item.data('hash'),
                             category: $language_item.data('category'),
                             language_id: $language_item.data('language_id')
-                        })
+                        });
                     }, this),
             close: function () {
                 $('#translate-manager-div').dialog('destroy').html('');
             }
         });
     },
-    changeSourceLanguage: function (languageId) {
+    changeSourceLanguage: function () {
         var $form = $('#transslate-manager-change-source-form');
         $('#translate-manager-message').load($form.attr('action'), $form.serialize());
     },
@@ -86,7 +87,7 @@ var FrontendTranslation = {
     },
     init: function () {
         $('body').on('change', '#translate-manager-language-source', $.proxy(function (event) {
-            this.changeSourceLanguage($(event.currentTarget).val());
+            this.changeSourceLanguage();
         },this));
         $('body').on('click', '#toggle-translate', $.proxy(function () {
             this.toggleTranslate();
@@ -96,4 +97,4 @@ var FrontendTranslation = {
             this.dialogURL = $('#toggle-translate').data('url');
         }
     }
-}
+};
