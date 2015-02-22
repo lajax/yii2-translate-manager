@@ -373,11 +373,11 @@ Screenshots
 
 
 ###Scanning project
-![translate-manager-0 2-screen-2](https://res.cloudinary.com/lajax/image/upload/v1421343979/admin-scan_xunrxy.png)
+![translate-manager-0 2-screen-2](https://res.cloudinary.com/lajax/image/upload/v1424605567/admin-scan-2_lig4wn.png)
 
 
 ###Optimise database
-![translate-manager-0 2-screen-3](https://res.cloudinary.com/lajax/image/upload/v1421381627/admin-optimise_khywpn.png)
+![translate-manager-0 2-screen-3](https://res.cloudinary.com/lajax/image/upload/v1424606158/admin-optimise-2_nf6u3t.png)
 
 
 ###Translate on the admin interface
