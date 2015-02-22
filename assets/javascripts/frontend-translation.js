@@ -86,7 +86,7 @@ var FrontendTranslation = {
         this.addClick();
     },
     init: function () {
-        $('body').on('change', '#translate-manager-language-source', $.proxy(function (event) {
+        $('body').on('change', '#translate-manager-language-source', $.proxy(function () {
             this.changeSourceLanguage();
         },this));
         $('body').on('click', '#toggle-translate', $.proxy(function () {
