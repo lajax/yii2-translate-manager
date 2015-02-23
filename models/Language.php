@@ -69,7 +69,6 @@ class Language extends \yii\db\ActiveRecord {
             [['language_id'], 'match', 'pattern' => '/^([a-z]{2}[_-][A-Z]{2}|[a-z]{2})$/'],
             [['language', 'country'], 'string', 'max' => 2],
             [['language', 'country'], 'match', 'pattern' => '/^[a-z]{2}$/i'],
-            
             [['name', 'name_ascii'], 'string', 'max' => 32],
             [['status'], 'integer'],
             [['status'], 'in', 'range' => array_keys(Language::$_CONDITIONS)]
@@ -133,7 +132,7 @@ class Language extends \yii\db\ActiveRecord {
         return \lajax\translatemanager\helpers\Language::a(self::$_CONDITIONS);
     }
 
-   /**
+    /**
      * Returns the completness of a given translation (language).
      * @return integer
      */
@@ -145,16 +144,16 @@ class Language extends \yii\db\ActiveRecord {
                 return 0;
             }
 
-            $languages = Language::find()
-                    ->select('language_id, COUNT(`lt`.`id`) AS `status`')
-                    ->leftJoin(LanguageTranslate::tableName() . ' AS `lt`', '`language`.`language_id` = `lt`.`language`')
-                    ->groupBy('language_id')
+            $languageTranslates = LanguageTranslate::find()
+                    ->select(['language', 'COUNT(*) AS cnt'])
+                    ->groupBy(['language'])
                     ->all();
-            foreach ($languages as $language) {
-                $statistics[$language->language_id] = round($language->status / $count, 2) * 100;
+
+            foreach ($languageTranslates as $languageTranslate) {
+                $statistics[$languageTranslate->language] = round($languageTranslate->cnt / $count, 2) * 100;
             }
-            
         }
+
         return isset($statistics[$this->language_id]) ? $statistics[$this->language_id] : 0;
     }
 
@@ -170,7 +169,7 @@ class Language extends \yii\db\ActiveRecord {
      */
     public function getIds() {
         return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
-                ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
+                        ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
     }
 
 }

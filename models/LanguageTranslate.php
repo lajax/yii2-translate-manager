@@ -22,6 +22,11 @@ use Yii;
 class LanguageTranslate extends \yii\db\ActiveRecord {
 
     /**
+     * @var integer Number of translated language elements.
+     */
+    public $cnt;
+
+    /**
      * @inheritdoc
      */
     public static function tableName() {

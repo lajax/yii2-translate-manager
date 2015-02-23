@@ -83,7 +83,7 @@ class Generator {
      * Creating JavaScript language file in current language.
      */
     private function _generateJSFile() {
-        $this->_getLanguageItems();
+        $this->_loadLanguageItems();
 
         $data = [];
         foreach ($this->_languageItems as $language_item) {
@@ -98,12 +98,14 @@ class Generator {
     /**
      * Loads language elements in JavaScript category.
      */
-    private function _getLanguageItems() {
-        $this->_languageItems = LanguageSource::find()->joinWith([
-                'languageTranslate' => function ($query) {
-                        $query->where('language_translate.language = :language', [':language' => $this->_languageId]);
+    private function _loadLanguageItems() {
+        $this->_languageItems = LanguageSource::find()
+                ->joinWith(['languageTranslate' => function ($query) {
+                        $query->where(['language' => $this->_languageId]);
                     }
-                ])->where('`category` = :category', [':category' => 'javascript'])->all();
+                ])
+                ->where(['category' => Scanner::CATEGORY_JAVASCRIPT])
+                ->all();
     }
 
     /**
