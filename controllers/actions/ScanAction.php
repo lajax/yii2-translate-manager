@@ -30,10 +30,10 @@ class ScanAction extends \yii\base\Action {
     public function run() {
 
         $scanner = new Scanner;
-        $languageSources = $scanner->run();
+        $scanner->run();
 
-        $newDataProvider = $this->controller->createLanguageSourceDataProvider($languageSources['new']);
-        $oldDataProvider = $this->_createLanguageSourceDataProvider($languageSources['old']);
+        $newDataProvider = $this->controller->createLanguageSourceDataProvider($scanner->getNewLanguageElements());
+        $oldDataProvider = $this->_createLanguageSourceDataProvider($scanner->getRemovableLanguageSourceIds());
 
         return $this->controller->render('scan', [
                     'newDataProvider' => $newDataProvider,
@@ -47,10 +47,7 @@ class ScanAction extends \yii\base\Action {
      * @return ArrayDataProvider
      */
     private function _createLanguageSourceDataProvider($languageSourceIds) {
-        $languageSources = LanguageSource::find()
-                ->with('languageTranslates')
-                ->where(['id' => array_keys($languageSourceIds)])
-                ->all();
+        $languageSources = LanguageSource::find()->with('languageTranslates')->where(['id' => $languageSourceIds])->all();
 
         $data = [];
         foreach ($languageSources as $languageSource) {
@@ -60,6 +57,7 @@ class ScanAction extends \yii\base\Action {
                     $languages[] = $languageTranslate->language;
                 }
             }
+
             $data[] = [
                 'id' => $languageSource->id,
                 'category' => $languageSource->category,

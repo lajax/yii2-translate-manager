@@ -17,10 +17,11 @@ class OptimizerAction extends \yii\base\Action {
      */
     public function run() {
         $optimizer = new Optimizer;
-        $languageSources = $optimizer->run();
+        $optimizer->run();
 
+        $removedLanguageElements = $optimizer->getRemovedLanguageElements();
         return $this->controller->render('optimizer', [
-                    'newDataProvider' => $this->controller->createLanguageSourceDataProvider($languageSources)
+                    'newDataProvider' => $this->controller->createLanguageSourceDataProvider($removedLanguageElements)
         ]);
     }
 

@@ -2,7 +2,6 @@
 
 namespace lajax\translatemanager\services;
 
-use Yii;
 use yii\helpers\Console;
 use lajax\translatemanager\services\Scanner;
 use lajax\translatemanager\models\LanguageSource;
@@ -16,14 +15,14 @@ use lajax\translatemanager\models\LanguageSource;
 class Optimizer {
 
     /**
-     * @var array Existing language element entries
+     * @var Scanner
      */
-    private $_languageItems;
+    private $_scanner;
 
     /**
      * @var array a Current language elements in the translating system
      */
-    private $_languageSources;
+    private $_languageElements = [];
 
     /**
      * Removing unused language elements from database.
@@ -34,52 +33,49 @@ class Optimizer {
 
         return $this->run();
     }
-    
+
     /**
      * Removing unused language elements from database.
-     * @return integer|array The number of removed language elements, or removed language elements.
+     * @return integer The number of removed language elements.
      */
     public function run() {
 
-        $scanner = new Scanner;
-        $this->_languageItems = $scanner->getLanguageItems();
-        $scanner->stdout('Optimizing translations - BEGIN', Console::FG_RED);
+        $this->_scanner = new Scanner;
+        $this->_scanner->run();
+        $this->_scanner->stdout('Deleted language elements - BEGIN', Console::FG_RED);
 
-        $this->_initLanguageSources();
+        $languageSourceIds = $this->_scanner->getRemovableLanguageSourceIds();
 
-        // Removing active elements from array.
-        // Only removable inactive elements left in array.
-        foreach ($this->_languageItems as $category => $messages) {
-            foreach ($messages as $message => $id) {
-                if (isset($this->_languageSources[$category][$message])) {
-                    unset($this->_languageSources[$category][$message]);
-                }
-            }
-        }
+        $this->_initLanguageElements($languageSourceIds);
 
-        $ids = [];
-        foreach ($this->_languageSources as $category => $messages) {
-            foreach ($messages as $message => $id) {
-                $ids[$id] = true;           // Duplication filtering
-                $message = Console::ansiFormat($message, [Console::FG_RED]);
-                $scanner->stdout('Remove message: ' . $message);
-            }
-        }
+        LanguageSource::deleteAll(['id' => $languageSourceIds]);
 
-        LanguageSource::deleteAll(['IN', 'id', array_keys($ids)]);
+        $this->_scanner->stdout('Deleted language elements - END', Console::FG_RED);
 
-        $scanner->stdout('Optimizing translations - END', Console::FG_RED);
-        
-        return (Yii::$app->request->isConsoleRequest) ? count($ids) : $this->_languageSources;
+        return count($languageSourceIds);
     }
 
     /**
-     * Creating _languageSources array.
+     * Returns removed language elements.
+     * @return array
      */
-    private function _initLanguageSources() {
-        $languageSources = LanguageSource::find()->all();
+    public function getRemovedLanguageElements() {
+        return $this->_languageElements;
+    }
+
+    /**
+     * Initializing $_languageElements array.
+     * @param array $languageSourceIds
+     */
+    private function _initLanguageElements($languageSourceIds) {
+        $languageSources = LanguageSource::findAll(['id' => $languageSourceIds]);
         foreach ($languageSources as $languageSource) {
-            $this->_languageSources[$languageSource->category][$languageSource->message] = $languageSource->id;
+            $this->_languageElements[$languageSource->category][$languageSource->message] = $languageSource->id;
+
+            $category = Console::ansiFormat($languageSource->category, [Console::FG_RED]);
+            $message = Console::ansiFormat($languageSource->message, [Console::FG_RED]);
+
+            $this->_scanner->stdout('category: ' . $category . ', message: ' . $message);
         }
     }
 

@@ -32,7 +32,12 @@ class Scanner {
     /**
      * @var array for storing language elements to be translated.
      */
-    private $_languageItems = [];
+    private $_languageElements = [];
+
+    /**
+     * @var array for storing removabla LanguageSource ids.
+     */
+    private $_removableLanguageSourceIds = [];
 
     /**
      * @var array List of language element classes
@@ -56,44 +61,58 @@ class Scanner {
 
     /**
      * Scanning project for text not stored in database.
-     * @return integer|array The number of new language elements, or new and old language elements.
+     * @return integer The number of new language elements.
      */
     public function run() {
-        $this->_scanningProject();
-
-        $languageSources = LanguageSource::find()->all();
-
-        $languageSourceIds = [];
-        foreach ($languageSources as $languageSource) {
-            if (isset($this->_languageItems[$languageSource->category][$languageSource->message])) {
-                unset($this->_languageItems[$languageSource->category][$languageSource->message]);
-            } else {
-                $languageSourceIds[$languageSource->id] = true;
-            }
-        }
+        $this->_initLanguageArrays();
 
         $languageSource = new LanguageSource;
-        $result = $languageSource->insertLanguageItems($this->_languageItems);
+        return $languageSource->insertLanguageItems($this->_languageElements);
+    }
 
-        if (Yii::$app->request->isConsoleRequest) {
-            return $result;
-        } else {
-            return [
-                'new' => $this->_languageItems,
-                'old' => $languageSourceIds
-            ];
-        }
+    /**
+     * Returns new language elements.
+     * @return array associative array containing the new language elements.
+     */
+    public function getNewLanguageElements() {
+        return $this->_languageElements;
+    }
+
+    /**
+     * Returns removable LanguageSource ids.
+     * @return array
+     */
+    public function getRemovableLanguageSourceIds() {
+        return $this->_removableLanguageSourceIds;
     }
 
     /**
      * Returns existing language elements.
      * @return array associative array containing the language elements.
+     * @deprecated since version 1.4.2
      */
     public function getLanguageItems() {
 
+        $this->_initLanguageArrays();
+
+        return $this->_languageElements;
+    }
+
+    /**
+     * Initialising $_languageItems and $_removableLanguageSourceIds arrays.
+     */
+    private function _initLanguageArrays() {
         $this->_scanningProject();
 
-        return $this->_languageItems;
+        $languageSources = LanguageSource::find()->all();
+
+        foreach ($languageSources as $languageSource) {
+            if (isset($this->_languageElements[$languageSource->category][$languageSource->message])) {
+                unset($this->_languageElements[$languageSource->category][$languageSource->message]);
+            } else {
+                $this->_removableLanguageSourceIds[$languageSource->id] = $languageSource->id;
+            }
+        }
     }
 
     /**
@@ -112,12 +131,12 @@ class Scanner {
      * @param string $message
      */
     public function addLanguageItem($category, $message) {
-        $this->_languageItems[$category][$message] = true;
+        $this->_languageElements[$category][$message] = true;
 
-        $category = Console::ansiFormat($category, [Console::FG_PURPLE]);
-        $message = Console::ansiFormat($message, [Console::FG_PURPLE]);
+        $coloredCategory = Console::ansiFormat($category, [Console::FG_YELLOW]);
+        $coloredMessage = Console::ansiFormat($message, [Console::FG_YELLOW]);
 
-        $this->stdout('category: ' . $category . ', message: ' . $message);
+        $this->stdout('Detected language element: [ ' . $coloredCategory . ' ] ' . $coloredMessage);
     }
 
     /**

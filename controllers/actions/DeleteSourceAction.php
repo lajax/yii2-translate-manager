@@ -19,13 +19,13 @@ class DeleteSourceAction extends \yii\base\Action {
      * @return json
      */
     public function run() {
-        
+
         Yii::$app->response->format = Response::FORMAT_JSON;
-        
+
         $ids = Yii::$app->request->post('ids');
-        
-        LanguageSource::deleteAll(['IN', 'id', $ids]);
-        
+
+        LanguageSource::deleteAll(['id' => (array) $ids]);
+
         return [];
     }
 
