@@ -16,8 +16,14 @@ use lajax\translatemanager\models\LanguageSource;
  */
 class LanguageSourceSearch extends LanguageSource {
 
+    /**
+     * @var string Store language_id eg.: `en` en-US
+     */
     private $_languageId;
 
+    /**
+     * @inheritdoc
+     */
     public function rules() {
         return [
             [['id'], 'integer'],
@@ -25,11 +31,18 @@ class LanguageSourceSearch extends LanguageSource {
         ];
     }
 
+    /**
+     * The name of the default scenario. 
+     */
     public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
+    /**
+     * @param array $params Search conditions.
+     * @return ActiveDataProvider
+     */
     public function search($params) {
         $this->_languageId = $params['language_id'];
         $query = LanguageSource::find()->with([

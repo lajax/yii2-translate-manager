@@ -16,6 +16,9 @@ use lajax\translatemanager\models\Language;
  */
 class LanguageSearch extends Language {
 
+    /**
+     * @inheritdoc
+     */
     public function rules() {
         return [
             [['language_id', 'language', 'country', 'name', 'name_ascii'], 'safe'],
@@ -23,11 +26,18 @@ class LanguageSearch extends Language {
         ];
     }
 
+    /**
+     * The name of the default scenario. 
+     */
     public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
+    /**
+     * @param array $params Search conditions.
+     * @return ActiveDataProvider
+     */
     public function search($params) {
         $query = Language::find();
 

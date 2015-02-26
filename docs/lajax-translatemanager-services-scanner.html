@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/c0f64b0c/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/115f992/style.css" rel="stylesheet">
-<script src="./assets/3698fc90/jquery.js"></script>
-<script src="./assets/c0f64b0c/js/bootstrap.js"></script>
-<script src="./assets/d3155084/jssearch.js"></script>    <title>Scanner, lajax\translatemanager\services\Scanner - Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/1e018d9b/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/361d5cd7/style.css" rel="stylesheet">
+<script src="./assets/4f282bca/jquery.js"></script>
+<script src="./assets/1e018d9b/js/bootstrap.js"></script>
+<script src="./assets/58ff5de6/jssearch.js"></script>    <title>Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -94,9 +94,9 @@
     
     </div>
 
-<a id="properties"></a>
+<a name="properties"></a>
 
-<a id="methods"></a>
+<a name="methods"></a>
 
 <div class="summary doc-method">
 <h2>Public Methods</h2>
@@ -127,6 +127,16 @@
         <td>Returns existing language elements.</td>
         <td><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></td>
     </tr>
+            <tr id="getNewLanguageElements()">
+        <td><a href="lajax-translatemanager-services-scanner.html#getNewLanguageElements()-detail">getNewLanguageElements()</a></td>
+        <td>Returns new language elements.</td>
+        <td><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></td>
+    </tr>
+            <tr id="getRemovableLanguageSourceIds()">
+        <td><a href="lajax-translatemanager-services-scanner.html#getRemovableLanguageSourceIds()-detail">getRemovableLanguageSourceIds()</a></td>
+        <td>Returns removable LanguageSource ids.</td>
+        <td><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></td>
+    </tr>
             <tr id="run()">
         <td><a href="lajax-translatemanager-services-scanner.html#run()-detail">run()</a></td>
         <td>Scanning project for text not stored in database.</td>
@@ -145,9 +155,9 @@
     </table>
 </div>
 
-<a id="events"></a>
+<a name="events"></a>
 
-<a id="constants"></a>
+<a name="constants"></a>
 <div class="summary doc-const">
     <h2>Constants</h2>
 
@@ -164,21 +174,21 @@
         <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
     </tr>
             <tr id="CATEGORY_ARRAY">
-          <td id="CATEGORY_ARRAY-detail">CATEGORY_ARRAY</td>
+          <td>CATEGORY_ARRAY<a name="CATEGORY_ARRAY-detail"></a></td>
           <td>'array'</td>
           <td>Array category.
 </td>
           <td><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></td>
         </tr>
             <tr id="CATEGORY_DATABASE">
-          <td id="CATEGORY_DATABASE-detail">CATEGORY_DATABASE</td>
+          <td>CATEGORY_DATABASE<a name="CATEGORY_DATABASE-detail"></a></td>
           <td>'database'</td>
           <td>Database category.
 </td>
           <td><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></td>
         </tr>
             <tr id="CATEGORY_JAVASCRIPT">
-          <td id="CATEGORY_JAVASCRIPT-detail">CATEGORY_JAVASCRIPT</td>
+          <td>CATEGORY_JAVASCRIPT<a name="CATEGORY_JAVASCRIPT-detail"></a></td>
           <td>'javascript'</td>
           <td>JavaScript category.
 </td>
@@ -244,18 +254,20 @@
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$languageItems</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>Example:</p>
-<pre><code>[
-     [
-         'category' =&gt; 'language',
-         'message' =&gt; 'Active'
-     ],
-     [
-         'category' =&gt; 'language',
-         'message' =&gt; 'Inactive'
-     ],
-]
+                  <td class="param-desc-col"><p>Example:
+~~~
+[</p>
+<pre><code> [
+     'category' =&gt; 'language',
+     'message' =&gt; 'Active'
+ ],
+ [
+     'category' =&gt; 'language',
+     'message' =&gt; 'Inactive'
+ ],
 </code></pre>
+<p>]
+~~~</p>
 </td>
                 </tr>
                                                 </table>
@@ -290,6 +302,56 @@
 
 <!--	-->
 
+    <div class="detail-header h3" id="getNewLanguageElements()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-services-scanner.html#getNewLanguageElements()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getNewLanguageElements()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Returns new language elements.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.array">array</a> <strong><a href="lajax-translatemanager-services-scanner.html#getNewLanguageElements()-detail">getNewLanguageElements</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>Associative array containing the new language elements.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getRemovableLanguageSourceIds()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-services-scanner.html#getRemovableLanguageSourceIds()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getRemovableLanguageSourceIds()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Returns removable LanguageSource ids.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.array">array</a> <strong><a href="lajax-translatemanager-services-scanner.html#getRemovableLanguageSourceIds()-detail">getRemovableLanguageSourceIds</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+            </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="run()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-services-scanner.html#run()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -307,11 +369,11 @@
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.integer">integer</a>|<a href="http://www.php.net/language.types.array">array</a> <strong><a href="lajax-translatemanager-services-scanner.html#run()-detail">run</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.integer">integer</a> <strong><a href="lajax-translatemanager-services-scanner.html#run()-detail">run</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
                                                 <tr>
                   <th class="param-name-col">return</th>
-                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a>|<a href="http://www.php.net/language.types.array">array</a></td>
-                  <td class="param-desc-col"><p>The number of new language elements, or new and old language elements.</p>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.integer">integer</a></td>
+                  <td class="param-desc-col"><p>The number of new language elements.</p>
 </td>
                 </tr>
                                     </table>
@@ -411,7 +473,7 @@
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 22 Feb 2015 10:08:15 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Thu, 26 Feb 2015 15:57:15 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

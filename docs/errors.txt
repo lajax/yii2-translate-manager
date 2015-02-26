@@ -1,0 +1,205 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 30
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/Component.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\Component.
+        )
+
+    [1] => Array
+        (
+            [line] => 219
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/Module.php
+            [message] => Method beforeAction has no parent to inherit from in lajax\translatemanager\Module.
+        )
+
+    [2] => Array
+        (
+            [line] => 30
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/bundles/LanguageItemPluginAsset.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\bundles\LanguageItemPluginAsset.
+        )
+
+    [3] => Array
+        (
+            [line] => 28
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/controllers/LanguageController.php
+            [message] => Method behaviors has no parent to inherit from in lajax\translatemanager\controllers\LanguageController.
+        )
+
+    [4] => Array
+        (
+            [line] => 47
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/controllers/LanguageController.php
+            [message] => Method actions has no parent to inherit from in lajax\translatemanager\controllers\LanguageController.
+        )
+
+    [5] => Array
+        (
+            [line] => 20
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/controllers/actions/ListAction.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\controllers\actions\ListAction.
+        )
+
+    [6] => Array
+        (
+            [line] => 20
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/controllers/actions/ScanAction.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\controllers\actions\ScanAction.
+        )
+
+    [7] => Array
+        (
+            [line] => 20
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/controllers/actions/TranslateAction.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\controllers\actions\TranslateAction.
+        )
+
+    [8] => Array
+        (
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/helpers/Language.php
+            [message] => broken link to \yii\base\Application::language in lajax\translatemanager\helpers\Language
+        )
+
+    [9] => Array
+        (
+            [line] => 57
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/Language.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [10] => Array
+        (
+            [line] => 57
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/Language.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [11] => Array
+        (
+            [line] => 64
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/Language.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [12] => Array
+        (
+            [line] => 64
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/Language.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [13] => Array
+        (
+            [line] => 81
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/Language.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [14] => Array
+        (
+            [line] => 81
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/Language.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\Language.
+        )
+
+    [15] => Array
+        (
+            [line] => 29
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [16] => Array
+        (
+            [line] => 29
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [17] => Array
+        (
+            [line] => 37
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [18] => Array
+        (
+            [line] => 37
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [19] => Array
+        (
+            [line] => 47
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [20] => Array
+        (
+            [line] => 47
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageSource.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\LanguageSource.
+        )
+
+    [21] => Array
+        (
+            [line] => 32
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageTranslate.php
+            [message] => Method tableName has no parent to inherit from in lajax\translatemanager\models\LanguageTranslate.
+        )
+
+    [22] => Array
+        (
+            [line] => 40
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageTranslate.php
+            [message] => Method rules has no parent to inherit from in lajax\translatemanager\models\LanguageTranslate.
+        )
+
+    [23] => Array
+        (
+            [line] => 54
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/models/LanguageTranslate.php
+            [message] => Method attributeLabels has no parent to inherit from in lajax\translatemanager\models\LanguageTranslate.
+        )
+
+    [24] => Array
+        (
+            [line] => 97
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/services/scanners/ScannerFile.php
+            [message] => Method init has no parent to inherit from in lajax\translatemanager\services\scanners\ScannerFile.
+        )
+
+    [25] => Array
+        (
+            [line] => 35
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/services/scanners/ScannerJavaScriptFunction.php
+            [message] => Method run has no parent to inherit from in lajax\translatemanager\services\scanners\ScannerJavaScriptFunction.
+        )
+
+    [26] => Array
+        (
+            [line] => 56
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/services/scanners/ScannerPhpArray.php
+            [message] => Method run has no parent to inherit from in lajax\translatemanager\services\scanners\ScannerPhpArray.
+        )
+
+    [27] => Array
+        (
+            [line] => 36
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/services/scanners/ScannerPhpFunction.php
+            [message] => Method run has no parent to inherit from in lajax\translatemanager\services\scanners\ScannerPhpFunction.
+        )
+
+    [28] => Array
+        (
+            [line] => 99
+            [file] => frontend/runtime/tmp-extensions/yii2-translate-manager/widgets/ToggleTranslate.php
+            [message] => Method run has no parent to inherit from in lajax\translatemanager\widgets\ToggleTranslate.
+        )
+
+)
