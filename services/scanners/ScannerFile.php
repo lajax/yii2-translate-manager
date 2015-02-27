@@ -171,13 +171,14 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      * If there is no recognisable language element in the array, returns null.
      */
     abstract protected function getLanguageItem($buffer);
-
+    
     /**
-     * Returns the root directory of the project.
+     * Returns the root directory of the project scan.
      * @return string
      */
     private function _getRoot() {
-        $directories = explode(DIRECTORY_SEPARATOR, Yii::getAlias($this->module->root));
+        $root = FileHelper::normalizePath(Yii::getAlias($this->module->root));
+        $directories = explode(DIRECTORY_SEPARATOR, $root);
         array_pop($directories);
         return implode(DIRECTORY_SEPARATOR, $directories);
     }

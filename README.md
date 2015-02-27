@@ -34,10 +34,6 @@ or add
 
 to the require section of your `composer.json` file.
 
-Usage
------
-
-
 ###Migration
 
 
@@ -154,7 +150,11 @@ Front end translation:
 ]
 ```
 
-###To translate static messages in JavaScript files it is necessary to register the files.
+Usage
+-----
+###Register client scripts
+
+To translate static messages in JavaScript files it is necessary to register the files.
 
 To register your scripts, call the following method in each action:
 
@@ -178,7 +178,9 @@ class Controller extends \yii\web\Controller {
 }
 ```
 
-###Simple example for displaying a button to switch to front end translation mode.
+###ToggleTranslate button
+
+Simple example for displaying a button to switch to front end translation mode.
 (The button will only appear for users who have the necessary privileges for translating!)
 
 ```
