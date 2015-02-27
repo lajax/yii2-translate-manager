@@ -16,7 +16,7 @@ use yii\helpers\Url;
 
 <?= Html::button(Yii::t('language', 'Select all'), ['id' => 'select-all', 'class' => 'btn btn-primary'])?>
 
-<?= Html::button(Yii::t('language', 'Delete all'), ['id' => 'delete-selected', 'class' => 'btn btn-danger'])?>
+<?= Html::button(Yii::t('language', 'Delete selected'), ['id' => 'delete-selected', 'class' => 'btn btn-danger'])?>
 
 <?php endif ?>
 
