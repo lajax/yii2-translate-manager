@@ -62,6 +62,15 @@ var scan = {
     },
     remove: function () {
         this.object.closest('tr').remove();
+
+        var text = $('#w2-danger').text();
+        var pattern = /\d+/g;
+        var number = pattern.exec(text);
+        $('#w2-danger').text(text.replace(number, $('#delete-source').find('tbody').find('tr').length));
+
+        if ($('#delete-source').find('tbody').find('tr').length === 0) {
+            $('#delete-source, #select-all, #delete-selected').remove();
+        }
     }
 };
 
