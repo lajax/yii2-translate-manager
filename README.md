@@ -28,7 +28,7 @@ php composer.phar require --prefer-dist lajax/yii2-translate-manager "1.*"
 
 or add
 
-```
+```json
 "lajax/yii2-translate-manager": "1.*"
 ```
 
@@ -53,7 +53,7 @@ yii.bat migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migratio
 
 A simple exmple of turning on Yii database multilingual.
 
-```
+```php
 'language' => 'en-US',
 'components' => [
         'i18n' => [
@@ -78,7 +78,7 @@ Turning on the TranslateManager Module:
 
 Simple example:
 
-```
+```php
 'modules' => [
     'translatemanager' => [
         'class' => 'lajax\translatemanager\Module',
@@ -87,7 +87,7 @@ Simple example:
 ```
 
 A more complex example including database table with multilingual support is below:
-```
+```php
 'modules' => [
     'translatemanager' => [
         'class' => 'lajax\translatemanager\Module',
@@ -120,7 +120,7 @@ Using of [authManager](http://www.yiiframework.com/doc-2.0/guide-security-author
 examples:
 
 PhpManager:
-```
+```php
 'components' => [
     'authManager' => [
         'class' => 'yii\rbac\PhpManager',
@@ -130,7 +130,7 @@ PhpManager:
 ```
 
 DbManager:
-```
+```php
 'components' => [
     'authManager' => [
         'class' => 'yii\rbac\DbManager',
@@ -141,7 +141,7 @@ DbManager:
 
 Front end translation:
 
-```
+```php
 'bootstrap' => ['translatemanager'],
 'component' => [
     'translatemanager' => [
@@ -158,12 +158,12 @@ To translate static messages in JavaScript files it is necessary to register the
 
 To register your scripts, call the following method in each action:
 
-```
+```php
 \lajax\translatemanager\helpers\Language::registerAssets();
 ```
 
 A simple example for calling the above method at each page load:
-```
+```php
 namespace common\controllers;
 
 use lajax\translatemanager\helpers\Language;
@@ -183,13 +183,13 @@ class Controller extends \yii\web\Controller {
 Simple example for displaying a button to switch to front end translation mode.
 (The button will only appear for users who have the necessary privileges for translating!)
 
-```
+```php
 \lajax\translatemanager\widgets\ToggleTranslate::widget();
 ```
 
 A more complex example for displaying the button:
 
-```
+```php
 \lajax\translatemanager\widgets\ToggleTranslate::widget([
  'position' => \lajax\translatemanager\widgets\ToggleTranslate::POSITION_TOP_RIGHT,
  'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>',
@@ -202,7 +202,7 @@ A more complex example for displaying the button:
 
 JavaScript:
 
-```
+```php
 lajax.t('Apple');
 lajax.t('Hello {name}!', {name:'World'});
 lajax.t("Don't be so upset.");
@@ -210,7 +210,7 @@ lajax.t("Don't be so upset.");
 
 PHP methods:
 
-```
+```php
 Yii::t('category', 'Apple');
 Yii::t('category', 'Hello {name}!', ['name' => 'World']);
 Yii::t('category', "Don't be so upset.");
@@ -218,7 +218,7 @@ Yii::t('category', "Don't be so upset.");
 
 PHP functions for front end translation:
 
-```
+```php
 use lajax\translatemanager\helpers\Language as Lx;
 
 Lx::t('category', 'Apple');
@@ -228,7 +228,7 @@ Lx::t('category', "Don't be so upset.");
 
 PHP arrays:
 
-```
+```php
 /**
  * @translate
  */
@@ -262,7 +262,7 @@ public function getGenders() {
 
 PHP Database:
 
-```
+```php
 namespace common\models;
 
 use lajax\translatemanager\helpers\Language;
@@ -329,7 +329,7 @@ class Category extends \yii\db\ActiveRecord {
 
 URLs for the translating tool:
 
-```
+```php
 /translatemanager/language/list         // List of languages and modifying their status
 /translatemanager/language/create       // Create languages
 /translatemanager/language/scan         // Scan the project for new multilingual elements
@@ -338,7 +338,7 @@ URLs for the translating tool:
 
 Example implementation of the Yii2 menu into your own menu. 
 
-```
+```php
 $menuItems = [
     ['label' => Yii::t('language', 'Language'), 'items' => [
             ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
@@ -354,7 +354,7 @@ $menuItems = [
  
 Register the command
 
-```
+```php
 'controllerMap' => [
     'translate' => \lajax\translatemanager\commands\TranslatemanagerController::className()
 ],
