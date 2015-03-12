@@ -119,8 +119,9 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      *      'end' => ')'
      * ]
      * ~~~
+     * @param array $ignoreCategories message categories to ignore Yii 2.0.4
      */
-    protected function extractMessages($fileName, $options) {
+    protected function extractMessages($fileName, $options, $ignoreCategories = []) {
         $this->scanner->stdout('Extracting messages from ' . $fileName, Console::FG_GREEN);
         $subject = file_get_contents($fileName);
         if (static::EXTENSION !== '*.php') {
