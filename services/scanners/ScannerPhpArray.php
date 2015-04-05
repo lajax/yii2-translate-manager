@@ -34,7 +34,7 @@ use lajax\translatemanager\services\Scanner;
  * Translating to the language of your coice:
  * 
  * ~~~
- * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de_DE');
+ * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de-DE');
  * ~~~
  *
  * @author Lajos Molnár <lajax.m@gmail.com>

@@ -13,7 +13,7 @@ use lajax\translatemanager\services\Scanner;
  * examples:
  * 
  * ~~~
- * 'tables' [
+ * 'tables' => [
  *  [
  *      'connection' => 'db',
  *      'table' => 'language',
@@ -23,7 +23,7 @@ use lajax\translatemanager\services\Scanner;
  *      'connection' => 'db',
  *      'table' => 'category',
  *      'columns' => ['name', 'description']
- *  ],
+ *  ]
  * ]
  * ~~~
  * 

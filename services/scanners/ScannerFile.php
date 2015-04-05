@@ -54,7 +54,7 @@ use lajax\translatemanager\services\Scanner;
  * Translating to the language of your coice:
  * 
  * ~~~
- * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de_DE');
+ * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de-DE');
  * ~~~
  * 
  * @author Lajos Molnár <lajax.m@gmail.com>
@@ -112,6 +112,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      * @param string $fileName name of the file to extract messages from
      * @param array $options Definition of the parameters required to identify language elements.
      * example: 
+     * 
      * ~~~
      * [
      *      'translator' => ['Yii::t', 'Lx::t'],
@@ -119,6 +120,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      *      'end' => ')'
      * ]
      * ~~~
+     * 
      * @param array $ignoreCategories message categories to ignore Yii 2.0.4
      */
     protected function extractMessages($fileName, $options, $ignoreCategories = []) {

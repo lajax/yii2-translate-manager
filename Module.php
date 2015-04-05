@@ -37,6 +37,7 @@ use yii\web\ForbiddenHttpException;
  *         'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
  *         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
  *         'ignoredItems' => ['config'],   // these files will not be processed.
+ *         'languageTable' => 'language',  // Name of the database table storing the languages.
  *         'tables' => [                   // Properties of individual tables
  *             [
  *                 'connection' => 'db',   // connection identifier

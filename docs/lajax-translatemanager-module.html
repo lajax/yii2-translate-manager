@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/1e018d9b/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/361d5cd7/style.css" rel="stylesheet">
-<script src="./assets/4f282bca/jquery.js"></script>
-<script src="./assets/1e018d9b/js/bootstrap.js"></script>
-<script src="./assets/58ff5de6/jssearch.js"></script>    <title>Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/d5374b01/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/99571901/style.css" rel="stylesheet">
+<script src="./assets/382f1b5c/jquery.js"></script>
+<script src="./assets/d5374b01/js/bootstrap.js"></script>
+<script src="./assets/2ff86d70/jssearch.js"></script>    <title>Module, lajax\translatemanager\Module - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -116,6 +116,7 @@ yii\base\Module</td></tr>
         'patterns' =&gt; ['*.js', '*.php'],// list of file extensions that contain language elements.
         'ignoredCategories' =&gt; ['yii'], // these categories won’t be included in the language database.
         'ignoredItems' =&gt; ['config'],   // these files will not be processed.
+        'languageTable' =&gt; 'language',  // Name of the database table storing the languages.
         'tables' =&gt; [                   // Properties of individual tables
             [
                 'connection' =&gt; 'db',   // connection identifier
@@ -146,7 +147,7 @@ yii\base\Module</td></tr>
 
     </div>
 
-<a name="properties"></a>
+<a id="properties"></a>
 
 <div class="summary doc-property">
 <h2>Public Properties</h2>
@@ -197,6 +198,12 @@ yii\base\Module</td></tr>
         <td><a href="lajax-translatemanager-module.html#$jsTranslators-detail">$jsTranslators</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
         <td>List of the JavaScript function for translating messages.</td>
+        <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
+    </tr>
+            <tr id="$languageTable">
+        <td><a href="lajax-translatemanager-module.html#$languageTable-detail">$languageTable</a></td>
+        <td><a href="http://www.php.net/language.types.string">string</a></td>
+        <td>The database table storing the languages.</td>
         <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
     </tr>
             <tr id="$layout">
@@ -280,7 +287,7 @@ yii\base\Module</td></tr>
     </table>
 </div>
 
-<a name="methods"></a>
+<a id="methods"></a>
 
 <div class="summary doc-method">
 <h2>Public Methods</h2>
@@ -314,9 +321,9 @@ yii\base\Module</td></tr>
     </table>
 </div>
 
-<a name="events"></a>
+<a id="events"></a>
 
-<a name="constants"></a>
+<a id="constants"></a>
 <div class="summary doc-const">
     <h2>Constants</h2>
 
@@ -333,7 +340,7 @@ yii\base\Module</td></tr>
         <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
     </tr>
             <tr id="SESSION_KEY_ENABLE_TRANSLATE">
-          <td>SESSION_KEY_ENABLE_TRANSLATE<a name="SESSION_KEY_ENABLE_TRANSLATE-detail"></a></td>
+          <td id="SESSION_KEY_ENABLE_TRANSLATE-detail">SESSION_KEY_ENABLE_TRANSLATE</td>
           <td>'frontendTranslation_EnableTranslate'</td>
           <td>Session key for storing front end translating privileges.
 </td>
@@ -431,6 +438,21 @@ yii\base\Module</td></tr>
     <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$jsTranslators-detail">$jsTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'lajax.t'</span><span style="color: #007700">]</span></div>
 
     <p>List of the JavaScript function for translating messages.</p>
+
+    
+
+    <div class="detail-header h3" id="$languageTable-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-module.html#$languageTable-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $languageTable        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$languageTable-detail">$languageTable</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'language'</span></div>
+
+    <p>The database table storing the languages.</p>
 
     
 
@@ -757,7 +779,7 @@ If you modify, you also need to enable authManager.
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Thu, 26 Feb 2015 15:57:15 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 05 Apr 2015 08:40:14 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

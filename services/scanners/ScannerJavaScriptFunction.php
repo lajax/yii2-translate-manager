@@ -9,6 +9,7 @@ use lajax\translatemanager\services\Scanner;
  * Class for processing JavaScript files.
  * Language elements detected in JavaScript files:
  * "lajax.t" functions
+ * 
  * ~~~
  * lajax.t('language element);
  * lajax.t('language element {replace}', {replace:'String'});

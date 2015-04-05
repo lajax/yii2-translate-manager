@@ -143,6 +143,7 @@ class Scanner {
      * Adding language elements to the array.
      * @param array $languageItems
      * example:
+     * 
      * ~~~
      * [
      *      [
@@ -155,6 +156,7 @@ class Scanner {
      *      ],
      * ]
      * ~~~
+     * 
      */
     public function addLanguageItems($languageItems) {
         foreach ($languageItems as $languageItem) {

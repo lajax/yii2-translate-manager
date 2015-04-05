@@ -74,7 +74,9 @@ class Language {
      * ];
      * $result = \lajax\translatemanager\helpers\Language::a($array, $params);
      * ~~~
+     * 
      * The result:
+     * 
      * ~~~
      * [
      *  'hello' => 'Hello World',
@@ -84,6 +86,7 @@ class Language {
      * 
      * Translating multi-dimensional array.
      * e.g.:
+     * 
      * ~~~
      * $array = [
      *      self::GENDER_MALE => [
@@ -118,6 +121,7 @@ class Language {
      * ~~~
      * 
      * The result:
+     * 
      * ~~~
      * [
      *  self::GENDER_MALE => [
