@@ -214,6 +214,11 @@ class Module extends \yii\base\Module {
     public $tables;
 
     /**
+     * @var string The database table storing the languages.
+     */
+    public $languageTable = 'language';
+
+    /**
      * @inheritdoc
      */
     public function beforeAction($action) {
