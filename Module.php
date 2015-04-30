@@ -38,6 +38,7 @@ use yii\web\ForbiddenHttpException;
  *         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
  *         'ignoredItems' => ['config'],   // these files will not be processed.
  *         'languageTable' => 'language',  // Name of the database table storing the languages.
+ *         'scanTimeLimit' => null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
  *         'tables' => [                   // Properties of individual tables
  *             [
  *                 'connection' => 'db',   // connection identifier
