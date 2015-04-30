@@ -102,6 +102,7 @@ A more complex example including database table with multilingual support is bel
         'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
         'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
         'ignoredItems' => ['config'],   // these files will not be processed.
+        'scanTimeLimit' => null,         // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
         'tables' => [                   // Properties of individual tables
             [
                 'connection' => 'db',   // connection identifier
