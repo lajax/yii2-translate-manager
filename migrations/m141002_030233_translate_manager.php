@@ -12,7 +12,7 @@ class m141002_030233_translate_manager extends Migration {
     /**
      * @var array The language table contains the list of languages.
      */
-    protected $_languages = [
+    protected $languages = [
         ['af-ZA', 'af', 'za', 'Afrikaans', 'Afrikaans', 0],
         ['ar-AR', 'ar', 'ar', '‏العربية‏', 'Arabic', 0],
         ['az-AZ', 'az', 'az', 'Azərbaycan dili', 'Azerbaijani', 0],
@@ -118,7 +118,7 @@ class m141002_030233_translate_manager extends Migration {
             'name',
             'name_ascii',
             'status'
-        ], $this->_languages);
+        ], $this->languages);
 
         $this->createTable('language_source', [
             'id' => Schema::TYPE_INTEGER . '(10) unsigned NOT NULL AUTO_INCREMENT',
