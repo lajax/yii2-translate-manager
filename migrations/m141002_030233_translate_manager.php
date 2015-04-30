@@ -135,8 +135,8 @@ class m141002_030233_translate_manager extends Migration {
             'KEY `language` (language)'
         ], $tableOptions);
         
-        $this->addForeignKey('language_translate_ibfk_1', 'language_translate', ['language'], 'language', ['language_id'], 'CASCADE');
-        $this->addForeignKey('language_translate_ibfk_2', 'language_translate', ['id'], 'language_source', ['id'], 'CASCADE');
+        $this->addForeignKey('language_translate_ibfk_1', 'language_translate', ['language'], 'language', ['language_id'], 'CASCADE', 'CASCADE');
+        $this->addForeignKey('language_translate_ibfk_2', 'language_translate', ['id'], 'language_source', ['id'], 'CASCADE', 'CASCADE');
     }
 
     public function down() {
