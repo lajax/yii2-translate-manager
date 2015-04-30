@@ -195,6 +195,11 @@ class Module extends \yii\base\Module {
      * @var string PHP Regular expression to match arrays containing language elements to translate.
      */
     public $patternArrayTranslator = '#\@translate[^\$]+(?P<translator>[\w\d\s_]+[^\(\[]+)#s';
+    
+    /**
+     * @var int The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.
+     */
+    public $scanTimeLimit = null;
 
     /**
      * examples:
