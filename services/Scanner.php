@@ -64,6 +64,13 @@ class Scanner {
      * @return integer The number of new language elements.
      */
     public function run() {
+        
+        $scanTimeLimit = Yii::$app->getModule('translatemanager')->scanTimeLimit;
+
+        if (!is_null($scanTimeLimit)) {
+            set_time_limit($scanTimeLimit);
+        }
+        
         $this->_initLanguageArrays();
 
         $languageSource = new LanguageSource;
