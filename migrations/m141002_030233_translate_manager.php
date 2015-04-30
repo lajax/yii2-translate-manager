@@ -12,7 +12,7 @@ class m141002_030233_translate_manager extends Migration {
     /**
      * @var array The language table contains the list of languages.
      */
-    private $_languages = [
+    protected $_languages = [
         ['af-ZA', 'af', 'za', 'Afrikaans', 'Afrikaans', 0],
         ['ar-AR', 'ar', 'ar', '‏العربية‏', 'Arabic', 0],
         ['az-AZ', 'az', 'az', 'Azərbaycan dili', 'Azerbaijani', 0],
