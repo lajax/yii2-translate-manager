@@ -107,13 +107,14 @@ class Language extends \yii\db\ActiveRecord {
     /**
      * Returns language objects.
      * @param boolean $active True/False according to the status of the language.
+     * @param bool $asArray Return the languages as language object or as 'flat' array
      * @return Language|array
      */
-    public static function getLanguages($active = true) {
+    public static function getLanguages($active = true, $asArray = false) {
         if ($active) {
-            return Language::find()->where(['status' => static::STATUS_ACTIVE])->all();
+            return Language::find()->asArray($asArray)->where(['status' => static::STATUS_ACTIVE])->all();
         } else {
-            return Language::find()->all();
+            return Language::find()->asArray($asArray)->all();
         }
     }
 
