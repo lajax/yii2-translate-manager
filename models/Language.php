@@ -21,7 +21,6 @@ use Yii;
  *
  * @property LanguageTranslate $languageTranslate
  * @property LanguageSource[] $ids
- * @property User[] $users
  */
 class Language extends \yii\db\ActiveRecord {
 
