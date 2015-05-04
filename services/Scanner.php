@@ -28,6 +28,16 @@ class Scanner {
      * Database category.
      */
     const CATEGORY_DATABASE = 'database';
+    
+    /**
+     * @var array List of language element classes
+     */
+    public $scanners = [
+        '\lajax\translatemanager\services\scanners\ScannerPhpFunction',
+        '\lajax\translatemanager\services\scanners\ScannerPhpArray',
+        '\lajax\translatemanager\services\scanners\ScannerJavaScriptFunction',
+        '\lajax\translatemanager\services\scanners\ScannerDatabase',
+    ];
 
     /**
      * @var array for storing language elements to be translated.
@@ -38,16 +48,6 @@ class Scanner {
      * @var array for storing removabla LanguageSource ids.
      */
     private $_removableLanguageSourceIds = [];
-
-    /**
-     * @var array List of language element classes
-     */
-    private $_SCANNERS = [
-        '\lajax\translatemanager\services\scanners\ScannerPhpFunction',
-        '\lajax\translatemanager\services\scanners\ScannerPhpArray',
-        '\lajax\translatemanager\services\scanners\ScannerJavaScriptFunction',
-        '\lajax\translatemanager\services\scanners\ScannerDatabase',
-    ];
 
     /**
      * Scanning project for text not stored in database.
@@ -126,7 +126,7 @@ class Scanner {
      * Scan project for new language elements.
      */
     private function _scanningProject() {
-        foreach ($this->_SCANNERS as $scanner) {
+        foreach ($this->scanners as $scanner) {
             $object = new $scanner($this);
             $object->run('');
         }
