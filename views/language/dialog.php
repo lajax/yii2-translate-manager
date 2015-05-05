@@ -41,7 +41,7 @@ use yii\helpers\Html;
                 ]); ?>
             <?= $form->field($languageTranslate, 'id', ['enableLabel' => false])->hiddenInput(['name' => 'id']) ?>
             <?= $form->field($languageTranslate, 'language', ['enableLabel' => false])->hiddenInput(['name' => 'language_id']) ?>
-            <?= $form->field($languageTranslate, 'translation')->textarea(['name' => 'translation']) ?>
+            <?= $form->field($languageTranslate, 'translation')->textarea(['name' => 'translation', 'class' => $languageTranslate->language]) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

@@ -50,6 +50,12 @@ span.language-item.translatable {
     height:100px;
 }
 
+
+#translate-manager-dialog textarea.ar-AR {
+    direction: rtl;
+}
+
+
 #translate-manager-error {
     opacity: 1;
     background-color: #f2dede;

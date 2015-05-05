@@ -6,3 +6,7 @@
 #translates textarea {
     height:47px;
 }
+
+#translates.ar-AR textarea.translation {
+    direction: rtl;
+}

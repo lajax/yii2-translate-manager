@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->title ?>
 </h1>
     <?= Html::hiddenInput('language_id', $language_id, ['id' => 'language_id', 'data-url' => Yii::$app->urlManager->createAbsoluteUrl('/translatemanager/language/save')]); ?>
-<div id="translates">
+<div id="translates" class="<?= $language_id ?>">
     <?php
     Pjax::begin([
         'id' => 'translates'
