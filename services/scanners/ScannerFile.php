@@ -132,36 +132,57 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
             $translatorTokens = token_get_all('<?php ' . $currentTranslator);
             array_shift($translatorTokens);
 
-            $translatorTokensCount = count($translatorTokens);
-            $matchedTokensCount = 0;
-            $buffer = [];
             $tokens = token_get_all($subject);
 
-            foreach ($tokens as $token) {
-                // finding out translator call
-                if ($matchedTokensCount < $translatorTokensCount) {
-                    if ($this->tokensEqual($token, $translatorTokens[$matchedTokensCount])) {
-                        $matchedTokensCount++;
-                    } else {
-                        $matchedTokensCount = 0;
-                    }
-                } elseif ($matchedTokensCount === $translatorTokensCount) {
-                    // translator found
-                    // end of translator call or end of something that we can't extract
-                    if ($this->tokensEqual($options['end'], $token)) {
+            $this->checkTokens($options, $translatorTokens, $tokens);
+        }
+    }
+    
+    /**
+     * @param $options Definition of the parameters required to identify language elements.
+     * @param $translatorTokens Translation identification
+     * @param $tokens Tokens to search through
+     */
+    protected function checkTokens($options, $translatorTokens, $tokens)
+    {
+        $translatorTokensCount = count($translatorTokens);
+        $matchedTokensCount = 0;
+        $buffer = [];
 
-                        $languageItems = $this->getLanguageItem($buffer);
-                        if ($languageItems) {
-                            $this->scanner->addLanguageItems($languageItems);
-                        }
 
-                        // prepare for the next match
-                        $matchedTokensCount = 0;
-                        $buffer = [];
-                    } elseif ($token !== $options['begin'] && isset($token[0]) && !in_array($token[0], [T_WHITESPACE, T_COMMENT])) {
-                        // ignore comments, whitespaces and beginning of function call
-                        $buffer[] = $token;
+        foreach ($tokens as $token) {
+            // finding out translator call
+            if ($matchedTokensCount < $translatorTokensCount) {
+                if ($this->tokensEqual($token, $translatorTokens[$matchedTokensCount])) {
+                    $matchedTokensCount++;
+                } else {
+                    $matchedTokensCount = 0;
+                }
+            } elseif ($matchedTokensCount === $translatorTokensCount) {
+                // translator found
+                // end of translator call or end of something that we can't extract
+                if ($this->tokensEqual($options['end'], $token)) {
+
+                    $languageItems = $this->getLanguageItem($buffer);
+                    if ($languageItems) {
+                        $this->scanner->addLanguageItems($languageItems);
                     }
+
+                    if (count($buffer) > 4 && $buffer[3] == ',') {
+                        array_splice($buffer, 0, 4);
+                        $buffer[] = $options['end']; //append an end marker stripped by the current check
+                        $this->checkTokens($options, $translatorTokens, $buffer);
+                    }
+
+                    // prepare for the next match
+                    $matchedTokensCount = 0;
+                    $buffer = [];
+
+                } elseif ($token !== $options['begin'] && isset($token[0]) && !in_array($token[0],
+                        [T_WHITESPACE, T_COMMENT])
+                ) {
+                    // ignore comments, whitespaces and beginning of function call
+                    $buffer[] = $token;
                 }
             }
         }
