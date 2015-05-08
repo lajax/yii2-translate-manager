@@ -20,7 +20,7 @@ use Yii;
  * @property integer $status
  *
  * @property LanguageTranslate $languageTranslate
- * @property LanguageSource[] $ids
+ * @property LanguageSource[] $languageSources
  */
 class Language extends \yii\db\ActiveRecord {
 
@@ -167,8 +167,17 @@ class Language extends \yii\db\ActiveRecord {
 
     /**
      * @return \yii\db\ActiveQuery
+     * @deprecated since version 1.4.5
      */
     public function getIds() {
+        return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
+                        ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguageSources() {
         return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
                         ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
     }

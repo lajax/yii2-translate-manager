@@ -16,7 +16,7 @@ use Yii;
  * @property string $language
  * @property string $translation
  *
- * @property LanguageSource $id0
+ * @property LanguageSource $LanguageSource
  * @property Language $language0
  */
 class LanguageTranslate extends \yii\db\ActiveRecord {
@@ -116,8 +116,16 @@ class LanguageTranslate extends \yii\db\ActiveRecord {
 
     /**
      * @return \yii\db\ActiveQuery
+     * @deprecated since version 1.4.5
      */
     public function getId0() {
+        return $this->hasOne(LanguageSource::className(), ['id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguageSource() {
         return $this->hasOne(LanguageSource::className(), ['id' => 'id']);
     }
 
