@@ -107,7 +107,7 @@ class m141002_030233_translate_manager extends Migration {
             'country' => Schema::TYPE_STRING . '(3) NOT NULL',
             'name' => Schema::TYPE_STRING . '(32) NOT NULL',
             'name_ascii' => Schema::TYPE_STRING . '(32) NOT NULL',
-            'status' => Schema::TYPE_SMALLINT . '(5) unsigned NOT NULL',
+            'status' => Schema::TYPE_SMALLINT . ' NOT NULL',
             'PRIMARY KEY (language_id)'
         ], $tableOptions);
 
@@ -121,19 +121,19 @@ class m141002_030233_translate_manager extends Migration {
         ], $this->languages);
 
         $this->createTable('language_source', [
-            'id' => Schema::TYPE_INTEGER . '(10) unsigned NOT NULL AUTO_INCREMENT',
+            'id' => Schema::TYPE_PK,
             'category' => Schema::TYPE_STRING . '(32) DEFAULT NULL',
-            'message' => Schema::TYPE_TEXT,
-            'PRIMARY KEY (id)'
+            'message' => Schema::TYPE_TEXT
         ], $tableOptions);
 
         $this->createTable('language_translate', [
-            'id' => Schema::TYPE_INTEGER . '(10) unsigned NOT NULL',
+            'id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'language' => Schema::TYPE_STRING . '(5) NOT NULL',
             'translation' => Schema::TYPE_TEXT,
-            'PRIMARY KEY (id, language)',
-            'KEY `language` (language)'
+            'PRIMARY KEY (id, language)'
         ], $tableOptions);
+
+        $this->createIndex('language_translate_idx_language', 'language_translate', 'language');
         
         $this->addForeignKey('language_translate_ibfk_1', 'language_translate', ['language'], 'language', ['language_id'], 'CASCADE', 'CASCADE');
         $this->addForeignKey('language_translate_ibfk_2', 'language_translate', ['id'], 'language_source', ['id'], 'CASCADE', 'CASCADE');
