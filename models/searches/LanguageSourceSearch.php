@@ -10,11 +10,19 @@ namespace lajax\translatemanager\models\searches;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use lajax\translatemanager\models\LanguageSource;
+use lajax\translatemanager\models\LanguageTranslate;
 
 /**
  * LanguageSourceSearch represents the model behind the search form about `common\models\LanguageSource`.
  */
-class LanguageSourceSearch extends LanguageSource {
+class LanguageSourceSearch extends LanguageSource
+{
+
+    /**
+     *
+     * @var string
+     */
+    public $translation;
 
     /**
      * @var string Store language_id eg.: `en` en-US
@@ -24,17 +32,19 @@ class LanguageSourceSearch extends LanguageSource {
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['id'], 'integer'],
-            [['category', 'message'], 'safe'],
+            [['category', 'message', 'translation'], 'safe'],
         ];
     }
 
     /**
      * The name of the default scenario. 
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -43,19 +53,33 @@ class LanguageSourceSearch extends LanguageSource {
      * @param array $params Search conditions.
      * @return ActiveDataProvider
      */
-    public function search($params) {
+    public function search($params)
+    {
         $this->_languageId = $params['language_id'];
-        $query = LanguageSource::find()->with([
-            'languageTranslate' => function($query) {
-                $query->andWhere(['language' => $this->_languageId]);
-            }
-        ]);
-
+        $query = LanguageSource::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'category',
+                'message',
+                'translation' => [
+                    'asc' => ['translation' => SORT_ASC],
+                    'desc' => ['translation' => SORT_DESC],
+                    'label' => \Yii::t('language', 'Translation')
+                ]
+            ]
+        ]);
+
         if (!($this->load($params) && $this->validate())) {
+            $query->joinWith(['languageTranslate' => function($query) {
+                $query->andWhere(['language' => $this->_languageId]);
+                $query->orWhere([LanguageTranslate::tableName() . '.id' => null]);
+            }]);
+
             return $dataProvider;
         }
 
@@ -65,6 +89,15 @@ class LanguageSourceSearch extends LanguageSource {
 
         $query->andFilterWhere(['like', 'category', $this->category])
                 ->andFilterWhere(['like', 'message', $this->message]);
+
+        $query->joinWith(['languageTranslate' => function ($query) {
+            $query->andWhere(['language' => $this->_languageId]);
+            if ($this->translation) {
+                $query->andWhere(['like', 'translation', $this->translation]);
+            } else {
+                $query->orWhere([LanguageTranslate::tableName() . '.id' => null]);
+            }
+        }]);
 
         return $dataProvider;
     }

@@ -4,7 +4,6 @@
  * @since 1.0
  */
 
-use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use lajax\translatemanager\models\Language;
@@ -41,8 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'status'],
                 'label' => Yii::t('language', 'Status'),
                 'content' => function ($language) {
-            return Html::activeDropDownList($language, 'status', Language::getStatusNames(), ['class' => 'status', 'id' => $language->language_id, 'data-url' => Yii::$app->urlManager->createUrl('/translatemanager/language/change-status')]);
-        },
+                    return Html::activeDropDownList($language, 'status', Language::getStatusNames(), ['class' => 'status', 'id' => $language->language_id, 'data-url' => Yii::$app->urlManager->createUrl('/translatemanager/language/change-status')]);
+                },
             ],
             [
                 'format' => 'html',
@@ -52,15 +51,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'format' => 'html',
-                'attribute' => Yii::t('language', 'Action'),
-                'content' => function ($language) {
-                    return Html::a(Yii::t('language', 'Translate'), Url::toRoute(['language/translate', 'language_id' => $language->language_id]), ['class' => 'translate btn btn-xs btn-success']) . ' ' .
-                           Html::a(Yii::t('language', 'View'), Url::toRoute(['language/view', 'id' => $language->language_id]), ['class' => 'translate btn btn-xs btn-success']);
-                },
-                    ],
-                ],
-            ]);
-            Pjax::end();
-            ?>
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {translate} {delete}',
+                'buttons' => [
+                    'translate' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-list-alt"></span>',['language/translate', 'language_id' => $model->language_id], [
+                                    'title' => Yii::t('language', 'Translate'),
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                ]
+            ]
+        ],
+    ]);
+    Pjax::end();
+    ?>
 </div>

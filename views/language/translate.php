@@ -7,6 +7,7 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use lajax\translatemanager\helpers\Language;
 
 /* @var $this \yii\web\View */
 /* @var $language_id integer */
@@ -31,7 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-                'category',
+                [
+                    'format' => 'text',
+                    'filter' => Language::getCategories(),
+                    'attribute' => 'category',
+                    'filterInputOptions' => ['class' => 'form-control', 'id' => 'category'],
+                ],
                 [
                     'format' => 'text',
                     'attribute' => 'message',

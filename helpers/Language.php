@@ -18,7 +18,8 @@ use lajax\translatemanager\bundles\TranslationPluginAsset;
  * @author Lajos Molnar <lajax.m@gmail.com>
  * @since 1.1
  */
-class Language {
+class Language
+{
 
     /**
      * @var string parent span for front end translation.
@@ -28,7 +29,8 @@ class Language {
     /**
      * Registering JavaScripts for client side multilingual support.
      */
-    public static function registerAssets() {
+    public static function registerAssets()
+    {
         TranslationPluginAsset::register(Yii::$app->view);
     }
 
@@ -40,7 +42,8 @@ class Language {
      * If this is null, the current [[\yii\base\Application::language|application language]] will be used.
      * @return string the translated message.
      */
-    public static function t($category, $message, $params = [], $language = null) {
+    public static function t($category, $message, $params = [], $language = null)
+    {
         if (self::isEnabledTranslate()) {
             return strtr(self::$_template, [
                 '{language_id}' => $language ? $language : Yii::$app->language,
@@ -140,7 +143,8 @@ class Language {
      * @param string $language Language of translation.
      * @return array The translated array.
      */
-    public static function a($array, $params = [], $language = null) {
+    public static function a($array, $params = [], $language = null)
+    {
         $data = [];
 
         foreach ($array as $key => $message) {
@@ -185,7 +189,8 @@ class Language {
      * @param string $language Language of translation.
      * @return string Translated language element.
      */
-    public static function d($message, $params = [], $language = null) {
+    public static function d($message, $params = [], $language = null)
+    {
         return Yii::t(Scanner::CATEGORY_DATABASE, $message, $params, $language);
     }
 
@@ -193,7 +198,8 @@ class Language {
      * Determines whether the translation mode is active.
      * @return boolean
      */
-    public static function isEnabledTranslate() {
+    public static function isEnabledTranslate()
+    {
         return Yii::$app->session->has(\lajax\translatemanager\Module::SESSION_KEY_ENABLE_TRANSLATE);
     }
 
@@ -202,7 +208,8 @@ class Language {
      * @param string $message Language element save in database.
      * @param string $category the message category.
      */
-    public static function saveMessage($message, $category = 'database') {
+    public static function saveMessage($message, $category = 'database')
+    {
         $languageSources = \lajax\translatemanager\models\LanguageSource::find()->where(['category' => $category])->all();
 
         $messages = [];
@@ -216,6 +223,22 @@ class Language {
             $languageSource->message = $message;
             $languageSource->save();
         }
+    }
+
+    /**
+     * Returns the category of LanguageSource in an associative array.
+     * @return array
+     */
+    public static function getCategories()
+    {
+        $languageSources = \lajax\translatemanager\models\LanguageSource::find()->select('category')->distinct()->all();
+
+        $categories = [];
+        foreach ($languageSources as $languageSource) {
+            $categories[$languageSource->category] = $languageSource->category;
+        }
+
+        return $categories;
     }
 
 }
