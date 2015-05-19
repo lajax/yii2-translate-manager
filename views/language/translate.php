@@ -53,11 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterInputOptions' => ['class' => 'form-control', 'id' => 'translation'],
                     'label' => Yii::t('language', 'Translation'),
                     'content' => function ($data) {
-                        if ($data->languageTranslate === null) {
-                            return Html::textarea('LanguageTranslate[' . $data->id . ']', '', ['class' => 'form-control translation', 'tabindex' => $data->id]);
-                        }
-
-                        return Html::activeTextarea($data->languageTranslate, 'translation', ['name' => 'LanguageTranslate[' . $data->id . ']', 'class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]);
+                        return Html::activeTextarea($data, 'translation', ['name' => 'LanguageTranslate[' . $data->id . ']', 'class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]);
                     },
                 ],
                 [
