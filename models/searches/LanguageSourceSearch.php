@@ -7,10 +7,10 @@
 
 namespace lajax\translatemanager\models\searches;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use lajax\translatemanager\models\LanguageSource;
-use lajax\translatemanager\models\LanguageTranslate;
 
 /**
  * LanguageSourceSearch represents the model behind the search form about `common\models\LanguageSource`.
@@ -23,11 +23,6 @@ class LanguageSourceSearch extends LanguageSource
      * @var string
      */
     public $translation;
-
-    /**
-     * @var string Store language_id eg.: `en` en-US
-     */
-    private $_languageId;
 
     /**
      * @inheritdoc
@@ -55,7 +50,7 @@ class LanguageSourceSearch extends LanguageSource
      */
     public function search($params)
     {
-        $this->_languageId = $params['language_id'];
+        Yii::$app->session->setFlash('TM-language__id', $params['language_id']);
         $query = LanguageSource::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -69,33 +64,27 @@ class LanguageSourceSearch extends LanguageSource
                 'translation' => [
                     'asc' => ['translation' => SORT_ASC],
                     'desc' => ['translation' => SORT_DESC],
-                    'label' => \Yii::t('language', 'Translation')
+                    'label' => Yii::t('language', 'Translation')
                 ]
             ]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
-            $query->joinWith(['languageTranslate' => function($query) {
-                $query->andWhere(['language' => $this->_languageId]);
-                $query->orWhere([LanguageTranslate::tableName() . '.id' => null]);
-            }]);
+            $query->joinWith('languageTranslateByLanguage');
 
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'category' => $this->category
         ]);
 
-        $query->andFilterWhere(['like', 'category', $this->category])
-                ->andFilterWhere(['like', 'message', $this->message]);
+        $query->andFilterWhere(['like', 'message', $this->message]);
 
-        $query->joinWith(['languageTranslate' => function ($query) {
-            $query->andWhere(['language' => $this->_languageId]);
+        $query->joinWith(['languageTranslateByLanguage' => function ($query) {
             if ($this->translation) {
                 $query->andWhere(['like', 'translation', $this->translation]);
-            } else {
-                $query->orWhere([LanguageTranslate::tableName() . '.id' => null]);
             }
         }]);
 

@@ -91,17 +91,20 @@ class LanguageSource extends \yii\db\ActiveRecord
      */
     public function getTranslation()
     {
-        return $this->languageTranslate ? $this->languageTranslate->translation : '';
+        return $this->languageTranslateByLanguage ? $this->languageTranslateByLanguage->translation : '';
     }
 
     /**
      * @param string $language
      * @return \yii\db\ActiveQuery
      */
-    public function getLanguageTranslateByLanguage($language)
+    public function getLanguageTranslateByLanguage($language = 'xx-XX')
     {
-        return $this->hasOne(LanguageTranslate::className(), ['id' => 'id'])
-                        ->where('language = :language', ['language' => $language]);
+        if(Yii::$app->session->hasFlash('TM-language__id')) {
+            $language = Yii::$app->session->getFlash('TM-language__id');
+        }
+
+        return $this->hasOne(LanguageTranslate::className(), ['id' => 'id'])->onCondition(['language' => $language]);
     }
 
     /**
