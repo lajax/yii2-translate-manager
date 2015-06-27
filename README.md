@@ -56,20 +56,20 @@ A simple exmple of turning on Yii database multilingual.
 ```php
 'language' => 'en-US',
 'components' => [
-        'i18n' => [
-            'translations' => [
-                '*' => [
-                    'class' => 'yii\i18n\DbMessageSource',
-                    'db' => 'db',
-                    'sourceLanguage' => 'xx-XX', // Developer language
-                    'sourceMessageTable' => 'language_source',
-                    'messageTable' => 'language_translate',
-                    'cachingDuration' => 86400,
-                    'enableCaching' => true,
-                ],
+    'i18n' => [
+        'translations' => [
+            '*' => [
+                'class' => 'yii\i18n\DbMessageSource',
+                'db' => 'db',
+                'sourceLanguage' => 'xx-XX', // Developer language
+                'sourceMessageTable' => '{{%language_source}}',
+                'messageTable' => '{{%language_translate}}',
+                'cachingDuration' => 86400,
+                'enableCaching' => true,
             ],
         ],
     ],
+],
 ```
 
 
@@ -106,8 +106,8 @@ A more complex example including database table with multilingual support is bel
         'tables' => [                   // Properties of individual tables
             [
                 'connection' => 'db',   // connection identifier
-                'table' => 'language',  // table name
-                'columns' => ['name', 'name_ascii']  //names of multilingual fields
+                'table' => '{{%language}}',         // table name
+                'columns' => ['name', 'name_ascii'] //names of multilingual fields
             ]
         ]
     ],

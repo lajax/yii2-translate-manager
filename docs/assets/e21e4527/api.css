@@ -97,3 +97,7 @@ table.summaryTable th {
     padding:5px;
     background:#FFF5E6;
 }
+
+img {
+    max-width: 100%;
+}

@@ -19,8 +19,7 @@ class LanguageSourceSearch extends LanguageSource
 {
 
     /**
-     *
-     * @var string
+     * @var string Translated message.
      */
     public $translation;
 

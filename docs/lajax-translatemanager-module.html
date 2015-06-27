@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/d5374b01/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/99571901/style.css" rel="stylesheet">
-<script src="./assets/382f1b5c/jquery.js"></script>
-<script src="./assets/d5374b01/js/bootstrap.js"></script>
-<script src="./assets/2ff86d70/jssearch.js"></script>    <title>Module, lajax\translatemanager\Module - Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/4b53dea2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/e21e4527/style.css" rel="stylesheet">
+<script src="./assets/b3fda920/jquery.js"></script>
+<script src="./assets/4b53dea2/js/bootstrap.js"></script>
+<script src="./assets/82c8896e/jssearch.js"></script>    <title>Module, lajax\translatemanager\Module - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -88,8 +88,8 @@
     </colgroup>
             <tr><th>Inheritance</th><td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a> &raquo;
 yii\base\Module</td></tr>
-                                    <tr><th>Available since version</th><td>1.0</td></tr>
-        </table>
+                                        <tr><th>Available since version</th><td>1.0</td></tr>
+            </table>
 
 <div id="classDescription">
     <p><strong>This is the main module class for the TranslateManager module.</strong></p>
@@ -117,10 +117,11 @@ yii\base\Module</td></tr>
         'ignoredCategories' =&gt; ['yii'], // these categories won’t be included in the language database.
         'ignoredItems' =&gt; ['config'],   // these files will not be processed.
         'languageTable' =&gt; 'language',  // Name of the database table storing the languages.
+        'scanTimeLimit' =&gt; null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
         'tables' =&gt; [                   // Properties of individual tables
             [
                 'connection' =&gt; 'db',   // connection identifier
-                'table' =&gt; 'language',  // table name
+                'table' =&gt; '{{%language}}',          // table name
                 'columns' =&gt; ['name', 'name_ascii']  //names of multilingual fields
             ]
         ]
@@ -264,6 +265,12 @@ yii\base\Module</td></tr>
         <td><a href="lajax-translatemanager-module.html#$root-detail">$root</a></td>
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>The root directory of the scanning.</td>
+        <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
+    </tr>
+            <tr id="$scanTimeLimit">
+        <td><a href="lajax-translatemanager-module.html#$scanTimeLimit-detail">$scanTimeLimit</a></td>
+        <td>int</td>
+        <td>The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.</td>
         <td><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></td>
     </tr>
             <tr id="$subDir">
@@ -450,7 +457,7 @@ yii\base\Module</td></tr>
                     </span>
     </div>
 
-    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$languageTable-detail">$languageTable</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'language'</span></div>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$languageTable-detail">$languageTable</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'{{%language}}'</span></div>
 
     <p>The database table storing the languages.</p>
 
@@ -606,6 +613,21 @@ If you modify, you also need to enable authManager.
     <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$root-detail">$root</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'@app'</span></div>
 
     <p>The root directory of the scanning.</p>
+
+    
+
+    <div class="detail-header h3" id="$scanTimeLimit-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-module.html#$scanTimeLimit-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $scanTimeLimit        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature">int <a href="lajax-translatemanager-module.html#$scanTimeLimit-detail">$scanTimeLimit</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+    <p>The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.</p>
 
     
 
@@ -779,7 +801,7 @@ If you modify, you also need to enable authManager.
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 05 Apr 2015 08:40:14 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 27 Jun 2015 13:23:07 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

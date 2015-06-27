@@ -42,7 +42,7 @@ use yii\web\ForbiddenHttpException;
  *         'tables' => [                   // Properties of individual tables
  *             [
  *                 'connection' => 'db',   // connection identifier
- *                 'table' => 'language',  // table name
+ *                 'table' => '{{%language}}',          // table name
  *                 'columns' => ['name', 'name_ascii']  //names of multilingual fields
  *             ]
  *         ]
@@ -206,14 +206,14 @@ class Module extends \yii\base\Module {
      * examples:
      * $tables = [
      *      [
-     *          'connection' => 'db',   // connection identifier.
-     *          'table' => 'language',  // name of the database table to scan.
-     *          'columns' => ['name', 'name_ascii']  // fields to check.
+     *          'connection' => 'db',               // connection identifier.
+     *          'table' => '{{%language}}',         // name of the database table to scan.
+     *          'columns' => ['name', 'name_ascii'] // fields to check.
      *      ],
      *      [
-     *          'connection' => 'db',   // connection identifier.
-     *          'table' => 'post',      // name of the database table to scan.
-     *          'columns' => ['title', 'description', 'content']  // fields to check.
+     *          'connection' => 'db',                           // connection identifier.
+     *          'table' => '{{%post}}',                         // name of the database table to scan.
+     *          'columns' => ['title', 'description', 'content']// fields to check.
      *      ],
      * ];
      * @var array identifiers for the database tables containing language elements.
@@ -223,7 +223,7 @@ class Module extends \yii\base\Module {
     /**
      * @var string The database table storing the languages.
      */
-    public $languageTable = 'language';
+    public $languageTable = '{{%language}}';
 
     /**
      * @inheritdoc

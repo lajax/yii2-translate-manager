@@ -101,7 +101,7 @@ class m141002_030233_translate_manager extends Migration {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('language', [
+        $this->createTable('{{%language}}', [
             'language_id' => Schema::TYPE_STRING . '(5) NOT NULL',
             'language' => Schema::TYPE_STRING . '(3) NOT NULL',
             'country' => Schema::TYPE_STRING . '(3) NOT NULL',
@@ -111,7 +111,7 @@ class m141002_030233_translate_manager extends Migration {
             'PRIMARY KEY (language_id)'
         ], $tableOptions);
 
-        $this->batchInsert('language', [
+        $this->batchInsert('{{%language}}', [
             'language_id',
             'language',
             'country',
@@ -120,29 +120,29 @@ class m141002_030233_translate_manager extends Migration {
             'status'
         ], $this->languages);
 
-        $this->createTable('language_source', [
+        $this->createTable('{{%language_source}}', [
             'id' => Schema::TYPE_PK,
             'category' => Schema::TYPE_STRING . '(32) DEFAULT NULL',
             'message' => Schema::TYPE_TEXT
         ], $tableOptions);
 
-        $this->createTable('language_translate', [
+        $this->createTable('{{%language_translate}}', [
             'id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'language' => Schema::TYPE_STRING . '(5) NOT NULL',
             'translation' => Schema::TYPE_TEXT,
             'PRIMARY KEY (id, language)'
         ], $tableOptions);
 
-        $this->createIndex('language_translate_idx_language', 'language_translate', 'language');
+        $this->createIndex('language_translate_idx_language', '{{%language_translate}}', 'language');
         
-        $this->addForeignKey('language_translate_ibfk_1', 'language_translate', ['language'], 'language', ['language_id'], 'CASCADE', 'CASCADE');
-        $this->addForeignKey('language_translate_ibfk_2', 'language_translate', ['id'], 'language_source', ['id'], 'CASCADE', 'CASCADE');
+        $this->addForeignKey('language_translate_ibfk_1', '{{%language_translate}}', ['language'], '{{%language}}', ['language_id'], 'CASCADE', 'CASCADE');
+        $this->addForeignKey('language_translate_ibfk_2', '{{%language_translate}}', ['id'], '{{%language_source}}', ['id'], 'CASCADE', 'CASCADE');
     }
 
     public function down() {
-        $this->dropTable('language_translate');
-        $this->dropTable('language_source');
-        $this->dropTable('language');
+        $this->dropTable('{{%language_translate}}');
+        $this->dropTable('{{%language_source}}');
+        $this->dropTable('{{%language}}');
     }
 
 }
