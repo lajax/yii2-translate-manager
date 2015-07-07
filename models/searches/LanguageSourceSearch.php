@@ -84,7 +84,8 @@ class LanguageSourceSearch extends LanguageSource
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) {
             if ($this->translation) {
-                if ($this->translation == Module::getInstance()->searchEmptyCommand){
+								$searchEmptyCommand = Module::getInstance()->searchEmptyCommand;
+                if ($searchEmptyCommand && $this->translation == $searchEmptyCommand){
                     $query->andWhere(['or', ['translation'=>null], ['translation'=>'']]);
                 }else{
                     $query->andWhere(['like', 'translation', $this->translation]);
