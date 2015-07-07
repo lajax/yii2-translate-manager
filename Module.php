@@ -224,6 +224,11 @@ class Module extends \yii\base\Module {
      * @var string The database table storing the languages.
      */
     public $languageTable = '{{%language}}';
+		
+    /**
+     * @var string The search string to find empty translations.
+     */
+    public $searchEmptyCommand = '!';
 
     /**
      * @inheritdoc

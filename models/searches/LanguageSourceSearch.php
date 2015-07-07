@@ -11,6 +11,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use lajax\translatemanager\models\LanguageSource;
+use lajax\translatemanager\Module;
 
 /**
  * LanguageSourceSearch represents the model behind the search form about `common\models\LanguageSource`.
@@ -83,7 +84,11 @@ class LanguageSourceSearch extends LanguageSource
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) {
             if ($this->translation) {
-                $query->andWhere(['like', 'translation', $this->translation]);
+                if ($this->translation == Module::getInstance()->searchEmptyCommand){
+                    $query->andWhere(['or', ['translation'=>null], ['translation'=>'']]);
+                }else{
+                    $query->andWhere(['like', 'translation', $this->translation]);
+                }
             }
         }]);
 
