@@ -4,10 +4,6 @@
  * since 1.0
  */
 
-$(document).ready(function () {
-    translate.init();
-});
-
 var translate = (function () {
 
     /**
@@ -58,3 +54,7 @@ var translate = (function () {
         }
     };
 })();
+
+$(document).ready(function () {
+    translate.init();
+});
