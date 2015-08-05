@@ -4,6 +4,7 @@ namespace lajax\translatemanager;
 
 use Yii;
 use yii\web\ForbiddenHttpException;
+use yii\web\Response;
 
 /**
  * This is the main module class for the TranslateManager module.
@@ -229,6 +230,16 @@ class Module extends \yii\base\Module {
      * @var string The search string to find empty translations.
      */
     public $searchEmptyCommand = '!';
+
+    /**
+     * @var int The minimum status for a language to be selected by default in the export list.
+     */
+    public $defaultExportStatus = 1;
+
+    /**
+     * @var string The default export format (yii\web\Response::FORMAT_JSON or yii\web\Response::FORMAT_XML).
+     */
+    public $defaultExportFormat = Response::FORMAT_JSON;
 
     /**
      * @inheritdoc
