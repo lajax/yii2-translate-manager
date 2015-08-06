@@ -7,7 +7,7 @@ Introduction
 
 This module provides a simple translating interface for the multilingual elements of your project. It can auto-detect new language elements (project scan).
 Duplications are filtered out automatically during project scanning.
-Unused language elements can be removed from the database with a single click (database optimisation).
+Unused language elements can be removed from the database with a single click (database optimisation) and translations can be imported and exported.
 It is possible to translate client side messages too (those stored in JavaScript files) as the project scan collects language elements to be translated from JavaScript files as well.
 
 It also allows you to translate text on the client side (on the live webpage) without having to log in to the translating interface. (frontendTranslation).
@@ -104,6 +104,8 @@ A more complex example including database table with multilingual support is bel
         'ignoredItems' => ['config'],   // these files will not be processed.
         'scanTimeLimit' => null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
         'searchEmptyCommand' => '!'     // the search string to enter in the 'Translation' search field to find not yet translated items, set to null to disable this feature
+        'defaultExportStatus' => 1      // the default selection of languages to export, set to 0 to select all languages by default
+        'defaultExportFormat' => 'json' // the default format for export, can be 'json' or 'xml'
         'tables' => [                   // Properties of individual tables
             [
                 'connection' => 'db',   // connection identifier

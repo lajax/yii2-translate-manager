@@ -87,7 +87,13 @@ class LanguageController extends Controller {
             ],
             'delete-source' => [
                 'class' => 'lajax\translatemanager\controllers\actions\DeleteSourceAction',
-            ]
+            ],
+            'import' => [
+                'class' => 'lajax\translatemanager\controllers\actions\ImportAction',
+            ],
+            'export' => [
+                'class' => 'lajax\translatemanager\controllers\actions\ExportAction',
+            ],
         ];
     }
 

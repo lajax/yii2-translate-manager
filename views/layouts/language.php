@@ -45,6 +45,11 @@ TranslateManagerAsset::register($this);
                 ],
                 ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
                 ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
+                ['label' => Yii::t('language', 'Im-/Export'), 'items' => [
+                    ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
+                    ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
+                ]
+                ],
             ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
@@ -59,6 +64,10 @@ TranslateManagerAsset::register($this);
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
                 ?>
+                <?php
+                foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
+                    echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+                } ?>
                 <?= $content ?>
             </div>
         </div>
