@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/951dca60/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c10240b/style.css" rel="stylesheet">
+<script src="./assets/5df3c80c/jquery.js"></script>
+<script src="./assets/951dca60/js/bootstrap.js"></script>
+<script src="./assets/6cc6e842/jssearch.js"></script>    <title>ImportForm, lajax\translatemanager\models\ImportForm - Yii Framework 2.0 API Documentation</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w505" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w505-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Yii Framework 2.0 API Documentation</a></div><div id="w505-collapse" class="collapse navbar-collapse"><ul id="w506" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-494" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager <b class="caret"></b></a><div id="navigation-494" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-component.html">Component</a>
+<a class="list-group-item" href="./lajax-translatemanager-module.html">Module</a></div>
+<a class="list-group-item" href="#navigation-495" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\bundles <b class="caret"></b></a><div id="navigation-495" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-bundles-frontendtranslationasset.html">FrontendTranslationAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-frontendtranslationpluginasset.html">FrontendTranslationPluginAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-languageasset.html">LanguageAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-languageitempluginasset.html">LanguageItemPluginAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-languagepluginasset.html">LanguagePluginAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-scanpluginasset.html">ScanPluginAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-translateasset.html">TranslateAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-translatemanagerasset.html">TranslateManagerAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-translatepluginasset.html">TranslatePluginAsset</a>
+<a class="list-group-item" href="./lajax-translatemanager-bundles-translationpluginasset.html">TranslationPluginAsset</a></div>
+<a class="list-group-item" href="#navigation-496" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\commands <b class="caret"></b></a><div id="navigation-496" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-commands-translatemanagercontroller.html">TranslatemanagerController</a></div>
+<a class="list-group-item" href="#navigation-497" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\controllers <b class="caret"></b></a><div id="navigation-497" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-controllers-languagecontroller.html">LanguageController</a></div>
+<a class="list-group-item" href="#navigation-498" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\controllers\actions <b class="caret"></b></a><div id="navigation-498" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-controllers-actions-changestatusaction.html">ChangeStatusAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-createaction.html">CreateAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-deleteaction.html">DeleteAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-deletesourceaction.html">DeleteSourceAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-dialogaction.html">DialogAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-exportaction.html">ExportAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-importaction.html">ImportAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-listaction.html">ListAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-messageaction.html">MessageAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-optimizeraction.html">OptimizerAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-saveaction.html">SaveAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-scanaction.html">ScanAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-translateaction.html">TranslateAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-updateaction.html">UpdateAction</a>
+<a class="list-group-item" href="./lajax-translatemanager-controllers-actions-viewaction.html">ViewAction</a></div>
+<a class="list-group-item" href="#navigation-499" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\helpers <b class="caret"></b></a><div id="navigation-499" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-helpers-language.html">Language</a></div>
+<a class="list-group-item active" href="#navigation-500" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\models <b class="caret"></b></a><div id="navigation-500" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./lajax-translatemanager-models-exportform.html">ExportForm</a>
+<a class="list-group-item active" href="./lajax-translatemanager-models-importform.html">ImportForm</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-language.html">Language</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-languagesource.html">LanguageSource</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-languagetranslate.html">LanguageTranslate</a></div>
+<a class="list-group-item" href="#navigation-501" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\models\searches <b class="caret"></b></a><div id="navigation-501" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesearch.html">LanguageSearch</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a></div>
+<a class="list-group-item" href="#navigation-502" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services <b class="caret"></b></a><div id="navigation-502" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-services-generator.html">Generator</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-optimizer.html">Optimizer</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanner.html">Scanner</a></div>
+<a class="list-group-item" href="#navigation-503" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services\scanners <b class="caret"></b></a><div id="navigation-503" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerdatabase.html">ScannerDatabase</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerfile.html">ScannerFile</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerjavascriptfunction.html">ScannerJavaScriptFunction</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerphparray.html">ScannerPhpArray</a>
+<a class="list-group-item" href="./lajax-translatemanager-services-scanners-scannerphpfunction.html">ScannerPhpFunction</a></div>
+<a class="list-group-item" href="#navigation-504" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\widgets <b class="caret"></b></a><div id="navigation-504" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-widgets-toggletranslate.html">ToggleTranslate</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class lajax\translatemanager\models\ImportForm</h1>
+<div id="nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+            </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="lajax-translatemanager-models-importform.html">lajax\translatemanager\models\ImportForm</a> &raquo;
+yii\base\Model</td></tr>
+                                        </table>
+
+<div id="classDescription">
+    <p><strong></strong></p>
+    
+    </div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$importFile">
+        <td><a href="lajax-translatemanager-models-importform.html#$importFile-detail">$importFile</a></td>
+        <td>\yii\web\UploadedFile</td>
+        <td>The file to import (json or xml)</td>
+        <td><a href="lajax-translatemanager-models-importform.html">lajax\translatemanager\models\ImportForm</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="import()">
+        <td><a href="lajax-translatemanager-models-importform.html#import()-detail">import()</a></td>
+        <td>Import the uploaded file. Existing languages and translations will be updated, new ones will be created.</td>
+        <td><a href="lajax-translatemanager-models-importform.html">lajax\translatemanager\models\ImportForm</a></td>
+    </tr>
+                <tr id="rules()">
+        <td><a href="lajax-translatemanager-models-importform.html#rules()-detail">rules()</a></td>
+        <td></td>
+        <td><a href="lajax-translatemanager-models-importform.html">lajax\translatemanager\models\ImportForm</a></td>
+    </tr>
+        </table>
+</div>
+
+<div class="summary doc-method">
+<h2>Protected Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+            <tr id="parseImportFile()">
+        <td><a href="lajax-translatemanager-models-importform.html#parseImportFile()-detail">parseImportFile()</a></td>
+        <td>Parse the uploaded file (xml or json) and return it as an array</td>
+        <td><a href="lajax-translatemanager-models-importform.html">lajax\translatemanager\models\ImportForm</a></td>
+    </tr>
+                <tr id="throwInvalidModelException()">
+        <td><a href="lajax-translatemanager-models-importform.html#throwInvalidModelException()-detail">throwInvalidModelException()</a></td>
+        <td>Converts the model validation errors to a readable format an throws it as an exception</td>
+        <td><a href="lajax-translatemanager-models-importform.html">lajax\translatemanager\models\ImportForm</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$importFile-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-models-importform.html#$importFile-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $importFile        <span class="detailHeaderTag small">
+            public                                    property
+                    </span>
+    </div>
+
+    <div class="signature">\yii\web\UploadedFile <a href="lajax-translatemanager-models-importform.html#$importFile-detail">$importFile</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+    <p>The file to import (json or xml)</p>
+
+    
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="import()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-models-importform.html#import()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        import()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Import the uploaded file. Existing languages and translations will be updated, new ones will be created.</strong></p>
+
+        <p>Source messages won't be updated, only created if they not exist.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.array">array</a> <strong><a href="lajax-translatemanager-models-importform.html#import()-detail">import</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+                                                            <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\BadRequestHttpException</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                            <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\base\Exception</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="parseImportFile()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-models-importform.html#parseImportFile()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        parseImportFile()
+        <span class="detail-header-tag small">
+            protected            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Parse the uploaded file (xml or json) and return it as an array</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">Array <strong><a href="lajax-translatemanager-models-importform.html#parseImportFile()-detail">parseImportFile</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+                                                            <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\web\BadRequestHttpException</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                        </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="rules()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-models-importform.html#rules()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        rules()
+        <span class="detail-header-tag small">
+            public            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-models-importform.html#rules()-detail">rules</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="throwInvalidModelException()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="lajax-translatemanager-models-importform.html#throwInvalidModelException()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        throwInvalidModelException()
+        <span class="detail-header-tag small">
+            protected            method
+                    </span>
+    </div>
+
+    <div class="doc-description">
+        <p><strong>Converts the model validation errors to a readable format an throws it as an exception</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-models-importform.html#throwInvalidModelException()-detail">throwInvalidModelException</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$model&nbsp;</span><span style="color: #007700">)</span></td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$model</span></td>
+                  <td class="param-type-col">\yii\db\ActiveRecord</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                    <tr>
+                  <th class="param-name-col">throws</th>
+                  <td class="param-type-col">\yii\base\Exception</td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                        </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Fri, 07 Aug 2015 15:46:35 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

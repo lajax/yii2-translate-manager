@@ -46,9 +46,9 @@ TranslateManagerAsset::register($this);
                 ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
                 ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
                 ['label' => Yii::t('language', 'Im-/Export'), 'items' => [
-                    ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
-                    ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
-                ]
+                        ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
+                        ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
+                    ]
                 ],
             ];
             echo Nav::widget([

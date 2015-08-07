@@ -199,12 +199,14 @@ class Module extends \yii\base\Module {
     public $patternArrayTranslator = '#\@translate[^\$]+(?P<translator>[\w\d\s_]+[^\(\[]+)#s';
     
     /**
-     * @var int The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.
+     * @var integer The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.
      */
     public $scanTimeLimit = null;
 
     /**
      * examples:
+     * 
+     * ~~~
      * $tables = [
      *      [
      *          'connection' => 'db',               // connection identifier.
@@ -217,6 +219,8 @@ class Module extends \yii\base\Module {
      *          'columns' => ['title', 'description', 'content']// fields to check.
      *      ],
      * ];
+     * ~~~
+     * 
      * @var array identifiers for the database tables containing language elements.
      */
     public $tables;
@@ -232,7 +236,7 @@ class Module extends \yii\base\Module {
     public $searchEmptyCommand = '!';
 
     /**
-     * @var int The minimum status for a language to be selected by default in the export list.
+     * @var integer The minimum status for a language to be selected by default in the export list.
      */
     public $defaultExportStatus = 1;
 

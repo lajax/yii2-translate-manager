@@ -42,11 +42,15 @@ class ExportForm extends Model
 
     /**
      * @return Array[] Generate a two dimensional array of the translation data for the exportLanguages:
+     * 
+     * ~~~
      * [
      *  'languages' => [],
      *  'languageSources' => [],
      *  'languageTranslations' => [],
      * ]
+     * ~~~
+     * 
      */
     public function getExportData()
     {
