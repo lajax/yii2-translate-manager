@@ -151,7 +151,7 @@ class Language extends \yii\db\ActiveRecord {
                     ->all();
 
             foreach ($languageTranslates as $languageTranslate) {
-                $statistics[$languageTranslate->language] = round($languageTranslate->cnt / $count, 2) * 100;
+                $statistics[$languageTranslate->language] = floor(($languageTranslate->cnt / $count) * 100);
             }
         }
 
