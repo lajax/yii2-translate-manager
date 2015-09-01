@@ -59,6 +59,8 @@ var FrontendTranslation = {
                             hash: $language_item.data('hash'),
                             category: $language_item.data('category'),
                             language_id: $language_item.data('language_id')
+                        }, function () {
+                            $('#languagetranslate-translation').focus();
                         });
                     }, this),
             close: function () {
