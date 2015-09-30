@@ -84,7 +84,7 @@ class LanguageSourceSearch extends LanguageSource
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) {
             if ($this->translation) {
-								$searchEmptyCommand = Module::getInstance()->searchEmptyCommand;
+                $searchEmptyCommand = \Yii::$app->controller->module->searchEmptyCommand;
                 if ($searchEmptyCommand && $this->translation == $searchEmptyCommand){
                     $query->andWhere(['or', ['translation'=>null], ['translation'=>'']]);
                 }else{
