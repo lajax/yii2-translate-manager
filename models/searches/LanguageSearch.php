@@ -53,11 +53,11 @@ class LanguageSearch extends Language {
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'language_id', $this->language_id])
-                ->andFilterWhere(['like', 'language', $this->language])
-                ->andFilterWhere(['like', 'country', $this->country])
-                ->andFilterWhere(['like', 'name', $this->name])
-                ->andFilterWhere(['like', 'name_ascii', $this->name_ascii]);
+        $query->andFilterWhere(['like', 'lower(language_id)', strtolower($this->language_id)])
+                ->andFilterWhere(['like', 'lower(language)', strtolower($this->language)])
+                ->andFilterWhere(['like', 'lower(country)', strtolower($this->country)])
+                ->andFilterWhere(['like', 'lower(name)', strtolower($this->name)])
+                ->andFilterWhere(['like', 'lower(name_ascii)', strtolower($this->name_ascii)]);
 
         return $dataProvider;
     }

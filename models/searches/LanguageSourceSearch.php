@@ -80,7 +80,7 @@ class LanguageSourceSearch extends LanguageSource
             'category' => $this->category
         ]);
 
-        $query->andFilterWhere(['like', 'message', $this->message]);
+        $query->andFilterWhere(['like', 'lower(message)', strtolower($this->message)]);
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) {
             if ($this->translation) {
@@ -88,7 +88,7 @@ class LanguageSourceSearch extends LanguageSource
                 if ($searchEmptyCommand && $this->translation == $searchEmptyCommand){
                     $query->andWhere(['or', ['translation'=>null], ['translation'=>'']]);
                 }else{
-                    $query->andWhere(['like', 'translation', $this->translation]);
+                    $query->andWhere(['like', 'lower(translation)', strtolower($this->translation)]);
                 }
             }
         }]);
