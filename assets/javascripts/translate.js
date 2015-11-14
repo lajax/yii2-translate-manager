@@ -51,6 +51,9 @@ var translate = (function () {
                     _translateLanguage($(this).closest('tr').find('button'));
                 }
             });
+            $('#translates').on('change', "#search-form select", function(){
+                $(this).parents("form").submit();
+            });
         }
     };
 })();

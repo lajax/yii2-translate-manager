@@ -17,8 +17,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "yiisoft/yii2-jui": "*",
-        "yiisoft/yii2-bootstrap": "*",
-        "phpspec/php-diff": ">=1.0.2"
+        "yiisoft/yii2-bootstrap": "*"
     },
     "autoload": {
         "psr-4": {

@@ -15,6 +15,7 @@ use Yii;
  * @property string $id
  * @property string $category
  * @property string $message
+ * @property string $source
  * @property string $translation
  *
  * @property LanguageTranslate $languageTranslate
@@ -91,20 +92,27 @@ class LanguageSource extends \yii\db\ActiveRecord
      */
     public function getTranslation()
     {
-        return $this->languageTranslateByLanguage ? $this->languageTranslateByLanguage->translation : '';
+        return $this->languageTranslate ? $this->languageTranslate->translation : '';
     }
 
     /**
-     * @param string $language
+     * @return string
+     */
+    public function getSource()
+    {
+        if ($this->languageTranslateByLanguage && $this->languageTranslateByLanguage->translation) {
+            return $this->languageTranslateByLanguage->translation;
+        } else {
+            return $this->message;
+        }
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLanguageTranslateByLanguage($language = 'xx-XX')
+    public function getLanguageTranslateByLanguage()
     {
-        if(Yii::$app->session->hasFlash('TM-language__id')) {
-            $language = Yii::$app->session->getFlash('TM-language__id');
-        }
-
-        return $this->hasOne(LanguageTranslate::className(), ['id' => 'id'])->onCondition(['language' => $language]);
+        return $this->getLanguageTranslate();
     }
 
     /**

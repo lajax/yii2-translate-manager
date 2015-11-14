@@ -11,7 +11,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use lajax\translatemanager\models\LanguageSource;
-use lajax\translatemanager\Module;
+use lajax\translatemanager\models\LanguageTranslate;
 
 /**
  * LanguageSourceSearch represents the model behind the search form about `common\models\LanguageSource`.
@@ -25,13 +25,18 @@ class LanguageSourceSearch extends LanguageSource
     public $translation;
 
     /**
+     * @var string Source message.
+     */
+    public $source;
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['id'], 'integer'],
-            [['category', 'message', 'translation'], 'safe'],
+            [['category', 'message', 'translation', 'source'], 'safe'],
         ];
     }
 
@@ -50,7 +55,9 @@ class LanguageSourceSearch extends LanguageSource
      */
     public function search($params)
     {
-        Yii::$app->session->setFlash('TM-language__id', $params['language_id']);
+        $translateLanguage = Yii::$app->request->get('language_id', Yii::$app->sourceLanguage);
+        $sourceLanguage = $this->_getSourceLanguage();
+
         $query = LanguageSource::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -62,15 +69,20 @@ class LanguageSourceSearch extends LanguageSource
                 'category',
                 'message',
                 'translation' => [
-                    'asc' => ['translation' => SORT_ASC],
-                    'desc' => ['translation' => SORT_DESC],
+                    'asc' => ['lt.translation' => SORT_ASC],
+                    'desc' => ['lt.translation' => SORT_DESC],
                     'label' => Yii::t('language', 'Translation')
                 ]
             ]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
-            $query->joinWith('languageTranslateByLanguage');
+            $query->joinWith(['languageTranslate' => function($query) use ($translateLanguage) {
+                $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
+            }]);
+            $query->joinWith(['languageTranslateByLanguage' => function($query) use ($sourceLanguage) {
+                $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
+            }]);            
 
             return $dataProvider;
         }
@@ -80,20 +92,37 @@ class LanguageSourceSearch extends LanguageSource
             'category' => $this->category
         ]);
 
-        $query->andFilterWhere(['like', 'lower(message)', strtolower($this->message)]);
+        $query->andFilterWhere(['like', 'lower(message)', mb_strtolower($this->message)]);
 
-        $query->joinWith(['languageTranslateByLanguage' => function ($query) {
+        $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage)  {
+            $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
             if ($this->translation) {
                 $searchEmptyCommand = \Yii::$app->controller->module->searchEmptyCommand;
-                if ($searchEmptyCommand && $this->translation == $searchEmptyCommand){
-                    $query->andWhere(['or', ['translation'=>null], ['translation'=>'']]);
-                }else{
-                    $query->andWhere(['like', 'lower(translation)', strtolower($this->translation)]);
+                if ($searchEmptyCommand && $this->translation == $searchEmptyCommand) {
+                    $query->andWhere(['or', ['lt.translation' => null], ['lt.translation' => '']]);
+                } else {
+                    $query->andWhere(['like', 'lower(lt.translation)', mb_strtolower($this->translation)]);
                 }
+            }
+        }]);
+
+        $query->joinWith(['languageTranslateByLanguage' => function ($query) use ($sourceLanguage)  {
+            $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
+            if ($this->message) {
+                $query->orFilterWhere(['like', 'lower(ts.translation)', mb_strtolower($this->message)]);
             }
         }]);
 
         return $dataProvider;
     }
 
+    /**
+     * Returns the language of message source.
+     * @return string
+     */
+    private function _getSourceLanguage()
+    {
+        $languageSourceSearch = \Yii::$app->request->get('LanguageSourceSearch', []);
+        return isset($languageSourceSearch['source']) ? $languageSourceSearch['source'] : \Yii::$app->sourceLanguage;
+    }
 }
