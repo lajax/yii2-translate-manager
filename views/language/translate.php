@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use lajax\translatemanager\helpers\Language;
+use lajax\translatemanager\models\Language as Lang;
 
 /* @var $this \yii\web\View */
 /* @var $language_id integer */
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableAjaxValidation' => false,
                 'enableClientValidation' => false,
     ]);
-    echo $form->field($searchModel, 'source')->dropDownList(lajax\translatemanager\models\Language::getLanguageNames(true))->label(Yii::t('language', 'Source language'));
+    echo $form->field($searchModel, 'source')->dropDownList(['' => ''] + Lang::getLanguageNames(true))->label(Yii::t('language', 'Source language'));
     ActiveForm::end();
     echo GridView::widget([
         'dataProvider' => $dataProvider,
