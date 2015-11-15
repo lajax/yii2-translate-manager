@@ -101,9 +101,6 @@ class LanguageSourceSearch extends LanguageSource
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) use ($sourceLanguage)  {
             $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
-            if ($this->message) {
-                $query->orFilterWhere(['like', 'lower(ts.translation)', mb_strtolower($this->message)]);
-            }
         }]);
 
         return $dataProvider;
