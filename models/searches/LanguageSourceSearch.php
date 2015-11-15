@@ -95,15 +95,8 @@ class LanguageSourceSearch extends LanguageSource
         $query->andFilterWhere(['or', ['like', 'lower(message)', mb_strtolower($this->message)], ['like', 'lower(ts.translation)', mb_strtolower($this->message)]]);
 
         $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage)  {
-            $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
-            if ($this->translation) {
-                $searchEmptyCommand = \Yii::$app->controller->module->searchEmptyCommand;
-                if ($searchEmptyCommand && $this->translation == $searchEmptyCommand) {
-                    $query->andWhere(['or', ['lt.translation' => null], ['lt.translation' => '']]);
-                } else {
-                    $query->andWhere(['like', 'lower(lt.translation)', mb_strtolower($this->translation)]);
-                }
-            }
+            $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage])
+                  ->andFilterWhere(['like', 'lower(lt.translation)', mb_strtolower($this->translation)]);
         }]);
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) use ($sourceLanguage)  {
