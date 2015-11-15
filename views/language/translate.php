@@ -12,7 +12,7 @@ use lajax\translatemanager\helpers\Language;
 use lajax\translatemanager\models\Language as Lang;
 
 /* @var $this \yii\web\View */
-/* @var $language_id integer */
+/* @var $language_id string */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel lajax\translatemanager\models\searches\LanguageSourceSearch */
 

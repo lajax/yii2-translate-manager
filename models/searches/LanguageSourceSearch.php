@@ -92,7 +92,7 @@ class LanguageSourceSearch extends LanguageSource
             'category' => $this->category
         ]);
 
-        $query->andFilterWhere(['like', 'lower(message)', mb_strtolower($this->message)]);
+        $query->andFilterWhere(['or', ['like', 'lower(message)', mb_strtolower($this->message)], ['like', 'lower(ts.translation)', mb_strtolower($this->message)]]);
 
         $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage)  {
             $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
