@@ -113,6 +113,6 @@ class LanguageSourceSearch extends LanguageSource
     private function _getSourceLanguage()
     {
         $languageSourceSearch = \Yii::$app->request->get('LanguageSourceSearch', []);
-        return isset($languageSourceSearch['source']) ? $languageSourceSearch['source'] : \Yii::$app->sourceLanguage;
+        return isset($languageSourceSearch['source']) ? $languageSourceSearch['source'] : Yii::$app->sourceLanguage;
     }
 }
