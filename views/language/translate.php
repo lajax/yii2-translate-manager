@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableAjaxValidation' => false,
                 'enableClientValidation' => false,
     ]);
-    echo $form->field($searchModel, 'source')->dropDownList(['' => ''] + Lang::getLanguageNames(true))->label(Yii::t('language', 'Source language'));
+    echo $form->field($searchModel, 'source')->dropDownList(['' => Yii::t('language', 'Original')] + Lang::getLanguageNames(true))->label(Yii::t('language', 'Source language'));
     ActiveForm::end();
     echo GridView::widget([
         'dataProvider' => $dataProvider,
