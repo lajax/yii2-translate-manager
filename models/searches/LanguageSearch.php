@@ -15,6 +15,8 @@ use lajax\translatemanager\models\Language;
  * LanguageSearch represents the model behind the search form about `common\models\Language`.
  */
 class LanguageSearch extends Language {
+    
+    use SearchTrait;
 
     /**
      * @inheritdoc
@@ -53,11 +55,11 @@ class LanguageSearch extends Language {
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'lower(language_id)', strtolower($this->language_id)])
-                ->andFilterWhere(['like', 'lower(language)', strtolower($this->language)])
-                ->andFilterWhere(['like', 'lower(country)', strtolower($this->country)])
-                ->andFilterWhere(['like', 'lower(name)', strtolower($this->name)])
-                ->andFilterWhere(['like', 'lower(name_ascii)', strtolower($this->name_ascii)]);
+        $query->andFilterWhere($this->createLikeExpression('language_id', $this->language_id))
+                ->andFilterWhere($this->createLikeExpression('language', $this->language))
+                ->andFilterWhere($this->createLikeExpression('country', $this->country))
+                ->andFilterWhere($this->createLikeExpression('name', $this->name))
+                ->andFilterWhere($this->createLikeExpression('name_ascii', $this->name_ascii));
 
         return $dataProvider;
     }

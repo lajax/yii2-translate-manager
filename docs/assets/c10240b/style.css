@@ -91,14 +91,6 @@ table.summary-table .col-defined  { width: 15%; }
     margin-bottom: 0;
 }
 
-.signature-defs {
-    color: #936;
-}
-
-.signature-type, .signature-type a {
-    color: #693;
-}
-
 .tool-link {
     float: right;
     color: #ddd;

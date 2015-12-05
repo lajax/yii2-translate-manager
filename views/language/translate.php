@@ -43,13 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'format' => 'text',
+                'format' => 'raw',
                 'filter' => Language::getCategories(),
                 'attribute' => 'category',
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'category'],
             ],
             [
-                'format' => 'text',
+                'format' => 'raw',
                 'attribute' => 'message',
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'message'],
                 'label' => Yii::t('language', 'Source'),
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'format' => 'text',
+                'format' => 'raw',
                 'attribute' => 'translation',
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'translation'],
                 'label' => Yii::t('language', 'Translation'),
@@ -67,10 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'format' => 'html',
+                'format' => 'raw',
                 'label' => Yii::t('language', 'Action'),
                 'content' => function ($data) {
-                    return Html::button(Yii::t('language', 'Save'), ['type' => 'button', 'data-id' => $data['id'], 'class' => 'btn btn-lg btn-success']);
+                    return Html::button(Yii::t('language', 'Save'), ['type' => 'button', 'data-id' => $data->id, 'class' => 'btn btn-lg btn-success']);
                 },
             ],
         ],

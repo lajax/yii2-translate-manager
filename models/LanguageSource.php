@@ -65,10 +65,9 @@ class LanguageSource extends \yii\db\ActiveRecord
      */
     public function insertLanguageItems($languageItems)
     {
-
         $data = [];
         foreach ($languageItems as $category => $messages) {
-            foreach ($messages as $message => $value) {
+            foreach (array_keys($messages) as $message) {
                 $data[] = [
                     $category,
                     $message
@@ -76,12 +75,12 @@ class LanguageSource extends \yii\db\ActiveRecord
             }
         }
 
-        $builder = static::getDb()->queryBuilder;
-
         $count = count($data);
         for ($i = 0; $i < $count; $i += self::INSERT_LANGUAGE_ITEMS_LIMIT) {
-            $command = $builder->batchInsert(self::tableName(), ['category', 'message'], array_slice($data, $i, self::INSERT_LANGUAGE_ITEMS_LIMIT));
-            static::getDb()->createCommand($command)->execute();
+            static::getDb()
+                    ->createCommand()
+                    ->batchInsert(static::tableName(), ['category', 'message'], array_slice($data, $i, self::INSERT_LANGUAGE_ITEMS_LIMIT))
+                    ->execute();
         }
 
         return $count;

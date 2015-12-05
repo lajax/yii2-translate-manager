@@ -18,6 +18,8 @@ use lajax\translatemanager\models\LanguageTranslate;
  */
 class LanguageSourceSearch extends LanguageSource
 {
+    
+    use SearchTrait;
 
     /**
      * @var string Translated message.
@@ -94,13 +96,13 @@ class LanguageSourceSearch extends LanguageSource
 
         $query->andFilterWhere([
             'or', 
-            ['like', 'lower(message)', mb_strtolower($this->message)], 
-            ['like', 'lower(ts.translation)', mb_strtolower($this->message)]
+            $this->createLikeExpression('message', $this->message),
+            $this->createLikeExpression('ts.translation', $this->message)
         ]);
 
         $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage)  {
             $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage])
-                  ->andFilterWhere(['like', 'lower(lt.translation)', mb_strtolower($this->translation)]);
+                  ->andFilterWhere($this->createLikeExpression('lt.translation', $this->translation));
         }]);
 
         $query->joinWith(['languageTranslateByLanguage' => function ($query) use ($sourceLanguage)  {

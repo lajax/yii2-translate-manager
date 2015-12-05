@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/7b8a5220/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/45e7989d/style.css" rel="stylesheet">
-<script src="./assets/d9956f80/jquery.js"></script>
-<script src="./assets/7b8a5220/js/bootstrap.js"></script>
-<script src="./assets/a5cff477/jssearch.js"></script>    <title>Module, lajax\translatemanager\Module - Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/951dca60/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c10240b/style.css" rel="stylesheet">
+<script src="./assets/5df3c80c/jquery.js"></script>
+<script src="./assets/951dca60/js/bootstrap.js"></script>
+<script src="./assets/aa351957/jssearch.js"></script>    <title>Module, lajax\translatemanager\Module - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -66,7 +66,8 @@
 <a class="list-group-item" href="./lajax-translatemanager-models-languagesource.html">LanguageSource</a>
 <a class="list-group-item" href="./lajax-translatemanager-models-languagetranslate.html">LanguageTranslate</a></div>
 <a class="list-group-item" href="#navigation-7" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\models\searches <b class="caret"></b></a><div id="navigation-7" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesearch.html">LanguageSearch</a>
-<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a></div>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-searchtrait.html">SearchTrait</a></div>
 <a class="list-group-item" href="#navigation-8" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services <b class="caret"></b></a><div id="navigation-8" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-services-generator.html">Generator</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-optimizer.html">Optimizer</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-scanner.html">Scanner</a></div>
@@ -78,7 +79,7 @@
 <a class="list-group-item" href="#navigation-10" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\widgets <b class="caret"></b></a><div id="navigation-10" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-widgets-toggletranslate.html">ToggleTranslate</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class lajax\translatemanager\Module</h1>
-<div class="top-nav">
+<div id="nav">
     <a href="index.html">All Classes</a>
             | <a href="#properties">Properties</a>
                 | <a href="#methods">Methods</a>
@@ -95,7 +96,7 @@ yii\base\Module</td></tr>
                                         <tr><th>Available since version</th><td>1.0</td></tr>
             </table>
 
-<div class="class-description">
+<div id="classDescription">
     <p><strong>This is the main module class for the TranslateManager module.</strong></p>
     <p>Initialisation example:</p>
 <p>Simple example:</p>
@@ -386,410 +387,362 @@ yii\base\Module</td></tr>
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$allowedIPs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $allowedIPs        <span class="detail-header-tag small">
-            public                                                property
+        $allowedIPs        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The list of IPs that are allowed to access this module.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$allowedIPs-detail">$allowedIPs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'::1'</span><span style="color: #007700">]</span></div>
 
-            </div>
+    <p>The list of IPs that are allowed to access this module.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$allowedIPs-detail">$allowedIPs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'::1'</span><span style="color: #007700">]</span></div>
-
+    
 
     <div class="detail-header h3" id="$controllerNamespace-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$controllerNamespace-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $controllerNamespace        <span class="detail-header-tag small">
-            public                                                property
+        $controllerNamespace        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        
-            </div>
+    <div class="signature"> <a href="lajax-translatemanager-module.html#$controllerNamespace-detail">$controllerNamespace</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'lajax\translatemanager\controllers'</span></div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"></span> <a href="lajax-translatemanager-module.html#$controllerNamespace-detail">$controllerNamespace</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'lajax\translatemanager\controllers'</span></div>
-
+    
+    
 
     <div class="detail-header h3" id="$defaultExportFormat-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$defaultExportFormat-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $defaultExportFormat        <span class="detail-header-tag small">
-            public                                                property
+        $defaultExportFormat        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The default export format (yii\web\Response::FORMAT_JSON or yii\web\Response::FORMAT_XML).</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$defaultExportFormat-detail">$defaultExportFormat</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;\</span><span style="color: #0000BB">yii</span><span style="color: #007700">\</span><span style="color: #0000BB">web</span><span style="color: #007700">\</span><span style="color: #0000BB">Response</span><span style="color: #007700">::</span><span style="color: #0000BB">FORMAT_JSON</span></div>
 
-            </div>
+    <p>The default export format (yii\web\Response::FORMAT_JSON or yii\web\Response::FORMAT_XML).</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$defaultExportFormat-detail">$defaultExportFormat</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;\</span><span style="color: #0000BB">yii</span><span style="color: #007700">\</span><span style="color: #0000BB">web</span><span style="color: #007700">\</span><span style="color: #0000BB">Response</span><span style="color: #007700">::</span><span style="color: #0000BB">FORMAT_JSON</span></div>
-
+    
 
     <div class="detail-header h3" id="$defaultExportStatus-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$defaultExportStatus-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $defaultExportStatus        <span class="detail-header-tag small">
-            public                                                property
+        $defaultExportStatus        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The minimum status for a language to be selected by default in the export list.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.integer">integer</a> <a href="lajax-translatemanager-module.html#$defaultExportStatus-detail">$defaultExportStatus</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span></div>
 
-            </div>
+    <p>The minimum status for a language to be selected by default in the export list.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="lajax-translatemanager-module.html#$defaultExportStatus-detail">$defaultExportStatus</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span></div>
-
+    
 
     <div class="detail-header h3" id="$defaultRoute-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$defaultRoute-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $defaultRoute        <span class="detail-header-tag small">
-            public                                                property
+        $defaultRoute        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        
-            </div>
+    <div class="signature"> <a href="lajax-translatemanager-module.html#$defaultRoute-detail">$defaultRoute</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'language/list'</span></div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"></span> <a href="lajax-translatemanager-module.html#$defaultRoute-detail">$defaultRoute</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'language/list'</span></div>
-
+    
+    
 
     <div class="detail-header h3" id="$ignoredCategories-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$ignoredCategories-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $ignoredCategories        <span class="detail-header-tag small">
-            public                                                property
+        $ignoredCategories        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>List of the categories being ignored.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$ignoredCategories-detail">$ignoredCategories</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
 
-            </div>
+    <p>List of the categories being ignored.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$ignoredCategories-detail">$ignoredCategories</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
-
+    
 
     <div class="detail-header h3" id="$ignoredItems-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$ignoredItems-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $ignoredItems        <span class="detail-header-tag small">
-            public                                                property
+        $ignoredItems        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Directories/files being ignored.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$ignoredItems-detail">$ignoredItems</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'.svn'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.git'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/messages'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/BaseYii.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'runtime'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'bower'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'nikic'</span><span style="color: #007700">]</span></div>
 
-            </div>
+    <p>Directories/files being ignored.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$ignoredItems-detail">$ignoredItems</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'.svn'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.git'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.gitkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgignore'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.hgkeep'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/messages'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/BaseYii.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'runtime'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'bower'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'nikic'</span><span style="color: #007700">]</span></div>
-
+    
 
     <div class="detail-header h3" id="$jsTranslators-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$jsTranslators-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $jsTranslators        <span class="detail-header-tag small">
-            public                                                property
+        $jsTranslators        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>List of the JavaScript function for translating messages.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$jsTranslators-detail">$jsTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'lajax.t'</span><span style="color: #007700">]</span></div>
 
-            </div>
+    <p>List of the JavaScript function for translating messages.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$jsTranslators-detail">$jsTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'lajax.t'</span><span style="color: #007700">]</span></div>
-
+    
 
     <div class="detail-header h3" id="$languageTable-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$languageTable-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $languageTable        <span class="detail-header-tag small">
-            public                                                property
+        $languageTable        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The database table storing the languages.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$languageTable-detail">$languageTable</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'{{%language}}'</span></div>
 
-            </div>
+    <p>The database table storing the languages.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$languageTable-detail">$languageTable</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'{{%language}}'</span></div>
-
+    
 
     <div class="detail-header h3" id="$layout-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$layout-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $layout        <span class="detail-header-tag small">
-            public                                                property
+        $layout        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Name of the used layout. If you want to use the site default layout set value null.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$layout-detail">$layout</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'language'</span></div>
 
-            </div>
+    <p>Name of the used layout. If you want to use the site default layout set value null.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$layout-detail">$layout</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'language'</span></div>
-
+    
 
     <div class="detail-header h3" id="$patternArray-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternArray-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $patternArray        <span class="detail-header-tag small">
-            public                                                property
+        $patternArray        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>PHP Regular expression to match arrays containing language elements to translate.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$patternArray-detail">$patternArray</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"#\@translate[^\$]+\$(?P&lt;text&gt;.+?)[\]\)];#smui"</span></div>
 
-            </div>
+    <p>PHP Regular expression to match arrays containing language elements to translate.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$patternArray-detail">$patternArray</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"#\@translate[^\$]+\$(?P&lt;text&gt;.+?)[\]\)];#smui"</span></div>
-
+    
 
     <div class="detail-header h3" id="$patternArrayRecursive-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternArrayRecursive-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $patternArrayRecursive        <span class="detail-header-tag small">
-            public                                                property
+        $patternArrayRecursive        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>PHP Regular expression to detect langualge elements within arrays.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$patternArrayRecursive-detail">$patternArrayRecursive</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#(?P&lt;category&gt;)(\[|\(|&gt;|,|)\s*(?P&lt;text&gt;\'.*?(?&lt;!\\\\)\'|".*?(?&lt;!\\\\)"?)\s*(,|$)#s'</span></div>
 
-            </div>
+    <p>PHP Regular expression to detect langualge elements within arrays.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$patternArrayRecursive-detail">$patternArrayRecursive</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#(?P&lt;category&gt;)(\[|\(|&gt;|,|)\s*(?P&lt;text&gt;\'.*?(?&lt;!\\\\)\'|".*?(?&lt;!\\\\)"?)\s*(,|$)#s'</span></div>
-
+    
 
     <div class="detail-header h3" id="$patternArrayTranslator-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternArrayTranslator-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $patternArrayTranslator        <span class="detail-header-tag small">
-            public                                                property
+        $patternArrayTranslator        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>PHP Regular expression to match arrays containing language elements to translate.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$patternArrayTranslator-detail">$patternArrayTranslator</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#\@translate[^\$]+(?P&lt;translator&gt;[\w\d\s_]+[^\(\[]+)#s'</span></div>
 
-            </div>
+    <p>PHP Regular expression to match arrays containing language elements to translate.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$patternArrayTranslator-detail">$patternArrayTranslator</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#\@translate[^\$]+(?P&lt;translator&gt;[\w\d\s_]+[^\(\[]+)#s'</span></div>
-
+    
 
     <div class="detail-header h3" id="$patternJs-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternJs-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $patternJs        <span class="detail-header-tag small">
-            public                                                property
+        $patternJs        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Regular expression to detect JavaScript lajax.t functions.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$patternJs-detail">$patternJs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#lajax\.t\s*\(\s*(?P&lt;text&gt;\'.*?(?&lt;!\\\\)\'|".*?(?&lt;!\\\\)"?)\s*[,\)]#s'</span></div>
 
-            </div>
+    <p>Regular expression to detect JavaScript lajax.t functions.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$patternJs-detail">$patternJs</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#lajax\.t\s*\(\s*(?P&lt;text&gt;\'.*?(?&lt;!\\\\)\'|".*?(?&lt;!\\\\)"?)\s*[,\)]#s'</span></div>
-
+    
 
     <div class="detail-header h3" id="$patternPhp-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patternPhp-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $patternPhp        <span class="detail-header-tag small">
-            public                                                property
+        $patternPhp        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Regular expression to match PHP Yii::t functions.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$patternPhp-detail">$patternPhp</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#::t\s*\(\s*(?P&lt;category&gt;\'[\w\d\s_-]+?(?&lt;!\\\\)\'|"[\w\d\s_-]+?(?&lt;!\\\\)"?)\s*,\s*(?P&lt;text&gt;\'.*?(?&lt;!\\\\)\'|".*?(?&lt;!\\\\)"?)\s*[,\)]#s'</span></div>
 
-            </div>
+    <p>Regular expression to match PHP Yii::t functions.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$patternPhp-detail">$patternPhp</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'#::t\s*\(\s*(?P&lt;category&gt;\'[\w\d\s_-]+?(?&lt;!\\\\)\'|"[\w\d\s_-]+?(?&lt;!\\\\)"?)\s*,\s*(?P&lt;text&gt;\'.*?(?&lt;!\\\\)\'|".*?(?&lt;!\\\\)"?)\s*[,\)]#s'</span></div>
-
+    
 
     <div class="detail-header h3" id="$patterns-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$patterns-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $patterns        <span class="detail-header-tag small">
-            public                                                property
+        $patterns        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>List of file extensions that contain language elements.
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$patterns-detail">$patterns</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'*.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'*.js'</span><span style="color: #007700">]</span></div>
+
+    <p>List of file extensions that contain language elements.
 Only files with these extensions will be processed.</p>
 
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$patterns-detail">$patterns</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'*.php'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'*.js'</span><span style="color: #007700">]</span></div>
-
+    
 
     <div class="detail-header h3" id="$phpTranslators-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$phpTranslators-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $phpTranslators        <span class="detail-header-tag small">
-            public                                                property
+        $phpTranslators        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>List of the PHP function for translating messages.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$phpTranslators-detail">$phpTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'::t'</span><span style="color: #007700">]</span></div>
 
-            </div>
+    <p>List of the PHP function for translating messages.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$phpTranslators-detail">$phpTranslators</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'::t'</span><span style="color: #007700">]</span></div>
-
+    
 
     <div class="detail-header h3" id="$roles-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$roles-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $roles        <span class="detail-header-tag small">
-            public                                                property
+        $roles        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The list of rights that are allowed to access this module.
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$roles-detail">$roles</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
+
+    <p>The list of rights that are allowed to access this module.
 If you modify, you also need to enable authManager.
 <a href="http://www.yiiframework.com/doc-2.0/guide-security-authorization.html">http://www.yiiframework.com/doc-2.0/guide-security-authorization.html</a></p>
 
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$roles-detail">$roles</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
-
+    
 
     <div class="detail-header h3" id="$root-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$root-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $root        <span class="detail-header-tag small">
-            public                                                property
+        $root        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The root directory of the scanning.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$root-detail">$root</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'@app'</span></div>
 
-            </div>
+    <p>The root directory of the scanning.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$root-detail">$root</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'@app'</span></div>
-
+    
 
     <div class="detail-header h3" id="$scanTimeLimit-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$scanTimeLimit-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $scanTimeLimit        <span class="detail-header-tag small">
-            public                                                property
+        $scanTimeLimit        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.integer">integer</a> <a href="lajax-translatemanager-module.html#$scanTimeLimit-detail">$scanTimeLimit</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
-            </div>
+    <p>The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.integer">integer</a></span> <a href="lajax-translatemanager-module.html#$scanTimeLimit-detail">$scanTimeLimit</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
+    
 
     <div class="detail-header h3" id="$searchEmptyCommand-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$searchEmptyCommand-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $searchEmptyCommand        <span class="detail-header-tag small">
-            public                                                property
+        $searchEmptyCommand        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The search string to find empty translations.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$searchEmptyCommand-detail">$searchEmptyCommand</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'!'</span></div>
 
-            </div>
+    <p>The search string to find empty translations.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$searchEmptyCommand-detail">$searchEmptyCommand</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'!'</span></div>
-
+    
 
     <div class="detail-header h3" id="$subDir-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$subDir-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $subDir        <span class="detail-header-tag small">
-            public                                                property
+        $subDir        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Name of the subdirectory which contains the language elements.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$subDir-detail">$subDir</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/translate/'</span></div>
 
-            </div>
+    <p>Name of the subdirectory which contains the language elements.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$subDir-detail">$subDir</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/translate/'</span></div>
-
+    
 
     <div class="detail-header h3" id="$tables-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$tables-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $tables        <span class="detail-header-tag small">
-            public                                                property
+        $tables        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Identifiers for the database tables containing language elements.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-module.html#$tables-detail">$tables</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
-            </div>
+    <p>Identifiers for the database tables containing language elements.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-module.html#$tables-detail">$tables</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
+    
 
     <div class="detail-header h3" id="$tmpDir-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-module.html#$tmpDir-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $tmpDir        <span class="detail-header-tag small">
-            public                                                property
+        $tmpDir        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Writeable directory used for keeping the generated javascript files.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-module.html#$tmpDir-detail">$tmpDir</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'@runtime/'</span></div>
 
-            </div>
+    <p>Writeable directory used for keeping the generated javascript files.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-module.html#$tmpDir-detail">$tmpDir</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'@runtime/'</span></div>
-
+    
 </div>
 <h2>Method Details</h2>
 
@@ -801,7 +754,7 @@ If you modify, you also need to enable authManager.
         
         beforeAction()
         <span class="detail-header-tag small">
-            public                                    method
+            public            method
                     </span>
     </div>
 
@@ -812,7 +765,7 @@ If you modify, you also need to enable authManager.
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-module.html#beforeAction()-detail">beforeAction</a></strong> ( <span style="color: #0000BB">$action</span> )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-module.html#beforeAction()-detail">beforeAction</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$action&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$action</span></td>
                   <td class="param-type-col"></td>
@@ -828,7 +781,7 @@ If you modify, you also need to enable authManager.
         
         checkAccess()
         <span class="detail-header-tag small">
-            public                                    method
+            public            method
                     </span>
     </div>
 
@@ -839,7 +792,7 @@ If you modify, you also need to enable authManager.
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="lajax-translatemanager-module.html#checkAccess()-detail">checkAccess</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.boolean">boolean</a> <strong><a href="lajax-translatemanager-module.html#checkAccess()-detail">checkAccess</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
                                                 <tr>
                   <th class="param-name-col">return</th>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
@@ -856,7 +809,7 @@ If you modify, you also need to enable authManager.
         
         getLanguageItemsDirPath()
         <span class="detail-header-tag small">
-            public                                    method
+            public            method
                     </span>
     </div>
 
@@ -867,7 +820,7 @@ If you modify, you also need to enable authManager.
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <strong><a href="lajax-translatemanager-module.html#getLanguageItemsDirPath()-detail">getLanguageItemsDirPath</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.string">string</a> <strong><a href="lajax-translatemanager-module.html#getLanguageItemsDirPath()-detail">getLanguageItemsDirPath</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
                                                 <tr>
                   <th class="param-name-col">return</th>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
@@ -916,7 +869,7 @@ If you modify, you also need to enable authManager.
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 14 Nov 2015 14:44:05 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 05 Dec 2015 11:37:01 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

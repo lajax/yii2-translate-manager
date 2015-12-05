@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/7b8a5220/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/45e7989d/style.css" rel="stylesheet">
-<script src="./assets/d9956f80/jquery.js"></script>
-<script src="./assets/7b8a5220/js/bootstrap.js"></script>
-<script src="./assets/a5cff477/jssearch.js"></script>    <title>ToggleTranslate, lajax\translatemanager\widgets\ToggleTranslate - Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/951dca60/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c10240b/style.css" rel="stylesheet">
+<script src="./assets/5df3c80c/jquery.js"></script>
+<script src="./assets/951dca60/js/bootstrap.js"></script>
+<script src="./assets/aa351957/jssearch.js"></script>    <title>ToggleTranslate, lajax\translatemanager\widgets\ToggleTranslate - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -66,7 +66,8 @@
 <a class="list-group-item" href="./lajax-translatemanager-models-languagesource.html">LanguageSource</a>
 <a class="list-group-item" href="./lajax-translatemanager-models-languagetranslate.html">LanguageTranslate</a></div>
 <a class="list-group-item" href="#navigation-150" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\models\searches <b class="caret"></b></a><div id="navigation-150" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesearch.html">LanguageSearch</a>
-<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a></div>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-searchtrait.html">SearchTrait</a></div>
 <a class="list-group-item" href="#navigation-151" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services <b class="caret"></b></a><div id="navigation-151" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-services-generator.html">Generator</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-optimizer.html">Optimizer</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-scanner.html">Scanner</a></div>
@@ -78,7 +79,7 @@
 <a class="list-group-item active" href="#navigation-153" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\widgets <b class="caret"></b></a><div id="navigation-153" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./lajax-translatemanager-widgets-toggletranslate.html">ToggleTranslate</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class lajax\translatemanager\widgets\ToggleTranslate</h1>
-<div class="top-nav">
+<div id="nav">
     <a href="index.html">All Classes</a>
             | <a href="#properties">Properties</a>
                 | <a href="#methods">Methods</a>
@@ -95,7 +96,7 @@ yii\base\Widget</td></tr>
                                         <tr><th>Available since version</th><td>1.0</td></tr>
             </table>
 
-<div class="class-description">
+<div id="classDescription">
     <p><strong>Widget that displays button for switching to translating mode.</strong></p>
     <p>Simple example:</p>
 <pre><code>\lajax\translatemanager\widgets\ToggleTranslate::widget();
@@ -251,70 +252,62 @@ yii\base\Widget</td></tr>
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-widgets-toggletranslate.html#$frontendTranslationAsset-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $frontendTranslationAsset        <span class="detail-header-tag small">
-            public                                                property
+        $frontendTranslationAsset        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Added StyleSheets and their dependencies</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-widgets-toggletranslate.html#$frontendTranslationAsset-detail">$frontendTranslationAsset</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'lajax\translatemanager\bundles\FrontendTranslationAsset'</span></div>
 
-            </div>
+    <p>Added StyleSheets and their dependencies</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-widgets-toggletranslate.html#$frontendTranslationAsset-detail">$frontendTranslationAsset</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'lajax\translatemanager\bundles\FrontendTranslationAsset'</span></div>
-
+    
 
     <div class="detail-header h3" id="$frontendTranslationPluginAsset-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-widgets-toggletranslate.html#$frontendTranslationPluginAsset-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $frontendTranslationPluginAsset        <span class="detail-header-tag small">
-            public                                                property
+        $frontendTranslationPluginAsset        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Added JavaScripts and their dependencies</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-widgets-toggletranslate.html#$frontendTranslationPluginAsset-detail">$frontendTranslationPluginAsset</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'lajax\translatemanager\bundles\FrontendTranslationPluginAsset'</span></div>
 
-            </div>
+    <p>Added JavaScripts and their dependencies</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-widgets-toggletranslate.html#$frontendTranslationPluginAsset-detail">$frontendTranslationPluginAsset</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'lajax\translatemanager\bundles\FrontendTranslationPluginAsset'</span></div>
-
+    
 
     <div class="detail-header h3" id="$position-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-widgets-toggletranslate.html#$position-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $position        <span class="detail-header-tag small">
-            public                                                property
+        $position        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The position of the translate mode switch button relative to the screen.
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-widgets-toggletranslate.html#$position-detail">$position</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'bottom-left'</span></div>
+
+    <p>The position of the translate mode switch button relative to the screen.
 Pre-defined positions: bottom-left (default), bottom-right, top-left, top-tright.</p>
 
-            </div>
-
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-widgets-toggletranslate.html#$position-detail">$position</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'bottom-left'</span></div>
-
+    
 
     <div class="detail-header h3" id="$template-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-widgets-toggletranslate.html#$template-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $template        <span class="detail-header-tag small">
-            public                                                property
+        $template        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>The template of the translate mode switch button.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.string">string</a> <a href="lajax-translatemanager-widgets-toggletranslate.html#$template-detail">$template</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="javascript:void(0);"&nbsp;id="toggle-translate"&nbsp;class="{position}"&nbsp;data-language="{language}"&nbsp;data-url="{url}"&gt;&lt;i&gt;&lt;/i&gt;&nbsp;{text}&lt;/a&gt;&lt;div&nbsp;id="translate-manager-div"&gt;&lt;/div&gt;'</span></div>
 
-            </div>
+    <p>The template of the translate mode switch button.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.string">string</a></span> <a href="lajax-translatemanager-widgets-toggletranslate.html#$template-detail">$template</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;a&nbsp;href="javascript:void(0);"&nbsp;id="toggle-translate"&nbsp;class="{position}"&nbsp;data-language="{language}"&nbsp;data-url="{url}"&gt;&lt;i&gt;&lt;/i&gt;&nbsp;{text}&lt;/a&gt;&lt;div&nbsp;id="translate-manager-div"&gt;&lt;/div&gt;'</span></div>
-
+    
 </div>
 <h2>Method Details</h2>
 
@@ -326,7 +319,7 @@ Pre-defined positions: bottom-left (default), bottom-right, top-left, top-tright
         
         run()
         <span class="detail-header-tag small">
-            public                                    method
+            public            method
                     </span>
     </div>
 
@@ -337,7 +330,7 @@ Pre-defined positions: bottom-left (default), bottom-right, top-left, top-tright
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-widgets-toggletranslate.html#run()-detail">run</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-widgets-toggletranslate.html#run()-detail">run</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
             </table>
 
 <!--	-->
@@ -380,7 +373,7 @@ Pre-defined positions: bottom-left (default), bottom-right, top-left, top-tright
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 14 Nov 2015 14:44:05 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 05 Dec 2015 11:37:01 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

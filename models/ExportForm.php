@@ -4,6 +4,11 @@ namespace lajax\translatemanager\models;
 
 use yii\base\Model;
 
+/**
+ * Export Form.
+ * @author rhertogh <>
+ * @since 1.5.0
+ */
 class ExportForm extends Model
 {
     /**

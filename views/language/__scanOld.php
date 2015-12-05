@@ -29,7 +29,7 @@ GridView::widget([
     'dataProvider' => $oldDataProvider,
     'columns' => [
         [
-            'format' => 'html',
+            'format' => 'raw',
             'attribute' => '#',
             'content' => function ($languageSource) {
                 return Html::checkbox('LanguageSource[]', false, ['value' => $languageSource['id'], 'class' => 'language-source-cb']);
@@ -40,7 +40,7 @@ GridView::widget([
         'message',
         'languages',
         [
-            'format' => 'html',
+            'format' => 'raw',
             'attribute' => Yii::t('language', 'Action'),
             'content' => function ($languageSource) {
                 return Html::a(Yii::t('language', 'Delete'), Url::toRoute('/translatemanager/language/delete-source'), ['data-id' => $languageSource['id'], 'class' => 'delete-item btn btn-xs btn-danger']);

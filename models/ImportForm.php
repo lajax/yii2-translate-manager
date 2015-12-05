@@ -12,6 +12,12 @@ use yii\web\BadRequestHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
 
+
+/**
+ * Import Form.
+ * @author rhertogh <>
+ * @since 1.5.0
+ */
 class ImportForm extends Model
 {
 

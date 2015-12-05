@@ -4,11 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="language" content="en" />
-        <link href="./assets/7b8a5220/css/bootstrap.css" rel="stylesheet">
-<link href="./assets/45e7989d/style.css" rel="stylesheet">
-<script src="./assets/d9956f80/jquery.js"></script>
-<script src="./assets/7b8a5220/js/bootstrap.js"></script>
-<script src="./assets/a5cff477/jssearch.js"></script>    <title>ScannerFile, lajax\translatemanager\services\scanners\ScannerFile - Yii Framework 2.0 API Documentation</title>
+        <link href="./assets/951dca60/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c10240b/style.css" rel="stylesheet">
+<script src="./assets/5df3c80c/jquery.js"></script>
+<script src="./assets/951dca60/js/bootstrap.js"></script>
+<script src="./assets/aa351957/jssearch.js"></script>    <title>ScannerFile, lajax\translatemanager\services\scanners\ScannerFile - Yii Framework 2.0 API Documentation</title>
 </head>
 <body>
 
@@ -66,7 +66,8 @@
 <a class="list-group-item" href="./lajax-translatemanager-models-languagesource.html">LanguageSource</a>
 <a class="list-group-item" href="./lajax-translatemanager-models-languagetranslate.html">LanguageTranslate</a></div>
 <a class="list-group-item" href="#navigation-46" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\models\searches <b class="caret"></b></a><div id="navigation-46" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesearch.html">LanguageSearch</a>
-<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a></div>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-languagesourcesearch.html">LanguageSourceSearch</a>
+<a class="list-group-item" href="./lajax-translatemanager-models-searches-searchtrait.html">SearchTrait</a></div>
 <a class="list-group-item" href="#navigation-47" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\services <b class="caret"></b></a><div id="navigation-47" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-services-generator.html">Generator</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-optimizer.html">Optimizer</a>
 <a class="list-group-item" href="./lajax-translatemanager-services-scanner.html">Scanner</a></div>
@@ -78,7 +79,7 @@
 <a class="list-group-item" href="#navigation-49" data-toggle="collapse" data-parent="#navigation">lajax\translatemanager\widgets <b class="caret"></b></a><div id="navigation-49" class="submenu panel-collapse collapse"><a class="list-group-item" href="./lajax-translatemanager-widgets-toggletranslate.html">ToggleTranslate</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Abstract Class lajax\translatemanager\services\scanners\ScannerFile</h1>
-<div class="top-nav">
+<div id="nav">
     <a href="index.html">All Classes</a>
             | <a href="#properties">Properties</a>
                 | <a href="#methods">Methods</a>
@@ -96,7 +97,7 @@ yii\console\controllers\MessageController</td></tr>
                         <tr><th>Available since version</th><td>1.1</td></tr>
             </table>
 
-<div class="class-description">
+<div id="classDescription">
     <p><strong>Class for processing PHP and JavaScript files.</strong></p>
     <p>Language elements detected in JavaScript files:</p>
 <pre><code>lajax.t('language element);
@@ -292,52 +293,46 @@ Translation to site language:</p>
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-services-scanners-scannerfile.html#$files-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $files        <span class="detail-header-tag small">
-            protected            static                                    property
+        $files        <span class="detailHeaderTag small">
+            protected                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Array to store patsh to project files.</p>
+    <div class="signature"><a href="http://www.php.net/language.types.array">array</a> <a href="lajax-translatemanager-services-scanners-scannerfile.html#$files-detail">$files</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'*.php'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[],&nbsp;</span><span style="color: #DD0000">'*.js'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[]]</span></div>
 
-            </div>
+    <p>Array to store patsh to project files.</p>
 
-    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"><a href="http://www.php.net/language.types.array">array</a></span> <a href="lajax-translatemanager-services-scanners-scannerfile.html#$files-detail">$files</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'*.php'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[],&nbsp;</span><span style="color: #DD0000">'*.js'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;[]]</span></div>
-
+    
 
     <div class="detail-header h3" id="$module-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-services-scanners-scannerfile.html#$module-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $module        <span class="detail-header-tag small">
-            public                                                property
+        $module        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>TranslateManager Module</p>
+    <div class="signature"><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a> <a href="lajax-translatemanager-services-scanners-scannerfile.html#$module-detail">$module</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
-            </div>
+    <p>TranslateManager Module</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="lajax-translatemanager-module.html">lajax\translatemanager\Module</a></span> <a href="lajax-translatemanager-services-scanners-scannerfile.html#$module-detail">$module</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
+    
 
     <div class="detail-header h3" id="$scanner-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="lajax-translatemanager-services-scanners-scannerfile.html#$scanner-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $scanner        <span class="detail-header-tag small">
-            public                                                property
+        $scanner        <span class="detailHeaderTag small">
+            public                                    property
                     </span>
     </div>
 
-    <div class="doc-description">
-        <p>Object.</p>
+    <div class="signature"><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a> <a href="lajax-translatemanager-services-scanners-scannerfile.html#$scanner-detail">$scanner</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
 
-            </div>
+    <p>Object.</p>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></span> <a href="lajax-translatemanager-services-scanners-scannerfile.html#$scanner-detail">$scanner</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
-
+    
 </div>
 <h2>Method Details</h2>
 
@@ -349,7 +344,7 @@ Translation to site language:</p>
         
         __construct()
         <span class="detail-header-tag small">
-            public                                    method
+            public            method
                     </span>
     </div>
 
@@ -360,7 +355,7 @@ Translation to site language:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#__construct()-detail">__construct</a></strong> ( <span class="signature-type"><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></span> <span style="color: #0000BB">$scanner</span> )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#__construct()-detail">__construct</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;\</span><span style="color: #0000BB">lajax</span><span style="color: #007700">\</span><span style="color: #0000BB">translatemanager</span><span style="color: #007700">\</span><span style="color: #0000BB">services</span><span style="color: #007700">\</span><span style="color: #0000BB">Scanner&nbsp;$scanner&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$scanner</span></td>
                   <td class="param-type-col"><a href="lajax-translatemanager-services-scanner.html">lajax\translatemanager\services\Scanner</a></td>
@@ -376,7 +371,7 @@ Translation to site language:</p>
         
         checkTokens()
         <span class="detail-header-tag small">
-            protected                                    method
+            protected            method
                     </span>
     </div>
 
@@ -387,7 +382,7 @@ Translation to site language:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#checkTokens()-detail">checkTokens</a></strong> ( <span style="color: #0000BB">$options</span>, <span style="color: #0000BB">$translatorTokens</span>, <span style="color: #0000BB">$tokens</span> )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#checkTokens()-detail">checkTokens</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$translatorTokens</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tokens&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$options</span></td>
                   <td class="param-type-col"></td>
@@ -416,7 +411,7 @@ Translation to site language:</p>
         
         extractMessages()
         <span class="detail-header-tag small">
-            protected                                    method
+            protected            method
                     </span>
     </div>
 
@@ -427,7 +422,7 @@ Translation to site language:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#extractMessages()-detail">extractMessages</a></strong> ( <span style="color: #0000BB">$fileName</span>, <span style="color: #0000BB">$options</span>, <span style="color: #0000BB">$ignoreCategories&nbsp;</span><span style="color: #007700">=&nbsp;[]</span> )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#extractMessages()-detail">extractMessages</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$fileName</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$options</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ignoreCategories&nbsp;</span><span style="color: #007700">=&nbsp;[]&nbsp;)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$fileName</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
@@ -463,7 +458,7 @@ example:</p>
         
         getLanguageItem()
         <span class="detail-header-tag small">
-            protected            abstract                        method
+            protected            method
                     </span>
     </div>
 
@@ -475,7 +470,7 @@ example:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected abstract</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#getLanguageItem()-detail">getLanguageItem</a></strong> ( <span style="color: #0000BB">$buffer</span> )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#getLanguageItem()-detail">getLanguageItem</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$buffer&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$buffer</span></td>
                   <td class="param-type-col"></td>
@@ -491,7 +486,7 @@ example:</p>
         
         init()
         <span class="detail-header-tag small">
-            public                                    method
+            public            method
                     </span>
     </div>
 
@@ -502,7 +497,7 @@ example:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#init()-detail">init</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature">void <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#init()-detail">init</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;)</span></td></tr>
             </table>
 
 <!--	-->
@@ -513,7 +508,7 @@ example:</p>
         
         isValidCategory()
         <span class="detail-header-tag small">
-            protected                                    method
+            protected            method
                     </span>
     </div>
 
@@ -524,7 +519,7 @@ example:</p>
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">protected</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#isValidCategory()-detail">isValidCategory</a></strong> ( <span style="color: #0000BB">$category</span> )</td></tr>
+        <tr><td colspan="3" class="signature"><a href="http://www.php.net/language.types.boolean">boolean</a> <strong><a href="lajax-translatemanager-services-scanners-scannerfile.html#isValidCategory()-detail">isValidCategory</a></strong><span style="color: #0000BB"></span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$category&nbsp;</span><span style="color: #007700">)</span></td></tr>
                                     <tr>
                   <td class="param-name-col"><span style="color: #0000BB">$category</span></td>
                   <td class="param-type-col"><a href="http://www.php.net/language.types.string">string</a></td>
@@ -572,7 +567,7 @@ example:</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 14 Nov 2015 14:44:05 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 05 Dec 2015 11:37:01 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script type="text/javascript">jQuery(document).ready(function () {

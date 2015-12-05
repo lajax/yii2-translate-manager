@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'language_id',
             'name_ascii',
             [
-                'format' => 'text',
+                'format' => 'raw',
                 'filter' => Language::getStatusNames(),
                 'attribute' => 'status',
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'status'],
@@ -44,10 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'format' => 'html',
+                'format' => 'raw',
                 'attribute' => Yii::t('language', 'Statistic'),
                 'content' => function ($language) {
-                    return '<span class="statistic"><span style="width:' . $language->getGridStatistic() . '%"></span><i>' . $language->getGridStatistic() . '%</i></span>';
+                    return '<span class="statistic"><span style="width:' . $language->gridStatistic . '%"></span><i>' . $language->gridStatistic . '%</i></span>';
                 },
             ],
             [

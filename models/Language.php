@@ -111,7 +111,7 @@ class Language extends \yii\db\ActiveRecord {
      */
     public static function getLanguages($active = true, $asArray = false) {
         if ($active) {
-            return Language::find()->asArray($asArray)->where(['status' => static::STATUS_ACTIVE])->all();
+            return Language::find()->where(['status' => static::STATUS_ACTIVE])->asArray($asArray)->all();
         } else {
             return Language::find()->asArray($asArray)->all();
         }
