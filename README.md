@@ -418,5 +418,6 @@ Links
 -----
 
 - [GitHub](https://github.com/lajax/yii2-translate-manager)
+- [Api Docs](http://lajax.github.io/yii2-translate-manager)
 - [Packagist](https://packagist.org/packages/lajax/yii2-translate-manager)
 - [Yii Extensions](http://www.yiiframework.com/extension/yii2-translate-manager)
