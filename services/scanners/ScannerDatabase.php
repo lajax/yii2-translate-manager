@@ -17,7 +17,9 @@ use lajax\translatemanager\services\Scanner;
  *  [
  *      'connection' => 'db',
  *      'table' => 'language',
- *      'columns' => ['name', 'name_ascii']
+ *      'columns' => ['name', 'name_ascii'],
+ *      'category' => 'database-table-name,
+ *      'categoryPrefix' => 'lx-'
  *  ],
  *  [
  *      'connection' => 'db',
@@ -73,7 +75,7 @@ class ScannerDatabase {
                 $this->_scanningTable($tables);
             }
         }
-        
+
         $this->_scanner->stdout('Detect DatabaseTable - END', Console::FG_GREY);
     }
 
@@ -88,12 +90,28 @@ class ScannerDatabase {
                 ->from($tables['table'])
                 ->createCommand(Yii::$app->$tables['connection'])
                 ->queryAll();
+        $category = $this->_getCategory($tables);
         foreach ($data as $columns) {
             $columns = array_map('trim', $columns);
             foreach ($columns as $column) {
-                $this->_scanner->addLanguageItem(Scanner::CATEGORY_DATABASE, $column);
+                $this->_scanner->addLanguageItem($category, $column);
             }
         }
+    }
+    
+    /**
+     * Returns the language category.
+     * @param array $tables
+     * @return string
+     */
+    private function _getCategory($tables) {
+        if (isset($tables['category']) && $tables['category'] == 'database-table-name') {
+            $category = (isset($tables['categoryPrefix'])) ? $tables['categoryPrefix'] . $tables['table'] : $tables['table'];
+        } else {
+            $category = Scanner::CATEGORY_DATABASE;
+        }
+        
+        return $category;
     }
 
 }

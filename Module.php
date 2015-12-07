@@ -40,11 +40,16 @@ use yii\web\Response;
  *         'ignoredItems' => ['config'],   // these files will not be processed.
  *         'languageTable' => 'language',  // Name of the database table storing the languages.
  *         'scanTimeLimit' => null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
+ *         'searchEmptyCommand' => '!',    // the search string to enter in the 'Translation' search field to find not yet translated items, set to null to disable this feature
+ *         'defaultExportStatus' => 1,     // the default selection of languages to export, set to 0 to select all languages by default
+ *         'defaultExportFormat' => 'json',// the default format for export, can be 'json' or 'xml'
  *         'tables' => [                   // Properties of individual tables
  *             [
  *                 'connection' => 'db',   // connection identifier
  *                 'table' => '{{%language}}',          // table name
- *                 'columns' => ['name', 'name_ascii']  //names of multilingual fields
+ *                 'columns' => ['name', 'name_ascii'], //names of multilingual fields
+ *                 'category' => 'database-table-name', // the category is the database table name
+ *                 'categoryPrefix' => 'lx-'
  *             ]
  *         ]
  *     ],

@@ -100,7 +100,7 @@ A more complex example including database table with multilingual support is bel
         'phpTranslators' => ['::t'],    // list of the php function for translating messages.
         'jsTranslators' => ['lajax.t'], // list of the js function for translating messages.
         'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
-        'ignoredCategories' => ['yii'], // these categories won’t be included in the language database.
+        'ignoredCategories' => ['yii'], // these categories won't be included in the language database.
         'ignoredItems' => ['config'],   // these files will not be processed.
         'scanTimeLimit' => null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
         'searchEmptyCommand' => '!',    // the search string to enter in the 'Translation' search field to find not yet translated items, set to null to disable this feature
@@ -110,7 +110,9 @@ A more complex example including database table with multilingual support is bel
             [
                 'connection' => 'db',   // connection identifier
                 'table' => '{{%language}}',         // table name
-                'columns' => ['name', 'name_ascii'] //names of multilingual fields
+                'columns' => ['name', 'name_ascii'],// names of multilingual fields
+                'category' => 'database-table-name',// the category is the database table name
+                'categoryPrefix' => 'lx-'           // 
             ]
         ]
     ],
@@ -243,7 +245,7 @@ private $_STATUSES = [
 ];
 
 /**
- * Returning the ‘status’ array on the site’s own language.
+ * Returning the 'status' array on the site's own language.
  * return array
  */
 public function getStatuses() {
@@ -256,7 +258,7 @@ public function getStatuses() {
 private $_GENDERS = ['Male', 'Female'];
 
 /**
- * Returning the ‘genders’ array in German
+ * Returning the 'genders' array in German
  * return array
  */
 public function getGenders() {
@@ -283,12 +285,12 @@ class Category extends \yii\db\ActiveRecord {
     // afterFind & beforeSave:
 
     /**
-     * @var Returning the ‘name’ attribute on the site’s own language.
+     * @var Returning the 'name' attribute on the site's own language.
      */
     public $name_t;
 
     /**
-     * @var Returning the ‘description’ attribute on the site’s own language.
+     * @var Returning the 'description' attribute on the site's own language.
      */
     public $description_t;
 
@@ -297,6 +299,10 @@ class Category extends \yii\db\ActiveRecord {
     public function afterFind() {
         $this->name_t = Language::d($this->name);
         $this->description_t = Language::d($this->descrioption);
+
+        // or If the category is the database table name.
+        // $this->name_t = Language::t(static::tableName(), $this->name);
+        // $this->description_t = Language::t(static::tableName(), $this->descrioption);
         parent::afterFind();
     }
 
@@ -314,17 +320,23 @@ class Category extends \yii\db\ActiveRecord {
     // or GETTERS:
 
     /**
-     * @return string Returning the ‘name’ attribute on the site’s own language.
+     * @return string Returning the 'name' attribute on the site's own language.
      */
     public function getName($params = [], $language = null) {
         return Language::d($this->name, $params, $language);
+
+        // or If the category is the database table name.
+        // return Language::t(static::tableName(), $this->name, $params, $language);
     }
 
     /**
-     * @return string Returning the ‘description’ attribute on the site’s own language.
+     * @return string Returning the 'description' attribute on the site's own language.
      */
     public function getDescription($params = [], $language = null) {
         return Language::d($this->description, $params, $language);
+
+        // or If the category is the database table name.
+        // return Language::t(static::tableName(), $this->description, $params, $language);
     }
 }
 ```
