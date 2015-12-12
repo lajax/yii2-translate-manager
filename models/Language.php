@@ -97,7 +97,7 @@ class Language extends \yii\db\ActiveRecord {
      */
     public static function getLanguageNames($active = false) {
         $languageNames = [];
-        foreach (self::getLanguages($active) as $language) {
+        foreach (self::getLanguages($active, true) as $language) {
             $languageNames[$language['language_id']] = $language['name'];
         }
 
