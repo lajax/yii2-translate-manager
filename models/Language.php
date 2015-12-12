@@ -93,11 +93,12 @@ class Language extends \yii\db\ActiveRecord {
      * Returns the list of languages stored in the database in an array.
      * @param boolean $active True/False according to the status of the language.
      * @return array
+     * @deprecated since version 1.5.2
      */
     public static function getLanguageNames($active = false) {
         $languageNames = [];
         foreach (self::getLanguages($active) as $language) {
-            $languageNames[$language->language_id] = $language->name;
+            $languageNames[$language['language_id']] = $language['name'];
         }
 
         return $languageNames;
@@ -108,6 +109,7 @@ class Language extends \yii\db\ActiveRecord {
      * @param boolean $active True/False according to the status of the language.
      * @param bool $asArray Return the languages as language object or as 'flat' array
      * @return Language|array
+     * @deprecated since version 1.5.2
      */
     public static function getLanguages($active = true, $asArray = false) {
         if ($active) {
