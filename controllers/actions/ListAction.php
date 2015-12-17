@@ -32,6 +32,7 @@ class ListAction extends \yii\base\Action {
 
         $searchModel = new LanguageSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
+        $dataProvider->sort = ['defaultOrder' => ['status'=>SORT_DESC]];
 
         return $this->controller->render('list', [
                     'dataProvider' => $dataProvider,
