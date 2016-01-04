@@ -18,6 +18,7 @@ use Yii;
  * @property string $source
  * @property string $translation
  *
+ * @property LanguageTranslate $languageTranslate0
  * @property LanguageTranslate $languageTranslate
  * @property Language[] $languages
  */
@@ -99,8 +100,8 @@ class LanguageSource extends \yii\db\ActiveRecord
      */
     public function getSource()
     {
-        if ($this->languageTranslateByLanguage && $this->languageTranslateByLanguage->translation) {
-            return $this->languageTranslateByLanguage->translation;
+        if ($this->languageTranslate0 && $this->languageTranslate0->translation) {
+            return $this->languageTranslate0->translation;
         } else {
             return $this->message;
         }
@@ -108,8 +109,17 @@ class LanguageSource extends \yii\db\ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @deprecated since version 1.5.3
      */
     public function getLanguageTranslateByLanguage()
+    {
+        return $this->getLanguageTranslate();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguageTranslate0()
     {
         return $this->getLanguageTranslate();
     }

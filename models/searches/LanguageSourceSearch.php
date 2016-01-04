@@ -82,7 +82,7 @@ class LanguageSourceSearch extends LanguageSource
             $query->joinWith(['languageTranslate' => function($query) use ($translateLanguage) {
                 $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
             }]);
-            $query->joinWith(['languageTranslateByLanguage' => function($query) use ($sourceLanguage) {
+            $query->joinWith(['languageTranslate0' => function($query) use ($sourceLanguage) {
                 $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
             }]);            
 
@@ -105,7 +105,7 @@ class LanguageSourceSearch extends LanguageSource
                   ->andFilterWhere($this->createLikeExpression('lt.translation', $this->translation));
         }]);
 
-        $query->joinWith(['languageTranslateByLanguage' => function ($query) use ($sourceLanguage)  {
+        $query->joinWith(['languageTranslate0' => function ($query) use ($sourceLanguage)  {
             $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
         }]);
         
