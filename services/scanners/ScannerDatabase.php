@@ -16,9 +16,9 @@ use lajax\translatemanager\services\Scanner;
  * 'tables' => [
  *  [
  *      'connection' => 'db',
- *      'table' => 'language',
+ *      'table' => '{{%language}}',
  *      'columns' => ['name', 'name_ascii'],
- *      'category' => 'database-table-name,
+ *      'category' => 'database-table-name',
  *      'categoryPrefix' => 'lx-'
  *  ],
  *  [
@@ -106,7 +106,8 @@ class ScannerDatabase {
      */
     private function _getCategory($tables) {
         if (isset($tables['category']) && $tables['category'] == 'database-table-name') {
-            $category = (isset($tables['categoryPrefix'])) ? $tables['categoryPrefix'] . $tables['table'] : $tables['table'];
+            $tableName = $this->_normalizeTablename($tables['table']);
+            $category = (isset($tables['categoryPrefix'])) ? $tables['categoryPrefix'] . $tableName : $tableName;
         } else {
             $category = Scanner::CATEGORY_DATABASE;
         }
@@ -114,4 +115,14 @@ class ScannerDatabase {
         return $category;
     }
 
+    
+    /**
+     * Returns the normalized database table name.
+     * @param string $tableName database table name.
+     * @return string
+     */
+    private function _normalizeTablename($tableName)
+    {
+        return str_replace(['{','%','}'], '', $tableName);
+    }
 }
