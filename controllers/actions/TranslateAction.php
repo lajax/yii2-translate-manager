@@ -30,7 +30,9 @@ class TranslateAction extends \yii\base\Action {
      */
     public function run() {
 
-        $searchModel = new LanguageSourceSearch;
+        $searchModel = new LanguageSourceSearch([
+            'searchEmptyCommand' => $this->controller->module->searchEmptyCommand,
+        ]);
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         return $this->controller->render('translate', [
