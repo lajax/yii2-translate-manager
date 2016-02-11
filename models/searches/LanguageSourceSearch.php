@@ -32,6 +32,11 @@ class LanguageSourceSearch extends LanguageSource
     public $source;
 
     /**
+     * @var string The search string to find empty translations.
+     */
+    public $searchEmptyCommand;
+
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -101,8 +106,12 @@ class LanguageSourceSearch extends LanguageSource
         ]);
 
         $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage)  {
-            $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage])
-                  ->andFilterWhere($this->createLikeExpression('lt.translation', $this->translation));
+            $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
+            if (!empty($this->searchEmptyCommand) && $this->translation == $this->searchEmptyCommand){
+                $query->andWhere(['or', ['lt.translation'=>null], ['lt.translation'=>'']]);
+            }else {
+                $query->andFilterWhere($this->createLikeExpression('lt.translation', $this->translation));
+            }
         }]);
 
         $query->joinWith(['languageTranslate0' => function ($query) use ($sourceLanguage)  {
