@@ -112,7 +112,6 @@ A more complex example including database table with multilingual support is bel
                 'table' => '{{%language}}',         // table name
                 'columns' => ['name', 'name_ascii'],// names of multilingual fields
                 'category' => 'database-table-name',// the category is the database table name
-                'categoryPrefix' => 'lx-'           // 
             ]
         ]
     ],
@@ -310,6 +309,10 @@ class Category extends \yii\db\ActiveRecord {
         if (parent::beforeSave($insert)) {
             Language::saveMessage($this->name);
             Language::saveMessage($this->description);
+
+            // or If the category is the database table name.
+            // Language::saveMessage($this->name, static::tableName());
+            // Language::saveMessage($this->description, static::tableName());
 
             return true;
         }

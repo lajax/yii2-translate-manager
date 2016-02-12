@@ -49,7 +49,6 @@ use yii\web\Response;
  *                 'table' => '{{%language}}',          // table name
  *                 'columns' => ['name', 'name_ascii'], //names of multilingual fields
  *                 'category' => 'database-table-name', // the category is the database table name
- *                 'categoryPrefix' => 'lx-'
  *             ]
  *         ]
  *     ],

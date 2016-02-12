@@ -19,7 +19,6 @@ use lajax\translatemanager\services\Scanner;
  *      'table' => '{{%language}}',
  *      'columns' => ['name', 'name_ascii'],
  *      'category' => 'database-table-name',
- *      'categoryPrefix' => 'lx-'
  *  ],
  *  [
  *      'connection' => 'db',
@@ -106,8 +105,7 @@ class ScannerDatabase {
      */
     private function _getCategory($tables) {
         if (isset($tables['category']) && $tables['category'] == 'database-table-name') {
-            $tableName = $this->_normalizeTablename($tables['table']);
-            $category = (isset($tables['categoryPrefix'])) ? $tables['categoryPrefix'] . $tableName : $tableName;
+            $category = $this->_normalizeTablename($tables['table']);
         } else {
             $category = Scanner::CATEGORY_DATABASE;
         }
