@@ -25,7 +25,7 @@ use yii\web\Response;
  * 
  * ~~~
  * 'modules' => [
- *     'translateManager' => [
+ *     'translatemanager' => [
  *         'class' => 'lajax\translatemanager\Module',
  *         'root' => '@app',               // The root directory of the project scan.
  *         'layout' => 'language',         // Name of the used layout. If using own layout use 'null'.
