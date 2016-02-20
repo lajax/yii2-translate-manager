@@ -149,6 +149,7 @@ class Language extends \yii\db\ActiveRecord {
 
             $languageTranslates = LanguageTranslate::find()
                     ->select(['language', 'COUNT(*) AS cnt'])
+                    ->andWhere('translation IS NOT NULL')
                     ->groupBy(['language'])
                     ->all();
 
