@@ -281,6 +281,25 @@ use lajax\translatemanager\helpers\Language;
  */
 class Category extends \yii\db\ActiveRecord {
 
+    // TranslateBehavior
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => lajax\translatemanager\behaviors\TranslateBehavior::className(),
+                'translateAttributes' => ['name', 'description'],
+            ],
+
+            // or If the category is the database table name.
+            // [
+            //     'class' => lajax\translatemanager\behaviors\TranslateBehavior::className(),
+            //     'translateAttributes' => ['name', 'description'],
+            //     'category' => static::tableName(),
+            // ],
+        ];
+    }
+
     // afterFind & beforeSave:
 
     /**
