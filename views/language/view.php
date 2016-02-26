@@ -15,9 +15,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'u
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="language-view col-sm-6">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a(Yii::t('language', 'Update'), ['update', 'id' => $model->language_id], ['class' => 'btn btn-primary']) ?>
         <?=

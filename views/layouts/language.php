@@ -68,6 +68,7 @@ TranslateManagerAsset::register($this);
                 foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
                     echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
                 } ?>
+                <?= Html::tag('h1', Html::encode($this->title)) ?>
                 <?= $content ?>
             </div>
         </div>
