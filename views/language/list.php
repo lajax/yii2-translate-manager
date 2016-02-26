@@ -17,9 +17,6 @@ $this->title = Yii::t('language', 'List of languages');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<h1>
-    <?= $this->title ?>
-</h1>
 <div id="languages">
 
     <?php

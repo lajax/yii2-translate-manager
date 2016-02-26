@@ -20,9 +20,7 @@ $this->title = Yii::t('language', 'Translation into {language_id}', ['language_i
 $this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>
-    <?= $this->title ?>
-</h1>
+
 <?= Html::hiddenInput('language_id', $language_id, ['id' => 'language_id', 'data-url' => Yii::$app->urlManager->createAbsoluteUrl('/translatemanager/language/save')]); ?>
 <div id="translates" class="<?= $language_id ?>">
     <?php
