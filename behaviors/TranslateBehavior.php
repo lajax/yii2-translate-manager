@@ -9,18 +9,18 @@ use lajax\translatemanager\helpers\Language;
 
 /**
  * TranslateManager Database translate behavior.
- * 
+ *
  * Installation:
- * 
+ *
  * ~~~
  * [
  *      'class' => lajax\translatemanager\behaviors\TranslateBehavior::className(),
  *      'translateAttributes' => ['names of multilingual fields'],
  * ],
  * ~~~
- * 
+ *
  * or If the category is the database table name.
- * 
+ *
  * ~~~
  * [
  *      'class' => lajax\translatemanager\behaviors\TranslateBehavior::className(),
@@ -28,7 +28,7 @@ use lajax\translatemanager\helpers\Language;
  *      'category' => static::tableName(),
  * ],
  * ~~~
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
  * @since 1.5.3
  */
@@ -90,10 +90,26 @@ class TranslateBehavior extends AttributeBehavior
         /* @var $owner BaseActiveRecord */
         $owner = $this->owner;
         foreach ($this->translateAttributes as $attribute) {
-            if ($owner->isAttributeChanged($attribute)) {
+            if ($this->isAttributeChanged($owner, $attribute)) {
                 Language::saveMessage($owner->attributes[$attribute], $this->category);
             }
         }
+    }
+
+    /**
+     * Returns a value indicating whether the named attribute has been changed.
+     * @param BaseActiveRecord $model the name of the attribute.
+     * @param string $name the name of the attribute.
+     * @return boolean whether the attribute has been changed
+     */
+    protected function isAttributeChanged($model, $name)
+    {
+        $oldAttribute = $model->getOldAttribute($name);
+        if ($model->isNewRecord || $oldAttribute === Yii::t($this->category, $model->attributes[$name])) {
+            return true;
+        }
+
+        return false;
     }
 
 }
