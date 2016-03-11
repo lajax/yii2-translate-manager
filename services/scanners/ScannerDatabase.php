@@ -87,7 +87,7 @@ class ScannerDatabase {
         $query = new \yii\db\Query();
         $data = $query->select($tables['columns'])
                 ->from($tables['table'])
-                ->createCommand(Yii::$app->$tables['connection'])
+                ->createCommand(Yii::$app->{$tables['connection']})
                 ->queryAll();
         $category = $this->_getCategory($tables);
         foreach ($data as $columns) {
