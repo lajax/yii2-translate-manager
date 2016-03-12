@@ -36,7 +36,7 @@ class ScannerPhpFunction extends ScannerFile {
     public function run($route, $params = array()) {
         $this->scanner->stdout('Detect PhpFunction - BEGIN', Console::FG_CYAN);
         foreach (self::$files[static::EXTENSION] as $file) {
-            if (preg_match('#' . preg_quote(implode('\s*\(|', $this->module->phpTranslators)) . '\s*\(#i', file_get_contents($file)) != false) {
+            if ($this->containsTranslator($this->module->phpTranslators, $file)) {
                 $this->extractMessages($file, [
                     'translator' => (array) $this->module->phpTranslators,
                     'begin' => '(',
