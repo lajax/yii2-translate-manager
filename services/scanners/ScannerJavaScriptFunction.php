@@ -36,7 +36,7 @@ class ScannerJavaScriptFunction extends ScannerFile {
     public function run($route, $params = array()) {
         $this->scanner->stdout('Detect JavaScriptFunction - BEGIN', Console::FG_YELLOW);
         foreach (self::$files[static::EXTENSION] as $file) {
-            if (preg_match('#' . preg_quote(implode('\s*\(|', $this->module->jsTranslators)) . '\s*\(#i', file_get_contents($file)) != false) {
+            if ($this->containsTranslator($this->module->jsTranslators, $file)) {
                 $this->extractMessages($file, [
                     'translator' => (array) $this->module->jsTranslators,
                     'begin' => '(',

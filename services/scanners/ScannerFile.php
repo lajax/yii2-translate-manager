@@ -105,6 +105,21 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
         parent::init();
     }
+    
+    /**
+     * Determines whether the file has any of the translators.
+     * 
+     * @param string[] $translators Array of translator patterns to search (for example: `['::t']`).
+     * @param string $file Path of the file.
+     * @return bool
+     */
+    protected function containsTranslator($translators, $file)
+    {
+        return preg_match(
+            '#(' . implode('\s*\()|(', array_map('preg_quote', $translators)) . '\s*\()#i',
+            file_get_contents($file)
+        ) > 0;
+    }
 
     /**
      * Extracts messages from a file
