@@ -105,7 +105,7 @@ class TranslateBehavior extends AttributeBehavior
     protected function isAttributeChanged($model, $name)
     {
         $oldAttribute = $model->getOldAttribute($name);
-        if ($model->isNewRecord || $oldAttribute === Yii::t($this->category, $model->attributes[$name])) {
+        if ($model->isNewRecord || $oldAttribute !== Yii::t($this->category, $model->attributes[$name])) {
             return true;
         }
 
