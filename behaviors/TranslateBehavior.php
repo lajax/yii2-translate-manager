@@ -90,26 +90,10 @@ class TranslateBehavior extends AttributeBehavior
         /* @var $owner BaseActiveRecord */
         $owner = $this->owner;
         foreach ($this->translateAttributes as $attribute) {
-            if ($this->isAttributeChanged($owner, $attribute)) {
+            if ($owner->isAttributeChanged($attribute)) {
                 Language::saveMessage($owner->attributes[$attribute], $this->category);
             }
         }
-    }
-
-    /**
-     * Returns a value indicating whether the named attribute has been changed.
-     * @param BaseActiveRecord $model the name of the attribute.
-     * @param string $name the name of the attribute.
-     * @return boolean whether the attribute has been changed
-     */
-    protected function isAttributeChanged($model, $name)
-    {
-        $oldAttribute = $model->getOldAttribute($name);
-        if ($model->isNewRecord || $oldAttribute === Yii::t($this->category, $model->attributes[$name])) {
-            return true;
-        }
-
-        return false;
     }
 
 }
