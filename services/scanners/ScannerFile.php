@@ -105,6 +105,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
         parent::init();
     }
+
     
     /**
      * Determines whether the file has any of the translators.
@@ -166,10 +167,34 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
         $matchedTokensCount = 0;
         $buffer = [];
 
+        $nextIsHeredoc = false;
 
         foreach ($tokens as $token) {
             // finding out translator call
             if ($matchedTokensCount < $translatorTokensCount) {
+
+                if($nextIsHeredoc) {
+                    $javascriptString = $token[1];
+
+                    $heredocContainsAjaxLFunction = preg_match_all(
+                        '/lajax\.t\((?<openQuote>[\"\'])(?<param>.*?)\k<openQuote>/i',
+                        $javascriptString,
+                        $jsMatches
+                    );
+
+                    if($heredocContainsAjaxLFunction) {
+                        foreach($jsMatches['param'] as $jsMatch) {
+                            $this->scanner->addLanguageItem(Scanner::CATEGORY_JAVASCRIPT, $jsMatch);
+                        }
+                    }
+
+                    $nextIsHeredoc = false;
+                }
+
+                if($token[0] == T_START_HEREDOC && strpos($token[1], 'JS') !== false) {
+                    $nextIsHeredoc = true;
+                }
+
                 if ($this->tokensEqual($token, $translatorTokens[$matchedTokensCount])) {
                     $matchedTokensCount++;
                 } else {
