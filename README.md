@@ -269,6 +269,8 @@ public function getGenders() {
 
 PHP Database:
 
+* With new attributes:
+
 ```php
 namespace common\models;
 
@@ -283,25 +285,6 @@ use lajax\translatemanager\helpers\Language;
  */
 class Category extends \yii\db\ActiveRecord {
 
-    // TranslateBehavior
-
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => lajax\translatemanager\behaviors\TranslateBehavior::className(),
-                'translateAttributes' => ['name', 'description'],
-            ],
-
-            // or If the category is the database table name.
-            // [
-            //     'class' => lajax\translatemanager\behaviors\TranslateBehavior::className(),
-            //     'translateAttributes' => ['name', 'description'],
-            //     'category' => static::tableName(),
-            // ],
-        ];
-    }
-
     // afterFind & beforeSave:
 
     /**
@@ -314,7 +297,7 @@ class Category extends \yii\db\ActiveRecord {
      */
     public $description_t;
 
-    ...
+    /* ... */
 
     public function afterFind() {
         $this->name_t = Language::d($this->name);
@@ -322,7 +305,7 @@ class Category extends \yii\db\ActiveRecord {
 
         // or If the category is the database table name.
         // $this->name_t = Language::t(static::tableName(), $this->name);
-        // $this->description_t = Language::t(static::tableName(), $this->descrioption);
+        // $this->description_t = Language::t(static::tableName(), $this->description);
         parent::afterFind();
     }
 
@@ -362,6 +345,45 @@ class Category extends \yii\db\ActiveRecord {
         // or If the category is the database table name.
         // return Language::t(static::tableName(), $this->description, $params, $language);
     }
+}
+```
+
+
+* With behavior (since 1.5.3):
+
+    **Note:** This will replace the model's original attribute values!
+
+```php
+namespace common\models;
+
+/**
+ * This is the model class for table "category".
+ *
+ * @property string $category_id
+ * @property string $name
+ * @property string $description
+ */
+class Category extends \yii\db\ActiveRecord {
+
+    // TranslateBehavior
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => \lajax\translatemanager\behaviors\TranslateBehavior::className(),
+                'translateAttributes' => ['name', 'description'],
+            ],
+
+            // or If the category is the database table name.
+            // [
+            //     'class' => \lajax\translatemanager\behaviors\TranslateBehavior::className(),
+            //     'translateAttributes' => ['name', 'description'],
+            //     'category' => static::tableName(),
+            // ],
+        ];
+    }
+
 }
 ```
 
