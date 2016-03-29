@@ -148,7 +148,7 @@ Front end translation:
 
 ```php
 'bootstrap' => ['translatemanager'],
-'component' => [
+'components' => [
     'translatemanager' => [
         'class' => 'lajax\translatemanager\Component'
     ]
