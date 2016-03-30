@@ -2,6 +2,8 @@
 
 namespace lajax\translatemanager\controllers\actions;
 
+use lajax\translatemanager\models\Language;
+use lajax\translatemanager\services\Generator;
 use Yii;
 use yii\web\UploadedFile;
 use lajax\translatemanager\models\ImportForm;
@@ -48,6 +50,16 @@ class ImportAction extends \yii\base\Action {
                                 'type' => $type,
                                 'new' => $typeResult['new'],
                                 'updated' => $typeResult['updated']]);
+                    }
+
+                    $languageIds = Language::find()
+                        ->select('language_id')
+                        ->where(['status' => Language::STATUS_ACTIVE])
+                        ->column();
+
+                    foreach ($languageIds as $languageId) {
+                        $generator = new Generator($this->controller->module, $languageId);
+                        $generator->run();
                     }
 
                     Yii::$app->getSession()->setFlash('success', $message);
