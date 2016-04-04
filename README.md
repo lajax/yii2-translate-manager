@@ -433,6 +433,12 @@ Use it with the Yii CLI
 ./yii translate/optimize
 ```
 
+Known issues
+-----------
+
+* Scanner is scanning parent root directory. [#12](https://github.com/lajax/yii2-translate-manager/pull/12)
+* Frontend translation of strings in hidden tags corrupts HTML. [#45](https://github.com/lajax/yii2-translate-manager/issues/45)
+
 Screenshots
 -----------
 
