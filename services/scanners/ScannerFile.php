@@ -94,12 +94,15 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
     /**
      * @inheritdoc Initialise the $files static array.
      */
-    public function init() {
-
+    public function init() 
+    {
         if (empty(self::$files[static::EXTENSION]) && in_array(static::EXTENSION, $this->module->patterns)) {
-            self::$files[static::EXTENSION] = FileHelper::findFiles(realpath($this->_getRoot()), [
-                        'except' => $this->module->ignoredItems,
-                        'only' => [static::EXTENSION],
+            $root = realpath($this->_getRoot());
+            Yii::trace("Scanning " . static::EXTENSION . " files for language elements in: $root", 'translatemanager');
+            
+            self::$files[static::EXTENSION] = FileHelper::findFiles($root, [
+                'except' => $this->module->ignoredItems,
+                'only' => [static::EXTENSION],
             ]);
         }
 
@@ -215,8 +218,14 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      * Returns the root directory of the project scan.
      * @return string
      */
-    private function _getRoot() {
-        return dirname(Yii::getAlias($this->module->root));
+    private function _getRoot()
+    {
+        $root = Yii::getAlias($this->module->root);
+        if ($this->module->scanRootParentDirectory) {
+            $root = dirname($root);
+        }
+        
+        return $root;
     }
 
     /**
