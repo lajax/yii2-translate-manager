@@ -92,6 +92,8 @@ A more complex example including database table with multilingual support is bel
     'translatemanager' => [
         'class' => 'lajax\translatemanager\Module',
         'root' => '@app',               // The root directory of the project scan.
+        'scanRootParentDirectory' => true, // Whether scan the defined `root` parent directory, or the folder itself.
+                                           // IMPORTANT: for detailed instructions read the chapter about root configuration.
         'layout' => 'language',         // Name of the used layout. If using own layout use 'null'.
         'allowedIPs' => ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
         'roles' => ['@'],               // For setting access levels to the translating interface.
@@ -118,7 +120,25 @@ A more complex example including database table with multilingual support is bel
 ],
 ```
 
-IMPORTANT: If you want to modify the value of roles (in other words to start using user roles) you need to enable authManager in the common config.
+#### Configuring the scan root
+
+The file scanner will scan the configured folders for translatable elements. The following two options
+determine the scan root directory: `root`, and `scanRootParentDirectory`. These options are defaults to
+values that works with the Yii 2 advanced project template. If you are using basic template, you have to modify 
+these settings.
+
+The `root` options tells which is the root folder for project scan. However if `scanRootParentDirectory` is set to `true`
+(which is the default value), the scan will run on the parent directory. This is desired behavior on advanced template,
+because the `@app` is the root for the current app, which is a subfolder inside the project (so the entire root of the
+project is the parent directory of `@app`).
+
+For basic template the `@app` is also the root for the entire project. Because of this with the default value 
+of `scanRootParentDirectory`, the scan runs outside the project folder. This is not desired behavior, and 
+changing the value to `false` solves this.
+
+**IMPORTANT: Changing the `scanRootParentDirectory` from `true` to `false` could cause loss of translated items, 
+as optimize action removes the missing items.** Changing the root folder can cause also loss, so be sure to 
+double check your configuration!
 
 Using of [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
 

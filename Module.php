@@ -145,6 +145,21 @@ class Module extends \yii\base\Module {
      * @var string the root directory of the scanning.
      */
     public $root = '@app';
+    
+    /**
+     * @var bool Whether scan the defined `root` parent directory, or the folder itself.
+     * 
+     * <b>IMPORTANT</b>: Changing this from `true` to `false` could cause loss of translated items, as
+     * optimize action removes the missing items.
+     * 
+     * If the configured root is `@app`:
+     *  - `true` means for advanced apps, that the scan runs on the parent directory, which is the root for the entire project.
+     *     This is the desired behavior.
+     *  - `true` means for basic apps, that the scan runs also on the parent directory, which is outside of the project folder
+     *     (as `@app` is equals to the project root). This is not desired behavior, it is preferred to change this option
+     *     to `false`.
+     */
+    public $scanRootParentDirectory = true;
 
     /**
      * @var string writeable directory used for keeping the generated javascript files.
