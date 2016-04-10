@@ -122,27 +122,62 @@ A more complex example including database table with multilingual support is bel
 
 #### Configuring the scan root
 
+The root path can be an alias or a full path (e.g. `@app` or `/webroot/site/`).
+
 The file scanner will scan the configured folders for translatable elements. The following two options
 determine the scan root directory: `root`, and `scanRootParentDirectory`. These options are defaults to
-values that works with the Yii 2 advanced project template. If you are using basic template, you have to modify 
+values that works with the Yii 2 advanced project template. If you are using basic template, you have to modify
 these settings.
 
-The `root` options tells which is the root folder for project scan. However if `scanRootParentDirectory` is set to `true`
-(which is the default value), the scan will run on the parent directory. This is desired behavior on advanced template,
-because the `@app` is the root for the current app, which is a subfolder inside the project (so the entire root of the
-project is the parent directory of `@app`).
+The `root` options tells which is the root folder for project scan. It can contain a single directory (string),
+or multiple directories (in an array).
 
-For basic template the `@app` is also the root for the entire project. Because of this with the default value 
-of `scanRootParentDirectory`, the scan runs outside the project folder. This is not desired behavior, and 
+The `scanRootParentDirectory` **is used only** if a single root directory is specified in a string.
+
+**IMPORTANT: Changing these options could cause loss of translated items,
+as optimize action removes the missing items.** So be sure to double check your configuration!
+
+**a)** Single root directory:
+
+It is possible to define one root directory as string in the `root` option. In this case the `scanRootParentDirectory`
+will be used when determining the actual directory to scan.
+
+If `scanRootParentDirectory` is set to `true` (which is the default value), the scan will run on the parent directory.
+This is desired behavior on advanced template, because the `@app` is the root for the current app, which is a subfolder
+inside the project (so the entire root of the project is the parent directory of `@app`).
+
+For basic template the `@app` is also the root for the entire project. Because of this with the default value
+of `scanRootParentDirectory`, the scan runs outside the project folder. This is not desired behavior, and
 changing the value to `false` solves this.
 
-**IMPORTANT: Changing the `scanRootParentDirectory` from `true` to `false` could cause loss of translated items, 
-as optimize action removes the missing items.** Changing the root folder can cause also loss, so be sure to 
-double check your configuration!
+**IMPORTANT: Changing the `scanRootParentDirectory` from `true` to `false` could cause loss of translated items,
+as the root will be a different directory.**
 
-Using of [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html).
+For example:
 
-examples:
+| `root` value | `scanRootParentDirectory` value| Scanned directory |
+|---|---|---|
+| `/webroot/site/frontend` | `true` | `/webroot/site` |
+| `/webroot/site/frontend` | `false` | `/webroot/site/frontend` |
+
+**b)** Multiple root directories:
+
+Multiple root directories can be defined in an array. In this case all items must point to the exact directory,
+as `scanRootParentDirectory` **will be omitted**.
+
+For example:
+
+```php
+'root' => [
+    '@frontend',
+    '@vendor',
+    '/some/external/folder',
+],
+```
+
+#### Using of [authManager](http://www.yiiframework.com/doc-2.0/guide-security-authorization.html)
+
+Examples:
 
 PhpManager:
 ```php
@@ -164,7 +199,7 @@ DbManager:
 ],
 ```
 
-Front end translation:
+#### Front end translation:
 
 ```php
 'bootstrap' => ['translatemanager'],
@@ -456,7 +491,9 @@ Use it with the Yii CLI
 Known issues
 -----------
 
-* Scanner is scanning parent root directory. [#12](https://github.com/lajax/yii2-translate-manager/pull/12)
+* Scanner is scanning parent root directory [#12](https://github.com/lajax/yii2-translate-manager/pull/12).
+
+  You can overwrite this behavior with the `scanRootParentDirectory` option. (See Config section for details.)
 * Frontend translation of strings in hidden tags corrupts HTML. [#45](https://github.com/lajax/yii2-translate-manager/issues/45)
 
 Screenshots
