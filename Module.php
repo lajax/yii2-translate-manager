@@ -142,12 +142,20 @@ class Module extends \yii\base\Module {
     ];
 
     /**
-     * @var string the root directory of the scanning.
+     * @var string|array The root directory or directories of the scanning. The path can be an alias or
+     * a full path.
+     *
+     * It is possible to define one root directory as string. In this case the `scanRootParentDirectory` will be used
+     * when determining the actual directory to scan.
+     *
+     * Multiple root directories can be declared in an array. In this case all items must point to the exact directory,
+     * as `scanRootParentDirectory` **will be omitted**.
      */
     public $root = '@app';
     
     /**
-     * @var bool Whether scan the defined `root` parent directory, or the folder itself.
+     * @var bool Whether scan the defined `root` parent directory, or the folder itself. This option is used only,
+     * when the `root` option contains a single directory as string (e.g. `'root' => '@app'`).
      * 
      * <b>IMPORTANT</b>: Changing this from `true` to `false` could cause loss of translated items, as
      * optimize action removes the missing items.
