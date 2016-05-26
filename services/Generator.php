@@ -31,9 +31,9 @@ class Generator {
     private $_languageItems = [];
 
     /**
-     * @var string JavaScript code for serving language elements.
+     * @var string JavaScript code for serving all language elements.
      */
-    private $_template = 'var languageItems=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
+    private $_template = 'var languageItems = languageItems || new Object();  languageItems[\'{language_id}\']=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
 
     /**
      * @param \lajax\translatemanager\Module $module
@@ -90,9 +90,17 @@ class Generator {
             $data[md5($language_item->message)] = $language_item->languageTranslate->translation;
         }
 
-        $filename = $this->_basePath . '/' . $this->_languageId . '.js';
+        $langs = \lajax\translatemanager\models\Language::findAll(['status'=>  \lajax\translatemanager\models\Language::STATUS_ACTIVE]);
 
-        file_put_contents($filename, str_replace('{language_items}', Json::encode($data), $this->_template));
+        foreach ($langs as $key => $lang){
+            $filename = $this->_basePath . '/' . $lang->language_id . '.js';
+            $file_contents =  str_replace('{language_items}', Json::encode($data), $this->_template);
+            $file_contents =  str_replace('{language_id}', $lang->language_id , $file_contents);
+            if(!$key)//first file  should contain `language` var with current language Id
+                $file_contents .= 'var language = "'.$this->_languageId.'"';
+
+            file_put_contents($filename,$file_contents);
+        }
     }
 
     /**
