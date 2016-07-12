@@ -273,6 +273,11 @@ class Module extends \yii\base\Module {
     public $defaultExportFormat = Response::FORMAT_JSON;
 
     /**
+     * @var string The default db connection
+     */
+    public $connection = 'db';
+
+    /**
      * @inheritdoc
      */
     public function beforeAction($action) {
@@ -303,6 +308,7 @@ class Module extends \yii\base\Module {
      */
     public function getLanguageItemsDirPath() {
         return Yii::getAlias($this->tmpDir) . $this->subDir;
-    }
-
+    } 
+    
+    
 }

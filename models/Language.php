@@ -53,6 +53,13 @@ class Language extends \yii\db\ActiveRecord {
     /**
      * @inheritdoc
      */
+    public static function getDb() {
+        return Yii::$app->get(Yii::$app->getModule('translatemanager')->connection);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function tableName() {
         return Yii::$app->getModule('translatemanager') ?
                Yii::$app->getModule('translatemanager')->languageTable : '{{%language}}';
