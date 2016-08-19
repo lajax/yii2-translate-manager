@@ -34,7 +34,7 @@ class ExportAction extends \yii\base\Action {
     public function run() {
 
         /** @var Module $module */
-        $module = Module::getInstance();
+        $module = Yii::$app->getModule('translatemanager');
 
         $model = new ExportForm([
             'format' => $module->defaultExportFormat,
