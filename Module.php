@@ -278,6 +278,11 @@ class Module extends \yii\base\Module {
     public $connection = 'db';
 
     /**
+     * @var array Scanners can be overriden here. If not set original set of scanners will be used from Scanner
+     */
+    public $scanners = [];
+
+    /**
      * @inheritdoc
      */
     public function beforeAction($action) {
