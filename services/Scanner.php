@@ -56,6 +56,10 @@ class Scanner {
      */
     public function scanning() {
 
+        $scanners = Yii::$app->getModule('translatemanager')->scanners;
+        if(!empty($scanners)) {
+            $this->scanners = $scanners; // override scanners from module configuration (custom scanners)
+        }
         return $this->run();
     }
 
