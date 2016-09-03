@@ -71,6 +71,11 @@ class Scanner {
             set_time_limit($scanTimeLimit);
         }
         
+        $scanners = Yii::$app->getModule('translatemanager')->scanners;
+        if(!empty($scanners)) {
+            $this->scanners = $scanners; // override scanners from module configuration (custom scanners)
+        }
+
         $this->_initLanguageArrays();
 
         $languageSource = new LanguageSource;

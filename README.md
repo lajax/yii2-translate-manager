@@ -115,7 +115,13 @@ A more complex example including database table with multilingual support is bel
                 'columns' => ['name', 'name_ascii'],// names of multilingual fields
                 'category' => 'database-table-name',// the category is the database table name
             ]
-        ]
+        ],
+        'scanners' => [ // define this if you need to override default scanners (below)
+            '\lajax\translatemanager\services\scanners\ScannerPhpFunction',
+            '\lajax\translatemanager\services\scanners\ScannerPhpArray',
+            '\lajax\translatemanager\services\scanners\ScannerJavaScriptFunction',
+            '\lajax\translatemanager\services\scanners\ScannerDatabase',
+        ],
     ],
 ],
 ```
