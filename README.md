@@ -495,6 +495,29 @@ Use it with the Yii CLI
 ./yii translate/optimize
 ```
 
+###Using google translate api
+
+Google translate api is a paid service. At the moment of writing the price is $20 USD per 1 million characters trsanslated.
+
+In order to activate the feature you need to have Google account, generate google Api Key, and enable this feature
+by adding 'googleApiKey' to 'translatemanager' module configuration: 
+
+```php
+
+'modules' => [
+
+    'translatemanager' => [
+    
+        // ...
+        
+        'googleApiKey' => `Your_Google_API_Key',
+     ],
+],
+```
+Once feature is enabled it will insert google translation of the source into the empty translation field 
+(instead of original text) when you click on source field.
+
+
 Known issues
 -----------
 
