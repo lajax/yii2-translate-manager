@@ -28,11 +28,24 @@ var translate = (function () {
      * @param {object} $this
      */
     function _copySourceToTranslation($this) {
-        if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-            $this.closest('tr').find('.translation').val($.trim($this.val()));
-        }
 
-        _translateLanguage($this.closest('tr').find('button'));
+        if(typeof x_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
+        {
+            if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
+                $this.closest('tr').find('.translation').val($.trim($this.val()));
+            }
+
+            _translateLanguage($this.closest('tr').find('button'));
+        }
+        else  // google translation is enabled - translate and copy translation ...
+        {
+            if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
+                helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
+                    $this.closest('tr').find('.translation').val(result);
+                    _translateLanguage($this.closest('tr').find('button'));
+                });
+            }
+        }
     }
 
     return {

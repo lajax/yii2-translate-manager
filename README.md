@@ -122,6 +122,7 @@ A more complex example including database table with multilingual support is bel
             '\lajax\translatemanager\services\scanners\ScannerJavaScriptFunction',
             '\lajax\translatemanager\services\scanners\ScannerDatabase',
         ],
+        'googleApiKey' => 'your_google_API_Key', // if set - google translation will be inserted into translation field when you click on the source field.  
     ],
 ],
 ```
