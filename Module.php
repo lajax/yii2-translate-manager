@@ -283,6 +283,11 @@ class Module extends \yii\base\Module {
     public $scanners = [];
 
     /**
+     * @var string google API Key for using with google translate service (v2). Default is false - google translate will not be available.
+     */
+    public $googleApiKey = false;
+
+    /**
      * @inheritdoc
      */
     public function beforeAction($action) {
