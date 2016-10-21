@@ -27,8 +27,12 @@ var lajax = (function () {
          * @returns {string}
          */
         t: function (message, $params) {
-            if (typeof (languageItems) !== 'undefined' && typeof (languageItems.getLanguageItems) === 'function') {
-                var $messages = languageItems.getLanguageItems();
+            if (
+                    typeof (languageItems) !== 'undefined' &&
+                    typeof (language) !== 'undefined' &&
+                    typeof (languageItems[language]) !== 'undefined' &&
+                    typeof (languageItems[language].getLanguageItems) === 'function') {
+                var $messages = languageItems[language].getLanguageItems();
                 if (typeof ($messages) !== 'undefined') {
                     var hash = md5(message);
                     if (typeof ($messages[hash]) !== 'undefined') {
