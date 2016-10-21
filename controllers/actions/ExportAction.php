@@ -34,7 +34,7 @@ class ExportAction extends \yii\base\Action {
     public function run() {
 
         /** @var Module $module */
-        $module = Module::getInstance();
+        $module = $this->controller->module;
 
         $model = new ExportForm([
             'format' => $module->defaultExportFormat,
