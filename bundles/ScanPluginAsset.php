@@ -6,12 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * Scan Plugin asset bundle
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.4
  */
-class ScanPluginAsset extends AssetBundle {
-
+class ScanPluginAsset extends AssetBundle
+{
     /**
      * @inheritdoc
      */
@@ -31,5 +32,4 @@ class ScanPluginAsset extends AssetBundle {
         'yii\web\JqueryAsset',
         'lajax\translatemanager\bundles\TranslationPluginAsset',
     ];
-
 }

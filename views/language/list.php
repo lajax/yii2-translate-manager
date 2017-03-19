@@ -1,9 +1,9 @@
 <?php
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-
 use yii\grid\GridView;
 use yii\helpers\Html;
 use lajax\translatemanager\models\Language;
@@ -52,13 +52,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {translate} {delete}',
                 'buttons' => [
                     'translate' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-list-alt"></span>',['language/translate', 'language_id' => $model->language_id], [
-                                    'title' => Yii::t('language', 'Translate'),
-                                    'data-pjax' => '0',
+                        return Html::a('<span class="glyphicon glyphicon-list-alt"></span>', ['language/translate', 'language_id' => $model->language_id], [
+                            'title' => Yii::t('language', 'Translate'),
+                            'data-pjax' => '0',
                         ]);
                     },
-                ]
-            ]
+                ],
+            ],
         ],
     ]);
     Pjax::end();

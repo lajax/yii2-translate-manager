@@ -8,11 +8,11 @@ use yii\web\Response;
 
 /**
  * This is the main module class for the TranslateManager module.
- * 
+ *
  * Initialisation example:
- * 
+ *
  * Simple example:
- * 
+ *
  * ~~~
  * 'modules' => [
  *     'translatemanager' => [
@@ -20,9 +20,9 @@ use yii\web\Response;
  *     ],
  * ],
  * ~~~
- * 
+ *
  * Complex example:
- * 
+ *
  * ~~~
  * 'modules' => [
  *     'translatemanager' => [
@@ -31,7 +31,7 @@ use yii\web\Response;
  *         'layout' => 'language',         // Name of the used layout. If using own layout use 'null'.
  *         'allowedIPs' => ['127.0.0.1'],  // IP addresses from which the translation interface is accessible.
  *         'roles' => ['@'],               // For setting access levels to the translating interface.
- *         'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files. 
+ *         'tmpDir' => '@runtime',         // Writable directory for the client-side temporary language files.
  *                                         // IMPORTANT: must be identical for all applications (the AssetsManager serves the JavaScript files containing language elements from this directory).
  *         'phpTranslators' => ['::t'],    // list of the php function for translating messages.
  *         'jsTranslators' => ['lajax.t'], // list of the js function for translating messages.
@@ -54,15 +54,15 @@ use yii\web\Response;
  *     ],
  * ],
  * ~~~
- * 
+ *
  * IMPORTANT: If you want to modify the value of roles (in other words to start using user roles) you need to enable authManager in the common config.
- * 
+ *
  * Using of authManager: http://www.yiiframework.com/doc-2.0/guide-security-authorization.html
- * 
+ *
  * examples:
- * 
+ *
  * PhpManager:
- * 
+ *
  * ~~~
  * 'components' => [
  *      'authManager' => [
@@ -70,9 +70,9 @@ use yii\web\Response;
  *      ],
  * ],
  * ~~~
- * 
+ *
  * DbManager:
- * 
+ *
  * ~~~
  * 'components' => [
  *      'authManager' => [
@@ -80,18 +80,19 @@ use yii\web\Response;
  *      ],
  * ],
  * ~~~
- * 
- * 
+ *
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class Module extends \yii\base\Module {
-
+class Module extends \yii\base\Module
+{
     /**
      * Session key for storing front end translating privileges.
      */
     const SESSION_KEY_ENABLE_TRANSLATE = 'frontendTranslation_EnableTranslate';
-    
+
     /**
      * @inheritdoc
      */
@@ -152,14 +153,14 @@ class Module extends \yii\base\Module {
      * as `scanRootParentDirectory` **will be omitted**.
      */
     public $root = '@app';
-    
+
     /**
      * @var bool Whether scan the defined `root` parent directory, or the folder itself. This option is used only,
      * when the `root` option contains a single directory as string (e.g. `'root' => '@app'`).
-     * 
+     *
      * <b>IMPORTANT</b>: Changing this from `true` to `false` could cause loss of translated items, as
      * optimize action removes the missing items.
-     * 
+     *
      * If the configured root is `@app`:
      *  - `true` means for advanced apps, that the scan runs on the parent directory, which is the root for the entire project.
      *     This is the desired behavior.
@@ -187,24 +188,28 @@ class Module extends \yii\base\Module {
 
     /**
      * @var string Regular expression to match PHP Yii::t functions.
+     *
      * @deprecated since version 1.2.7
      */
     public $patternPhp = '#::t\s*\(\s*(?P<category>\'[\w\d\s_-]+?(?<!\\\\)\'|"[\w\d\s_-]+?(?<!\\\\)"?)\s*,\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*[,\)]#s';
 
     /**
      * @var string PHP Regular expression to match arrays containing language elements to translate.
+     *
      * @deprecated since version 1.2.7
      */
     public $patternArray = "#\@translate[^\$]+\$(?P<text>.+?)[\]\)];#smui";
 
     /**
      * @var string PHP Regular expression to detect langualge elements within arrays.
+     *
      * @deprecated since version 1.2.7
      */
     public $patternArrayRecursive = '#(?P<category>)(\[|\(|>|,|)\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*(,|$)#s';
 
     /**
      * @var string Regular expression to detect JavaScript lajax.t functions.
+     *
      * @deprecated since version 1.2.7
      */
     public $patternJs = '#lajax\.t\s*\(\s*(?P<text>\'.*?(?<!\\\\)\'|".*?(?<!\\\\)"?)\s*[,\)]#s';
@@ -220,19 +225,18 @@ class Module extends \yii\base\Module {
     public $jsTranslators = ['lajax.t'];
 
     /**
-     *
      * @var string PHP Regular expression to match arrays containing language elements to translate.
      */
     public $patternArrayTranslator = '#\@translate[^\$]+(?P<translator>[\w\d\s_]+[^\(\[]+)#s';
-    
+
     /**
-     * @var integer The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.
+     * @var int The max_execution_time used when scanning, when set to null the default max_execution_time will not be modified.
      */
     public $scanTimeLimit = null;
 
     /**
      * examples:
-     * 
+     *
      * ~~~
      * $tables = [
      *      [
@@ -247,7 +251,7 @@ class Module extends \yii\base\Module {
      *      ],
      * ];
      * ~~~
-     * 
+     *
      * @var array identifiers for the database tables containing language elements.
      */
     public $tables;
@@ -256,14 +260,14 @@ class Module extends \yii\base\Module {
      * @var string The database table storing the languages.
      */
     public $languageTable = '{{%language}}';
-		
+
     /**
      * @var string The search string to find empty translations.
      */
     public $searchEmptyCommand = '!';
 
     /**
-     * @var integer The minimum status for a language to be selected by default in the export list.
+     * @var int The minimum status for a language to be selected by default in the export list.
      */
     public $defaultExportStatus = 1;
 
@@ -290,7 +294,8 @@ class Module extends \yii\base\Module {
     /**
      * @inheritdoc
      */
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
         if ($this->checkAccess()) {
             return parent::beforeAction($action);
         } else {
@@ -299,16 +304,17 @@ class Module extends \yii\base\Module {
     }
 
     /**
-     * @return boolean whether the module can be accessed by the current user
+     * @return bool whether the module can be accessed by the current user
      */
-    public function checkAccess() {
+    public function checkAccess()
+    {
         $ip = Yii::$app->request->getUserIP();
         foreach ($this->allowedIPs as $filter) {
             if ($filter === '*' || $filter === $ip || (($pos = strpos($filter, '*')) !== false && !strncmp($ip, $filter, $pos))) {
                 return true;
             }
         }
-        Yii::warning('Access to Translate is denied due to IP address restriction. The requested IP is ' .  $ip, __METHOD__);
+        Yii::warning('Access to Translate is denied due to IP address restriction. The requested IP is ' . $ip, __METHOD__);
 
         return false;
     }
@@ -316,9 +322,8 @@ class Module extends \yii\base\Module {
     /**
      * @return string The full path of the directory containing the generated JavaScript files.
      */
-    public function getLanguageItemsDirPath() {
+    public function getLanguageItemsDirPath()
+    {
         return Yii::getAlias($this->tmpDir) . $this->subDir;
-    } 
-    
-    
+    }
 }

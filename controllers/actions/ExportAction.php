@@ -11,17 +11,16 @@ use lajax\translatemanager\models\ExportForm;
 use lajax\translatemanager\bundles\LanguageAsset;
 use lajax\translatemanager\bundles\LanguagePluginAsset;
 
-
 /**
  * Class for exporting translations.
  */
-class ExportAction extends \yii\base\Action {
-
+class ExportAction extends \yii\base\Action
+{
     /**
      * @inheritdoc
      */
-    public function init() {
-
+    public function init()
+    {
         LanguageAsset::register($this->controller->view);
         LanguagePluginAsset::register($this->controller->view);
         parent::init();
@@ -29,10 +28,11 @@ class ExportAction extends \yii\base\Action {
 
     /**
      * Show export form or generate export file on post
+     *
      * @return string
      */
-    public function run() {
-
+    public function run()
+    {
         /** @var Module $module */
         $module = $this->controller->module;
 
@@ -41,8 +41,7 @@ class ExportAction extends \yii\base\Action {
         ]);
 
         if ($model->load(Yii::$app->request->post())) {
-
-            $fileName = Yii::t('language', 'translations').'.'.$model->format;
+            $fileName = Yii::t('language', 'translations') . '.' . $model->format;
 
             Yii::$app->response->format = $model->format;
 
@@ -53,16 +52,14 @@ class ExportAction extends \yii\base\Action {
                 ],
                 Response::FORMAT_JSON => [
                     'class' => JsonResponseFormatter::className(),
-                ]
+                ],
             ];
 
             Yii::$app->response->setDownloadHeaders($fileName);
 
             return $model->getExportData();
-
-        }else {
-
-            if (empty($model->languages)){
+        } else {
+            if (empty($model->languages)) {
                 $model->exportLanguages = $model->getDefaultExportLanguages($module->defaultExportStatus);
             }
 
@@ -71,5 +68,4 @@ class ExportAction extends \yii\base\Action {
             ]);
         }
     }
-
 }

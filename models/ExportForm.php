@@ -6,7 +6,9 @@ use yii\base\Model;
 
 /**
  * Export Form.
+ *
  * @author rhertogh <>
+ *
  * @since 1.5.0
  */
 class ExportForm extends Model
@@ -33,7 +35,9 @@ class ExportForm extends Model
 
     /**
      * Find languages matching the minimumStatus
+     *
      * @param $minimumStatus int The status of the returned language will be equal or larger than this number.
+     *
      * @return Language[]
      */
     public function getDefaultExportLanguages($minimumStatus)
@@ -44,10 +48,9 @@ class ExportForm extends Model
             ->column();
     }
 
-
     /**
-     * @return Array[] Generate a two dimensional array of the translation data for the exportLanguages:
-     * 
+     * @return array[] Generate a two dimensional array of the translation data for the exportLanguages:
+     *
      * ~~~
      * [
      *  'languages' => [],
@@ -55,7 +58,6 @@ class ExportForm extends Model
      *  'languageTranslations' => [],
      * ]
      * ~~~
-     * 
      */
     public function getExportData()
     {

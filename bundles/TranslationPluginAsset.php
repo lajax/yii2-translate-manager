@@ -6,12 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * Translation Plugin asset bundle
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class TranslationPluginAsset extends AssetBundle {
-
+class TranslationPluginAsset extends AssetBundle
+{
     /**
      * @inheritdoc
      */
@@ -31,5 +32,4 @@ class TranslationPluginAsset extends AssetBundle {
     public $depends = [
         'lajax\translatemanager\bundles\LanguageItemPluginAsset',
     ];
-
 }

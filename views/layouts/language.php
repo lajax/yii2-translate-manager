@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
 use yii\helpers\Html;
@@ -9,7 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use lajax\translatemanager\bundles\TranslateManagerAsset;
 
-/**
+/*
  * @var \yii\web\View $this
  * @var string $content
  */
@@ -24,11 +25,11 @@ TranslateManagerAsset::register($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-        <?php if(!empty(Yii::$app->getModule('translatemanager')->googleApiKey)) { ?>
-        <script type="text/javascript">
-            var x_googleApiKey = '<?= Yii::$app->getModule('translatemanager')->googleApiKey?>';
-        </script>
-        <?php } ?>
+        <?php if (!empty(Yii::$app->getModule('translatemanager')->googleApiKey)): ?>
+            <script type="text/javascript">
+                var x_googleApiKey = '<?= Yii::$app->getModule('translatemanager')->googleApiKey ?>';
+            </script>
+        <?php endif ?>
     </head>
     <body>
         <?php $this->beginBody() ?>
@@ -44,17 +45,15 @@ TranslateManagerAsset::register($this);
             $menuItems = [
                 ['label' => Yii::t('language', 'Home'), 'url' => ['/']],
                 ['label' => Yii::t('language', 'Language'), 'items' => [
-                        ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
-                        ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create']],
-                    ]
-                ],
+                    ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
+                    ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create']],
+                ]],
                 ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
                 ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
                 ['label' => Yii::t('language', 'Im-/Export'), 'items' => [
-                        ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
-                        ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
-                    ]
-                ],
+                    ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
+                    ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
+                ]],
             ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],

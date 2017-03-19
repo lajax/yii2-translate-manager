@@ -6,12 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * Trasnslation Plugin asset bundle
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class TranslatePluginAsset extends AssetBundle {
-
+class TranslatePluginAsset extends AssetBundle
+{
     /**
      * @inheritdoc
      */
@@ -31,5 +32,4 @@ class TranslatePluginAsset extends AssetBundle {
     public $depends = [
         'yii\web\JqueryAsset',
     ];
-
 }

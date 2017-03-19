@@ -5,10 +5,11 @@ use yii\db\Migration;
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class m141002_030233_translate_manager extends Migration {
-
+class m141002_030233_translate_manager extends Migration
+{
     /**
      * @var array The language table contains the list of languages.
      */
@@ -93,8 +94,8 @@ class m141002_030233_translate_manager extends Migration {
         ['zh-TW', 'zh', 'tw', '中文(台灣)', 'Traditional Chinese (Taiwan)', 0],
     ];
 
-    public function up() {
-
+    public function up()
+    {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
@@ -108,7 +109,7 @@ class m141002_030233_translate_manager extends Migration {
             'name' => Schema::TYPE_STRING . '(32) NOT NULL',
             'name_ascii' => Schema::TYPE_STRING . '(32) NOT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL',
-            'PRIMARY KEY (language_id)'
+            'PRIMARY KEY (language_id)',
         ], $tableOptions);
 
         $this->batchInsert('{{%language}}', [
@@ -117,32 +118,32 @@ class m141002_030233_translate_manager extends Migration {
             'country',
             'name',
             'name_ascii',
-            'status'
+            'status',
         ], $this->languages);
 
         $this->createTable('{{%language_source}}', [
             'id' => Schema::TYPE_PK,
             'category' => Schema::TYPE_STRING . '(32) DEFAULT NULL',
-            'message' => Schema::TYPE_TEXT
+            'message' => Schema::TYPE_TEXT,
         ], $tableOptions);
 
         $this->createTable('{{%language_translate}}', [
             'id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'language' => Schema::TYPE_STRING . '(5) NOT NULL',
             'translation' => Schema::TYPE_TEXT,
-            'PRIMARY KEY (id, language)'
+            'PRIMARY KEY (id, language)',
         ], $tableOptions);
 
         $this->createIndex('language_translate_idx_language', '{{%language_translate}}', 'language');
-        
+
         $this->addForeignKey('language_translate_ibfk_1', '{{%language_translate}}', ['language'], '{{%language}}', ['language_id'], 'CASCADE', 'CASCADE');
         $this->addForeignKey('language_translate_ibfk_2', '{{%language_translate}}', ['id'], '{{%language_source}}', ['id'], 'CASCADE', 'CASCADE');
     }
 
-    public function down() {
+    public function down()
+    {
         $this->dropTable('{{%language_translate}}');
         $this->dropTable('{{%language_source}}');
         $this->dropTable('{{%language}}');
     }
-
 }

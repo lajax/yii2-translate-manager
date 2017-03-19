@@ -13,13 +13,13 @@ use lajax\translatemanager\bundles\LanguagePluginAsset;
 /**
  * Class for exporting translations.
  */
-class ImportAction extends \yii\base\Action {
-
+class ImportAction extends \yii\base\Action
+{
     /**
      * @inheritdoc
      */
-    public function init() {
-
+    public function init()
+    {
         LanguageAsset::register($this->controller->view);
         LanguagePluginAsset::register($this->controller->view);
         parent::init();
@@ -27,29 +27,30 @@ class ImportAction extends \yii\base\Action {
 
     /**
      * Show import form and import the uploaded file if posted
+     *
      * @return string
+     *
      * @throws \Exception
      */
-    public function run() {
-
+    public function run()
+    {
         $model = new ImportForm();
 
         if (Yii::$app->request->isPost) {
-
             $model->importFile = UploadedFile::getInstance($model, 'importFile');
 
-            if ($model->validate()){
-
+            if ($model->validate()) {
                 try {
                     $result = $model->import();
 
-                    $message = Yii::t('language', 'Successfully imported {fileName}', ['fileName'=>$model->importFile->name]);
+                    $message = Yii::t('language', 'Successfully imported {fileName}', ['fileName' => $model->importFile->name]);
                     $message .= "<br/>\n";
                     foreach ($result as $type => $typeResult) {
                         $message .= "<br/>\n" . Yii::t('language', '{type}: {new} new, {updated} updated', [
-                                'type' => $type,
-                                'new' => $typeResult['new'],
-                                'updated' => $typeResult['updated']]);
+                            'type' => $type,
+                            'new' => $typeResult['new'],
+                            'updated' => $typeResult['updated'],
+                        ]);
                     }
 
                     $languageIds = Language::find()
@@ -63,11 +64,10 @@ class ImportAction extends \yii\base\Action {
                     }
 
                     Yii::$app->getSession()->setFlash('success', $message);
-
-                }catch (\Exception $e){
-                    if (YII_DEBUG){
+                } catch (\Exception $e) {
+                    if (YII_DEBUG) {
                         throw $e;
-                    }else {
+                    } else {
                         Yii::$app->getSession()->setFlash('danger', str_replace("\n", "<br/>\n", $e->getMessage()));
                     }
                 }
@@ -78,5 +78,4 @@ class ImportAction extends \yii\base\Action {
             'model' => $model,
         ]);
     }
-
 }

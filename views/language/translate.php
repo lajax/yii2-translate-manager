@@ -2,6 +2,7 @@
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
 use yii\helpers\Html;
@@ -25,13 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id="translates" class="<?= $language_id ?>">
     <?php
     Pjax::begin([
-        'id' => 'translates'
+        'id' => 'translates',
     ]);
     $form = ActiveForm::begin([
-                'method' => 'get',
-                'id' => 'search-form',
-                'enableAjaxValidation' => false,
-                'enableClientValidation' => false,
+        'method' => 'get',
+        'id' => 'search-form',
+        'enableAjaxValidation' => false,
+        'enableClientValidation' => false,
     ]);
     echo $form->field($searchModel, 'source')->dropDownList(['' => Yii::t('language', 'Original')] + Lang::getLanguageNames(true))->label(Yii::t('language', 'Source language'));
     ActiveForm::end();
@@ -52,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'message'],
                 'label' => Yii::t('language', 'Source'),
                 'content' => function ($data) {
-                    return Html::textarea('LanguageSource[' . $data->id . ']', $data->source, [ 'class' => 'form-control source', 'readonly' => 'readonly']);
+                    return Html::textarea('LanguageSource[' . $data->id . ']', $data->source, ['class' => 'form-control source', 'readonly' => 'readonly']);
                 },
             ],
             [

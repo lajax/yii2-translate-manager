@@ -1,9 +1,9 @@
 <?php
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.3
  */
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use lajax\translatemanager\models\Language;
@@ -16,7 +16,7 @@ use lajax\translatemanager\models\Language;
 <div class="language-form col-sm-6">
 
     <?php $form = ActiveForm::begin([
-        'enableAjaxValidation' => true
+        'enableAjaxValidation' => true,
     ]); ?>
 
     <?= $form->field($model, 'language_id')->textInput(['maxlength' => 5]) ?>
