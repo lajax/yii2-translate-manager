@@ -19,7 +19,7 @@ class SaveAction extends \yii\base\Action
     /**
      * Saving translated language elements.
      *
-     * @return Json
+     * @return array
      */
     public function run()
     {

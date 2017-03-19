@@ -18,7 +18,7 @@ class DialogAction extends \yii\base\Action
     /**
      * Creating dialogue box.
      *
-     * @return View
+     * @return string
      */
     public function run()
     {

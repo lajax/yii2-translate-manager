@@ -177,9 +177,9 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController
     }
 
     /**
-     * @param $options Definition of the parameters required to identify language elements.
-     * @param $translatorTokens Translation identification
-     * @param $tokens Tokens to search through
+     * @param array $options Definition of the parameters required to identify language elements.
+     * @param array $translatorTokens Translation identification
+     * @param array $tokens Tokens to search through
      */
     protected function checkTokens($options, $translatorTokens, $tokens)
     {
@@ -225,9 +225,11 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController
 
     /**
      * Returns language elements in the token buffer.
-     * If there is no recognisable language element in the array, returns null.
+     * If there are no recognisable language elements in the array, returns null
      *
-     * @param mixed $buffer
+     * @param array $buffer
+     *
+     * @return array|null
      */
     abstract protected function getLanguageItem($buffer);
 

@@ -18,7 +18,7 @@ class ChangeStatusAction extends \yii\base\Action
     /**
      * Modifying the state of language.
      *
-     * @return Json
+     * @return array
      */
     public function run()
     {

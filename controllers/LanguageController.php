@@ -3,7 +3,10 @@
 namespace lajax\translatemanager\controllers;
 
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
+use lajax\translatemanager\models\Language;
 
 /**
  * Controller for managing multilinguality.
@@ -113,10 +116,10 @@ class LanguageController extends Controller
      */
     public function findModel($id)
     {
-        if (($model = \lajax\translatemanager\models\Language::findOne($id)) !== null) {
+        if (($model = Language::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 
@@ -125,7 +128,7 @@ class LanguageController extends Controller
      *
      * @param array $languageSources
      *
-     * @return \yii\data\ArrayDataProvider
+     * @return ArrayDataProvider
      */
     public function createLanguageSourceDataProvider($languageSources)
     {
@@ -139,7 +142,7 @@ class LanguageController extends Controller
             }
         }
 
-        return new \yii\data\ArrayDataProvider([
+        return new ArrayDataProvider([
             'allModels' => $data,
             'pagination' => false,
         ]);

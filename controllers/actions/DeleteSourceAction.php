@@ -19,7 +19,7 @@ class DeleteSourceAction extends \yii\base\Action
      * Deletes an existing LanguageSource model.
      * If deletion is successful, the browser will be redirected to the 'list' page.
      *
-     * @return json
+     * @return array
      */
     public function run()
     {

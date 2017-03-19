@@ -46,7 +46,7 @@ class ScannerDatabase
     private $_scanner;
 
     /**
-     * @param Scaner $scanner
+     * @param Scanner $scanner
      */
     public function __construct(Scanner $scanner)
     {

@@ -52,12 +52,7 @@ class ScannerJavaScriptFunction extends ScannerFile
     }
 
     /**
-     * Returns language elements in the token buffer.
-     * If there is no recognisable language element in the array, returns null.
-     *
-     * @param array $buffer
-     *
-     * @return array|null
+     * @inheritdoc
      */
     protected function getLanguageItem($buffer)
     {

@@ -114,7 +114,7 @@ class LanguageTranslate extends \yii\db\ActiveRecord
     /**
      * Returns the language element in all other languages.
      *
-     * @return LanguageTranslate
+     * @return LanguageTranslate[]
      */
     public function getTranslatedLanguages()
     {
