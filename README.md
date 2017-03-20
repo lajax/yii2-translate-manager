@@ -526,6 +526,23 @@ Known issues
   You can overwrite this behavior with the `scanRootParentDirectory` option. (See Config section for details.)
 * Frontend translation of strings in hidden tags corrupts HTML. [#45](https://github.com/lajax/yii2-translate-manager/issues/45)
 
+Coding style
+-----------
+
+The project uses the PSR-2 coding standard.
+
+Coding style issues can be fixed using the following command:
+
+```
+composer cs-fix
+```
+
+You can check the code, without affecting it: 
+
+```
+composer cs-fix-dry-run
+```
+
 Screenshots
 -----------
 

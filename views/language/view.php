@@ -1,9 +1,9 @@
 <?php
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.3
  */
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -39,12 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name_ascii',
             [
                 'label' => Yii::t('language', 'Status'),
-                'value' => $model->getStatusName()
+                'value' => $model->getStatusName(),
             ],
             [
                 'label' => Yii::t('language', 'Translation status'),
-                'value' => $model->getGridStatistic() . '%'
-            ]
+                'value' => $model->getGridStatistic() . '%',
+            ],
         ],
     ])
     ?>

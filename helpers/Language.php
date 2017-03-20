@@ -8,19 +8,19 @@ use lajax\translatemanager\bundles\TranslationPluginAsset;
 
 /**
  * Language helper.
- * 
+ *
  * Inserts the necessary JavaScripts for client side multilingual support into the content.
- * 
+ *
  * For translating one-dimensional arrays.
- * 
+ *
  * For translating database tables.
- * 
+ *
  * @author Lajos Molnar <lajax.m@gmail.com>
+ *
  * @since 1.1
  */
 class Language
 {
-
     /**
      * @var string parent span for front end translation.
      */
@@ -40,6 +40,7 @@ class Language
      * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
      * @param string $language the language code (e.g. `en-US`, `en`).
      * If this is null, the current [[\yii\base\Application::language|application language]] will be used.
+     *
      * @return string the translated message.
      */
     public static function t($category, $message, $params = [], $language = null)
@@ -50,7 +51,7 @@ class Language
                 '{category}' => $category,
                 '{message}' => Yii::t($category, $message, $params, $language),
                 '{params}' => \yii\helpers\Html::encode(\yii\helpers\Json::encode($params)),
-                '{hash}' => md5($message)
+                '{hash}' => md5($message),
             ]);
         } else {
             return Yii::t($category, $message, $params, $language);
@@ -60,13 +61,13 @@ class Language
     /**
      * Translating one-dimensional array.
      * e.g.:
-     * 
+     *
      * ~~~
      * $array = [
      *      'hello' => 'Hello {name}!',
      *      'hi' => 'Hi {name}',
      * ];
-     * 
+     *
      * $params = [
      *      'hello' => [
      *          'name' => 'World',
@@ -77,19 +78,19 @@ class Language
      * ];
      * $result = \lajax\translatemanager\helpers\Language::a($array, $params);
      * ~~~
-     * 
+     *
      * The result:
-     * 
+     *
      * ~~~
      * [
      *  'hello' => 'Hello World',
      *  'hi' => 'Hi Jenny',
      * ]
      * ~~~
-     * 
+     *
      * Translating multi-dimensional array.
      * e.g.:
-     * 
+     *
      * ~~~
      * $array = [
      *      self::GENDER_MALE => [
@@ -101,7 +102,7 @@ class Language
      *          self::MATERIALSTATUS_SINGLE => 'Miss {name}'
      *      ]
      * ];
-     * 
+     *
      * $params = [
      *      self::GENDER_MALE => [
      *          self::MATERIALSTATUS_MARRIED => [
@@ -122,9 +123,9 @@ class Language
      * ];
      * $result = \lajax\translatemanager\helpers\Language::a($array, $params);
      * ~~~
-     * 
+     *
      * The result:
-     * 
+     *
      * ~~~
      * [
      *  self::GENDER_MALE => [
@@ -137,10 +138,11 @@ class Language
      *  ]
      * ]
      * ~~~
-     * 
+     *
      * @param array $array One-dimensonal or Multi-dimensional array to be translated.
      * @param array $params List of parameters to be changed.
      * @param string $language Language of translation.
+     *
      * @return array The translated array.
      */
     public static function a($array, $params = [], $language = null)
@@ -162,7 +164,7 @@ class Language
      * For translating language elements stored in a database.
      * Enable translating databases in config before use.
      * e.g.:
-     * 
+     *
      * ~~~
      * 'modules' => [
      *      'translatemanager' => [
@@ -182,11 +184,12 @@ class Language
      *      ]
      * ]
      * ~~~
-     * 
-     * 
+     *
+     *
      * @param string $message Language element stored in database.
      * @param array $params Parameters to be changed.
      * @param string $language Language of translation.
+     *
      * @return string Translated language element.
      */
     public static function d($message, $params = [], $language = null)
@@ -196,7 +199,8 @@ class Language
 
     /**
      * Determines whether the translation mode is active.
-     * @return boolean
+     *
+     * @return bool
      */
     public static function isEnabledTranslate()
     {
@@ -205,6 +209,7 @@ class Language
 
     /**
      * Saveing new language element by category.
+     *
      * @param string $message Language element save in database.
      * @param string $category the message category.
      */
@@ -218,7 +223,7 @@ class Language
         }
 
         if (empty($messages[$message])) {
-            $languageSource = new \lajax\translatemanager\models\LanguageSource;
+            $languageSource = new \lajax\translatemanager\models\LanguageSource();
             $languageSource->category = $category;
             $languageSource->message = $message;
             $languageSource->save();
@@ -227,6 +232,7 @@ class Language
 
     /**
      * Returns the category of LanguageSource in an associative array.
+     *
      * @return array
      */
     public static function getCategories()
@@ -240,5 +246,4 @@ class Language
 
         return $categories;
     }
-
 }

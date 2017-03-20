@@ -6,12 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * Language asset bundle
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class LanguageAsset extends AssetBundle {
-
+class LanguageAsset extends AssetBundle
+{
     /**
      * @inheritdoc
      */
@@ -24,5 +25,4 @@ class LanguageAsset extends AssetBundle {
         'stylesheets/helpers.css',
         'stylesheets/language.css',
     ];
-
 }

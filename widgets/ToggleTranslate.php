@@ -8,43 +8,44 @@ use lajax\translatemanager\Module;
 
 /**
  * Widget that displays button for switching to translating mode.
- * 
+ *
  * Simple example:
- * 
+ *
  * ~~~
  * \lajax\translatemanager\widgets\ToggleTranslate::widget();
  * ~~~
- * 
+ *
  * Example for changing position:
- * 
+ *
  * ~~~
  * \lajax\translatemanager\widgets\ToggleTranslate::widget([
  *  'position' => \lajax\translatemanager\widgets\ToggleTranslate::POSITION_TOP_RIGHT,
  * ]);
  * ~~~
- * 
+ *
  * Example for changing skin:
- * 
+ *
  * ~~~
  * \lajax\translatemanager\widgets\ToggleTranslate::widget([
  *  'frontendTranslationAsset' => 'lajax\translatemanager\bundles\FrontendTranslationAsset',
  * ]);
  * ~~~
- * 
+ *
  * Example for changing template and skin:
- * 
+ *
  * ~~~
  * \lajax\translatemanager\widgets\ToggleTranslate::widget([
  *  'template' => '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>',
  *  'frontendTranslationAsset' => 'lajax\translatemanager\bundles\FrontendTranslationAsset',
  * ]);
  * ~~~
- * 
+ *
  * @author Lajos Molnar <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class ToggleTranslate extends Widget {
-
+class ToggleTranslate extends Widget
+{
     /**
      * Url of the dialog window.
      */
@@ -83,12 +84,14 @@ class ToggleTranslate extends Widget {
 
     /**
      * example: http://www.yiiframework.com/doc-2.0/guide-structure-assets.html
+     *
      * @var string added StyleSheets and their dependencies
      */
     public $frontendTranslationAsset = 'lajax\translatemanager\bundles\FrontendTranslationAsset';
 
     /**
      * example: http://www.yiiframework.com/doc-2.0/guide-structure-assets.html
+     *
      * @var string added JavaScripts and their dependencies
      */
     public $frontendTranslationPluginAsset = 'lajax\translatemanager\bundles\FrontendTranslationPluginAsset';
@@ -96,7 +99,8 @@ class ToggleTranslate extends Widget {
     /**
      * @inheritdoc
      */
-    public function run() {
+    public function run()
+    {
         if (!Yii::$app->session->has(Module::SESSION_KEY_ENABLE_TRANSLATE)) {
             return;
         }
@@ -114,8 +118,8 @@ class ToggleTranslate extends Widget {
     /**
      * Registering asset files
      */
-    private function _registerAssets() {
-
+    private function _registerAssets()
+    {
         if ($this->frontendTranslationAsset) {
             Yii::$app->view->registerAssetBundle($this->frontendTranslationAsset);
         }
@@ -124,5 +128,4 @@ class ToggleTranslate extends Widget {
             Yii::$app->view->registerAssetBundle($this->frontendTranslationPluginAsset);
         }
     }
-
 }

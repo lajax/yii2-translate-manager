@@ -7,9 +7,9 @@ use lajax\translatemanager\services\Scanner;
 
 /**
  * Class for processing PHP files.
- * 
+ *
  * Language elements detected in constant arrays:
- * 
+ *
  * ~~~
  *  /**
  *   * @translate
@@ -23,25 +23,26 @@ use lajax\translatemanager\services\Scanner;
  *      self::STATUS_INACTIVE => 'Inactive'
  *   ];
  * ~~~
- * 
+ *
  * Translation of constant arrays:
  * Translation to site language:
- * 
+ *
  * ~~~
  * $genders = \lajax\translatemanager\helpers\Language::a($this->_GENDERS);
  * ~~~
- * 
+ *
  * Translating to the language of your coice:
- * 
+ *
  * ~~~
  * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de-DE');
  * ~~~
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class ScannerPhpArray extends ScannerFile {
-
+class ScannerPhpArray extends ScannerFile
+{
     /**
      * Extension of PHP files.
      */
@@ -49,18 +50,20 @@ class ScannerPhpArray extends ScannerFile {
 
     /**
      * Start scanning PHP files.
+     *
      * @param string $route
      * @param array $params
      * @inheritdoc
      */
-    public function run($route, $params = array()) {
+    public function run($route, $params = [])
+    {
         $this->scanner->stdout('Detect PhpArray - BEGIN', Console::FG_BLUE);
         foreach (self::$files[static::EXTENSION] as $file) {
             foreach ($this->_getTranslators($file) as $translator) {
                 $this->extractMessages($file, [
                     'translator' => [$translator],
                     'begin' => (preg_match('#array\s*$#i', $translator) != false) ? '(' : '[',
-                    'end' => ';'
+                    'end' => ';',
                 ]);
             }
         }
@@ -70,10 +73,13 @@ class ScannerPhpArray extends ScannerFile {
 
     /**
      * Returns the names of the arrays storing the language elements to be translated.
+     *
      * @param string $file Path to the file to scan.
+     *
      * @return array List of arrays storing the language elements to be translated.
      */
-    private function _getTranslators($file) {
+    private function _getTranslators($file)
+    {
         $subject = file_get_contents($file);
         preg_match_all($this->module->patternArrayTranslator, $subject, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
         $translators = [];
@@ -87,13 +93,10 @@ class ScannerPhpArray extends ScannerFile {
     }
 
     /**
-     * Returns language elements in the token buffer.
-     * If there are no recognisable language elements in the array, returns null
-     * @param array $buffer
-     * @return array|null
+     * @inheritdoc
      */
-    protected function getLanguageItem($buffer) {
-
+    protected function getLanguageItem($buffer)
+    {
         $index = -1;
         $languageItems = [];
         foreach ($buffer as $key => $data) {
@@ -105,13 +108,12 @@ class ScannerPhpArray extends ScannerFile {
                 } else {
                     $languageItems[++$index] = [
                         'category' => Scanner::CATEGORY_ARRAY,
-                        'message' => $message
+                        'message' => $message,
                     ];
                 }
             }
         }
 
-        return $languageItems ? : null;
+        return $languageItems ?: null;
     }
-
 }

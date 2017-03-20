@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.3
  */
 

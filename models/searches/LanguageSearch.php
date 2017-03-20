@@ -2,6 +2,7 @@
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
 
@@ -14,14 +15,15 @@ use lajax\translatemanager\models\Language;
 /**
  * LanguageSearch represents the model behind the search form about `common\models\Language`.
  */
-class LanguageSearch extends Language {
-    
+class LanguageSearch extends Language
+{
     use SearchTrait;
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             [['language_id', 'language', 'country', 'name', 'name_ascii'], 'safe'],
             [['status'], 'integer'],
@@ -29,18 +31,21 @@ class LanguageSearch extends Language {
     }
 
     /**
-     * The name of the default scenario. 
+     * The name of the default scenario.
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
     /**
      * @param array $params Search conditions.
+     *
      * @return ActiveDataProvider
      */
-    public function search($params) {
+    public function search($params)
+    {
         $query = Language::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -56,12 +61,11 @@ class LanguageSearch extends Language {
         ]);
 
         $query->andFilterWhere($this->createLikeExpression('language_id', $this->language_id))
-                ->andFilterWhere($this->createLikeExpression('language', $this->language))
-                ->andFilterWhere($this->createLikeExpression('country', $this->country))
-                ->andFilterWhere($this->createLikeExpression('name', $this->name))
-                ->andFilterWhere($this->createLikeExpression('name_ascii', $this->name_ascii));
+            ->andFilterWhere($this->createLikeExpression('language', $this->language))
+            ->andFilterWhere($this->createLikeExpression('country', $this->country))
+            ->andFilterWhere($this->createLikeExpression('name', $this->name))
+            ->andFilterWhere($this->createLikeExpression('name_ascii', $this->name_ascii));
 
         return $dataProvider;
     }
-
 }

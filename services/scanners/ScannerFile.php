@@ -11,26 +11,26 @@ use lajax\translatemanager\services\Scanner;
 /**
  * Class for processing PHP and JavaScript files.
  * Language elements detected in JavaScript files:
- * 
+ *
  * ~~~
  * lajax.t('language element);
  * lajax.t('language element {replace}', {replace:'String'});
  * lajax.t("language element");
  * lajax.t("language element {replace}", {replace:'String'});
  * ~~~
- * 
+ *
  * Language elements detected in PHP files:
  * "t" functions:
- * 
+ *
  * ~~~
  * ::t('category of language element', 'language element');
  * ::t('category of language element', 'language element {replace}', ['replace' => 'String']);
  * ::t('category of language element', "language element");
  * ::t('category of language element', "language element {replace}", ['replace' => 'String']);
  * ~~~
- * 
+ *
  * Language elements detected in constant arrays:
- * 
+ *
  * ~~~
  *  /**
  *   * @translate
@@ -44,25 +44,26 @@ use lajax\translatemanager\services\Scanner;
  *      self::STATUS_INACTIVE => 'Inactive'
  *   ];
  * ~~~
- * 
+ *
  * Translation of constant arrays:
  * Translation to site language:
- * 
+ *
  * ~~~
  * $genders = \lajax\translatemanager\helpers\Language::a($this->_GENDERS);
  * ~~~
- * 
+ *
  * Translating to the language of your coice:
- * 
+ *
  * ~~~
  * $statuses = \lajax\translatemanager\helpers\Language::a($this->_STATUSES, [], 'de-DE');
  * ~~~
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.1
  */
-abstract class ScannerFile extends \yii\console\controllers\MessageController {
-
+abstract class ScannerFile extends \yii\console\controllers\MessageController
+{
     /**
      * Extension of PHP files.
      */
@@ -86,9 +87,10 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
     /**
      * @param Scanner $scanner
      */
-    public function __construct(Scanner $scanner) {
+    public function __construct(Scanner $scanner)
+    {
         parent::__construct('language', Yii::$app->getModule('translatemanager'), [
-            'scanner' => $scanner
+            'scanner' => $scanner,
         ]);
     }
 
@@ -112,7 +114,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
         foreach ($this->_getRoots() as $root) {
             $root = realpath($root);
-            Yii::trace("Scanning " . static::EXTENSION . " files for language elements in: $root", 'translatemanager');
+            Yii::trace('Scanning ' . static::EXTENSION . " files for language elements in: $root", 'translatemanager');
 
             $files = FileHelper::findFiles($root, [
                 'except' => $this->module->ignoredItems,
@@ -123,12 +125,13 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
         self::$files[static::EXTENSION] = array_unique(self::$files[static::EXTENSION]);
     }
-    
+
     /**
      * Determines whether the file has any of the translators.
-     * 
+     *
      * @param string[] $translators Array of translator patterns to search (for example: `['::t']`).
      * @param string $file Path of the file.
+     *
      * @return bool
      */
     protected function containsTranslator($translators, $file)
@@ -144,8 +147,8 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      *
      * @param string $fileName name of the file to extract messages from
      * @param array $options Definition of the parameters required to identify language elements.
-     * example: 
-     * 
+     * example:
+     *
      * ~~~
      * [
      *      'translator' => ['Yii::t', 'Lx::t'],
@@ -153,10 +156,10 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
      *      'end' => ')'
      * ]
      * ~~~
-     * 
      * @param array $ignoreCategories message categories to ignore Yii 2.0.4
      */
-    protected function extractMessages($fileName, $options, $ignoreCategories = []) {
+    protected function extractMessages($fileName, $options, $ignoreCategories = [])
+    {
         $this->scanner->stdout('Extracting messages from ' . $fileName, Console::FG_GREEN);
         $subject = file_get_contents($fileName);
         if (static::EXTENSION !== '*.php') {
@@ -172,11 +175,11 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
             $this->checkTokens($options, $translatorTokens, $tokens);
         }
     }
-    
+
     /**
-     * @param $options Definition of the parameters required to identify language elements.
-     * @param $translatorTokens Translation identification
-     * @param $tokens Tokens to search through
+     * @param array $options Definition of the parameters required to identify language elements.
+     * @param array $translatorTokens Translation identification
+     * @param array $tokens Tokens to search through
      */
     protected function checkTokens($options, $translatorTokens, $tokens)
     {
@@ -184,12 +187,11 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
         $matchedTokensCount = 0;
         $buffer = [];
 
-
         foreach ($tokens as $token) {
             // finding out translator call
             if ($matchedTokensCount < $translatorTokensCount) {
                 if ($this->tokensEqual($token, $translatorTokens[$matchedTokensCount])) {
-                    $matchedTokensCount++;
+                    ++$matchedTokensCount;
                 } else {
                     $matchedTokensCount = 0;
                 }
@@ -197,7 +199,6 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
                 // translator found
                 // end of translator call or end of something that we can't extract
                 if ($this->tokensEqual($options['end'], $token)) {
-
                     $languageItems = $this->getLanguageItem($buffer);
                     if ($languageItems) {
                         $this->scanner->addLanguageItems($languageItems);
@@ -212,7 +213,6 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
                     // prepare for the next match
                     $matchedTokensCount = 0;
                     $buffer = [];
-
                 } elseif ($token !== $options['begin'] && isset($token[0]) && !in_array($token[0],
                         [T_WHITESPACE, T_COMMENT])
                 ) {
@@ -225,12 +225,17 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
     /**
      * Returns language elements in the token buffer.
-     * If there is no recognisable language element in the array, returns null.
+     * If there are no recognisable language elements in the array, returns null
+     *
+     * @param array $buffer
+     *
+     * @return array|null
      */
     abstract protected function getLanguageItem($buffer);
-    
+
     /**
      * Returns the root directories to scan.
+     *
      * @return array
      */
     private function _getRoots()
@@ -249,7 +254,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
                 $directories[] = Yii::getAlias($root);
             }
         } else {
-            throw new InvalidConfigException("Invalid `root` option value!");
+            throw new InvalidConfigException('Invalid `root` option value!');
         }
 
         return $directories;
@@ -257,11 +262,13 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController {
 
     /**
      * Determines whether the category received as a parameter can be processed.
+     *
      * @param string $category
-     * @return boolean
+     *
+     * @return bool
      */
-    protected function isValidCategory($category) {
+    protected function isValidCategory($category)
+    {
         return !in_array($category, $this->module->ignoredCategories);
     }
-
 }

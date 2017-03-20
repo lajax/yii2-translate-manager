@@ -2,6 +2,7 @@
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
 
@@ -17,22 +18,21 @@ use Yii;
  * @property string $message
  * @property string $source
  * @property string $translation
- *
  * @property LanguageTranslate $languageTranslate0
  * @property LanguageTranslate $languageTranslate
  * @property Language[] $languages
  */
 class LanguageSource extends \yii\db\ActiveRecord
 {
-
     const INSERT_LANGUAGE_ITEMS_LIMIT = 10;
 
     /**
      * @inheritdoc
      */
-    public static function getDb() 
+    public static function getDb()
     {
         $dbMessageSources = Yii::getObjectVars(Yii::$app->i18n->getMessageSource('DbMessageSource'));
+
         return $dbMessageSources['db'];
     }
 
@@ -42,6 +42,7 @@ class LanguageSource extends \yii\db\ActiveRecord
     public static function tableName()
     {
         $dbMessageSources = Yii::getObjectVars(Yii::$app->i18n->getMessageSource('DbMessageSource'));
+
         return isset($dbMessageSources['sourceMessageTable']) ? $dbMessageSources['sourceMessageTable'] : '{{%source_message}}';
     }
 
@@ -52,7 +53,7 @@ class LanguageSource extends \yii\db\ActiveRecord
     {
         return [
             [['message'], 'string'],
-            [['category'], 'string', 'max' => 32]
+            [['category'], 'string', 'max' => 32],
         ];
     }
 
@@ -70,8 +71,10 @@ class LanguageSource extends \yii\db\ActiveRecord
 
     /**
      * Inserting new language elements into the language_source table.
+     *
      * @param array $languageItems
-     * @return integer The number of new language elements.
+     *
+     * @return int The number of new language elements.
      */
     public function insertLanguageItems($languageItems)
     {
@@ -80,7 +83,7 @@ class LanguageSource extends \yii\db\ActiveRecord
             foreach (array_keys($messages) as $message) {
                 $data[] = [
                     $category,
-                    $message
+                    $message,
                 ];
             }
         }
@@ -88,9 +91,9 @@ class LanguageSource extends \yii\db\ActiveRecord
         $count = count($data);
         for ($i = 0; $i < $count; $i += self::INSERT_LANGUAGE_ITEMS_LIMIT) {
             static::getDb()
-                    ->createCommand()
-                    ->batchInsert(static::tableName(), ['category', 'message'], array_slice($data, $i, self::INSERT_LANGUAGE_ITEMS_LIMIT))
-                    ->execute();
+                ->createCommand()
+                ->batchInsert(static::tableName(), ['category', 'message'], array_slice($data, $i, self::INSERT_LANGUAGE_ITEMS_LIMIT))
+                ->execute();
         }
 
         return $count;
@@ -118,6 +121,7 @@ class LanguageSource extends \yii\db\ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     *
      * @deprecated since version 1.5.3
      */
     public function getLanguageTranslateByLanguage()
@@ -155,7 +159,6 @@ class LanguageSource extends \yii\db\ActiveRecord
     public function getLanguages()
     {
         return $this->hasMany(Language::className(), ['language_id' => 'language'])
-                        ->viaTable(LanguageTranslate::tableName(), ['id' => 'id']);
+            ->viaTable(LanguageTranslate::tableName(), ['id' => 'id']);
     }
-
 }

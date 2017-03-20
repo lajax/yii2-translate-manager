@@ -2,6 +2,7 @@
 
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
 
@@ -18,7 +19,6 @@ use lajax\translatemanager\models\LanguageTranslate;
  */
 class LanguageSourceSearch extends LanguageSource
 {
-    
     use SearchTrait;
 
     /**
@@ -48,7 +48,7 @@ class LanguageSourceSearch extends LanguageSource
     }
 
     /**
-     * The name of the default scenario. 
+     * The name of the default scenario.
      */
     public function scenarios()
     {
@@ -58,6 +58,7 @@ class LanguageSourceSearch extends LanguageSource
 
     /**
      * @param array $params Search conditions.
+     *
      * @return ActiveDataProvider
      */
     public function search($params)
@@ -78,56 +79,58 @@ class LanguageSourceSearch extends LanguageSource
                 'translation' => [
                     'asc' => ['lt.translation' => SORT_ASC],
                     'desc' => ['lt.translation' => SORT_DESC],
-                    'label' => Yii::t('language', 'Translation')
-                ]
-            ]
+                    'label' => Yii::t('language', 'Translation'),
+                ],
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
-            $query->joinWith(['languageTranslate' => function($query) use ($translateLanguage) {
+            $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage) {
                 $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
             }]);
-            $query->joinWith(['languageTranslate0' => function($query) use ($sourceLanguage) {
+            $query->joinWith(['languageTranslate0' => function ($query) use ($sourceLanguage) {
                 $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
-            }]);            
+            }]);
 
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'category' => $this->category
+            'category' => $this->category,
         ]);
 
         $query->andFilterWhere([
-            'or', 
+            'or',
             $this->createLikeExpression('message', $this->message),
-            $this->createLikeExpression('ts.translation', $this->message)
+            $this->createLikeExpression('ts.translation', $this->message),
         ]);
 
-        $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage)  {
+        $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage) {
             $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
-            if (!empty($this->searchEmptyCommand) && $this->translation == $this->searchEmptyCommand){
-                $query->andWhere(['or', ['lt.translation'=>null], ['lt.translation'=>'']]);
-            }else {
+            if (!empty($this->searchEmptyCommand) && $this->translation == $this->searchEmptyCommand) {
+                $query->andWhere(['or', ['lt.translation' => null], ['lt.translation' => '']]);
+            } else {
                 $query->andFilterWhere($this->createLikeExpression('lt.translation', $this->translation));
             }
         }]);
 
-        $query->joinWith(['languageTranslate0' => function ($query) use ($sourceLanguage)  {
+        $query->joinWith(['languageTranslate0' => function ($query) use ($sourceLanguage) {
             $query->from(['ts' => LanguageTranslate::tableName()])->onCondition(['ts.language' => $sourceLanguage]);
         }]);
-        
+
         return $dataProvider;
     }
 
     /**
      * Returns the language of message source.
+     *
      * @return string
      */
     private function _getSourceLanguage()
     {
         $languageSourceSearch = Yii::$app->request->get('LanguageSourceSearch', []);
+
         return isset($languageSourceSearch['source']) ? $languageSourceSearch['source'] : Yii::$app->sourceLanguage;
     }
 }

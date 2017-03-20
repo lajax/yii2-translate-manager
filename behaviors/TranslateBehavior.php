@@ -30,11 +30,11 @@ use lajax\translatemanager\helpers\Language;
  * ~~~
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.5.3
  */
 class TranslateBehavior extends AttributeBehavior
 {
-
     /**
      * @var array|string
      */
@@ -60,7 +60,6 @@ class TranslateBehavior extends AttributeBehavior
      */
     public function events()
     {
-
         return [
             BaseActiveRecord::EVENT_AFTER_FIND => 'translateAttributes',
             BaseActiveRecord::EVENT_BEFORE_INSERT => 'saveAttributes',
@@ -70,6 +69,7 @@ class TranslateBehavior extends AttributeBehavior
 
     /**
      * Translates a message to the specified language.
+     *
      * @param \yii\base\Event $event
      */
     public function translateAttributes($event)
@@ -83,6 +83,7 @@ class TranslateBehavior extends AttributeBehavior
 
     /**
      * Saveing new language element by category.
+     *
      * @param \yii\base\Event $event
      */
     public function saveAttributes($event)
@@ -95,5 +96,4 @@ class TranslateBehavior extends AttributeBehavior
             }
         }
     }
-
 }

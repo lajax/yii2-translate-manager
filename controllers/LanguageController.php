@@ -3,15 +3,20 @@
 namespace lajax\translatemanager\controllers;
 
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
+use lajax\translatemanager\models\Language;
 
 /**
  * Controller for managing multilinguality.
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class LanguageController extends Controller {
-
+class LanguageController extends Controller
+{
     /**
      * @var \lajax\translatemanager\Module TranslateManager module
      */
@@ -25,7 +30,8 @@ class LanguageController extends Controller {
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -44,7 +50,8 @@ class LanguageController extends Controller {
     /**
      * @inheritdoc
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -100,40 +107,44 @@ class LanguageController extends Controller {
     /**
      * Finds the Language model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param string $id
+     *
      * @return Language the loaded model
+     *
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function findModel($id) {
-        if (($model = \lajax\translatemanager\models\Language::findOne($id)) !== null) {
+    public function findModel($id)
+    {
+        if (($model = Language::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new \yii\web\NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-    
+
     /**
      * Returns an ArrayDataProvider consisting of language elements.
+     *
      * @param array $languageSources
-     * @return \yii\data\ArrayDataProvider
+     *
+     * @return ArrayDataProvider
      */
-    public function createLanguageSourceDataProvider($languageSources) {
-
+    public function createLanguageSourceDataProvider($languageSources)
+    {
         $data = [];
         foreach ($languageSources as $category => $messages) {
             foreach ($messages as $message => $boolean) {
                 $data[] = [
                     'category' => $category,
-                    'message' => $message
+                    'message' => $message,
                 ];
             }
         }
 
-        return new \yii\data\ArrayDataProvider([
+        return new ArrayDataProvider([
             'allModels' => $data,
-            'pagination' => false
+            'pagination' => false,
         ]);
     }
-
 }

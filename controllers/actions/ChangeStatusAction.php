@@ -8,17 +8,20 @@ use lajax\translatemanager\models\Language;
 
 /**
  * Class that modifies the state of a language.
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class ChangeStatusAction extends \yii\base\Action {
-
+class ChangeStatusAction extends \yii\base\Action
+{
     /**
      * Modifying the state of language.
-     * @return Json
+     *
+     * @return array
      */
-    public function run() {
-
+    public function run()
+    {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $language = Language::findOne(Yii::$app->request->post('language_id', ''));
@@ -31,5 +34,4 @@ class ChangeStatusAction extends \yii\base\Action {
 
         return $language->getErrors();
     }
-
 }

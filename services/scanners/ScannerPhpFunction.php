@@ -6,10 +6,10 @@ use yii\helpers\Console;
 
 /**
  * Class for processing PHP files.
- * 
+ *
  * Language elements detected in PHP files:
  * "t" functions:
- * 
+ *
  * ~~~
  * ::t('category of language element', 'language element');
  * ::t('category of language element', 'language element {replace}', ['replace' => 'String']);
@@ -18,10 +18,11 @@ use yii\helpers\Console;
  * ~~~
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.0
  */
-class ScannerPhpFunction extends ScannerFile {
-
+class ScannerPhpFunction extends ScannerFile
+{
     /**
      * Extension of PHP files.
      */
@@ -29,11 +30,13 @@ class ScannerPhpFunction extends ScannerFile {
 
     /**
      * Start scanning PHP files.
+     *
      * @param string $route
      * @param array $params
      * @inheritdoc
      */
-    public function run($route, $params = array()) {
+    public function run($route, $params = [])
+    {
         $this->scanner->stdout('Detect PhpFunction - BEGIN', Console::FG_CYAN);
         foreach (self::$files[static::EXTENSION] as $file) {
             if ($this->containsTranslator($this->module->phpTranslators, $file)) {
@@ -49,12 +52,10 @@ class ScannerPhpFunction extends ScannerFile {
     }
 
     /**
-     * Returns language elements in the token buffer.
-     * If there are no recognisable language elements in the array, returns null
-     * @param array $buffer
-     * @return array|null
+     * @inheritdoc
      */
-    protected function getLanguageItem($buffer) {
+    protected function getLanguageItem($buffer)
+    {
         if (isset($buffer[0][0], $buffer[1], $buffer[2][0]) && $buffer[0][0] === T_CONSTANT_ENCAPSED_STRING && $buffer[1] === ',' && $buffer[2][0] === T_CONSTANT_ENCAPSED_STRING) {
             // is valid call we can extract
             $category = stripcslashes($buffer[0][1]);
@@ -68,8 +69,8 @@ class ScannerPhpFunction extends ScannerFile {
             return [
                 [
                     'category' => $category,
-                    'message' => $message
-                ]
+                    'message' => $message,
+                ],
             ];
         }
 
@@ -78,10 +79,13 @@ class ScannerPhpFunction extends ScannerFile {
 
     /**
      * Recursice concatenation of multiple-piece language elements.
+     *
      * @param array $buffer Array to store language element pieces.
+     *
      * @return array Sorted list of language element pieces.
      */
-    protected function concatMessage($buffer) {
+    protected function concatMessage($buffer)
+    {
         $messages = [];
         $buffer = array_slice($buffer, 2);
         $message = stripcslashes($buffer[0][1]);
@@ -92,5 +96,4 @@ class ScannerPhpFunction extends ScannerFile {
 
         return $messages;
     }
-
 }

@@ -6,12 +6,13 @@ use yii\web\AssetBundle;
 
 /**
  * FrontendTranslation asset bundle
- * 
+ *
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.2
  */
-class FrontendTranslationAsset extends AssetBundle {
-
+class FrontendTranslationAsset extends AssetBundle
+{
     /**
      * @inheritdoc
      */
@@ -24,5 +25,4 @@ class FrontendTranslationAsset extends AssetBundle {
         'stylesheets/helpers.css',
         'stylesheets/frontend-translation.css',
     ];
-
 }

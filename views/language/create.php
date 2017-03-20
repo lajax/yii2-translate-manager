@@ -1,9 +1,9 @@
 <?php
 /**
  * @author Lajos Molnár <lajax.m@gmail.com>
+ *
  * @since 1.3
  */
-
 
 /* @var $this yii\web\View */
 /* @var $model lajax\translatemanager\models\Language */

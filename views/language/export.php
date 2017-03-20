@@ -24,8 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
     <?= $form->field($model, 'format')->radioList([
-            Response::FORMAT_JSON => Response::FORMAT_JSON,
-            Response::FORMAT_XML => Response::FORMAT_XML,
+        Response::FORMAT_JSON => Response::FORMAT_JSON,
+        Response::FORMAT_XML => Response::FORMAT_XML,
     ]) ?>
 
     <div class="form-group">
