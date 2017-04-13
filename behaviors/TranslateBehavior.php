@@ -92,7 +92,35 @@ class TranslateBehavior extends AttributeBehavior
         $owner = $this->owner;
         foreach ($this->translateAttributes as $attribute) {
             if ($owner->isAttributeChanged($attribute)) {
-                Language::saveMessage($owner->attributes[$attribute], $this->category);
+                if (Yii::$app->sourceLanguage !== Yii::$app->language) {
+                    $translateSource = LanguageSource::find()
+                        ->where(['message' => $owner->getOldAttribute($attribute)])
+                        ->one();
+                    if ($translateSource !== null) {
+                        if (count($translateSource->languageTranslates) > 0) {
+                            foreach ($translateSource->languageTranslates as $translate) {
+                                if ($translate->language === Yii::$app->language) {
+                                    $translate->translation = $owner->attributes[$attribute];
+                                    $translate->save();
+                                    break;
+                                }
+                            }
+                        } else {
+                            $translate = new LanguageTranslate();
+                            $translate->id = $translateSource->id;
+                            $translate->language = Yii::$app->language;
+                            $translate->translation = $owner->attributes[$attribute];
+                            $translate->save();
+                        }
+
+                        $owner->$attribute = $owner->getOldAttribute($attribute);
+                        $owner->save();
+                    } else {
+                        Language::saveMessage($owner->attributes[$attribute], $this->category);
+                    }
+                } else {
+                    Language::saveMessage($owner->attributes[$attribute], $this->category);
+                }
             }
         }
     }
