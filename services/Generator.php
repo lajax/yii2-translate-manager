@@ -96,18 +96,11 @@ class Generator
             $data[md5($language_item->message)] = $language_item->languageTranslate->translation;
         }
 
-        $langs = \lajax\translatemanager\models\Language::findAll(['status' => \lajax\translatemanager\models\Language::STATUS_ACTIVE]);
+        $filename = $this->_basePath . '/' . $this->_languageId . '.js';
+        $content =  str_replace('{language_items}', Json::encode($data), $this->_template);
+        $content =  str_replace('{language_id}', $this->_languageId , $content);
 
-        foreach ($langs as $key => $lang) {
-            $filename = $this->_basePath . '/' . $lang->language_id . '.js';
-            $file_contents = str_replace('{language_items}', Json::encode($data), $this->_template);
-            $file_contents = str_replace('{language_id}', $lang->language_id, $file_contents);
-            if (!$key) {//first file  should contain `language` var with current language Id
-                $file_contents .= 'var language = "' . $this->_languageId . '"';
-            }
-
-            file_put_contents($filename, $file_contents);
-        }
+        file_put_contents($filename, $content);
     }
 
     /**
