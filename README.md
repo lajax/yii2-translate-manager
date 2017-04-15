@@ -34,7 +34,7 @@ or add
 
 to the require section of your `composer.json` file.
 
-###Migration
+### Migration
 
 
 Run the following command in Terminal for database migration:
@@ -49,7 +49,7 @@ Windows:
 yii.bat migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migrations
 ```
 
-###Config
+### Config
 
 A simple exmple of turning on Yii database multilingual.
 
@@ -219,7 +219,7 @@ DbManager:
 
 Usage
 -----
-###Register client scripts
+### Register client scripts
 
 To translate static messages in JavaScript files it is necessary to register the files.
 
@@ -245,7 +245,7 @@ class Controller extends \yii\web\Controller {
 }
 ```
 
-###ToggleTranslate button
+### ToggleTranslate button
 
 Simple example for displaying a button to switch to front end translation mode.
 (The button will only appear for users who have the necessary privileges for translating!)
@@ -265,7 +265,7 @@ A more complex example for displaying the button:
 ]);
 ```
 
-###Placing multilingual elements in the source code.
+### Placing multilingual elements in the source code.
 
 JavaScript:
 
@@ -449,7 +449,7 @@ class Category extends \yii\db\ActiveRecord {
 }
 ```
 
-###URLs
+### URLs
 
 URLs for the translating tool:
 
@@ -478,7 +478,7 @@ $menuItems = [
 ];
 ```
 
-###Console commands
+### Console commands
 
 Register the command
 
@@ -495,7 +495,7 @@ Use it with the Yii CLI
 ./yii translate/optimize
 ```
 
-###Using google translate api
+### Using google translate api
 
 Google translate api is a paid service. At the moment of writing the price is $20 USD per 1 million characters trsanslated.
 
@@ -546,27 +546,27 @@ composer cs-fix-dry-run
 Screenshots
 -----------
 
-###List of languages
+### List of languages
 ![translate-manager-0 2-screen-1](https://res.cloudinary.com/lajax/image/upload/v1421343987/admin-languages_ikxjqz.png)
 
 
-###Scanning project
+### Scanning project
 ![translate-manager-0 2-screen-2](https://res.cloudinary.com/lajax/image/upload/v1424605567/admin-scan-2_lig4wn.png)
 
 
-###Optimise database
+### Optimise database
 ![translate-manager-0 2-screen-3](https://res.cloudinary.com/lajax/image/upload/v1424606158/admin-optimise-2_nf6u3t.png)
 
 
-###Translate on the admin interface
+### Translate on the admin interface
 ![translate-manager-0 2-screen-4](https://res.cloudinary.com/lajax/image/upload/v1421382395/admin-translation_p9uavl.png)
 
 
-###Front end in translating mode
+### Front end in translating mode
 ![translate-manager-0 2-screen-6](https://res.cloudinary.com/lajax/image/upload/v1421343986/frontend-translation-toggle_fsqflh.png)
 
 
-###Translate on the front end
+### Translate on the front end
 ![translate-manager-0 2-screen-7](https://res.cloudinary.com/lajax/image/upload/v1421343987/frontend-translation-dialog_jivgkh.png)
 
 
