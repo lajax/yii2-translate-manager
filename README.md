@@ -36,17 +36,28 @@ to the require section of your `composer.json` file.
 
 ### Migration
 
-
 Run the following command in Terminal for database migration:
 
-Linux/Unix:
 ```
 yii migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migrations
 ```
 
-Windows:
+Or use the [namespaced migration](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html#namespaced-migrations) (requires at least Yii 2.0.10):
+
+```php
+// Add namespace to console config:
+'controllerMap' => [
+    'migrate' => [
+        'class' => 'yii\console\controllers\MigrateController',
+        'migrationNamespaces' => [
+            'lajax\translatemanager\migrations\namespaced',
+        ],
+    ],
+],
 ```
-yii.bat migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migrations
+
+```
+yii migrate/up
 ```
 
 ### Config
