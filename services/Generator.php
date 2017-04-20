@@ -97,8 +97,8 @@ class Generator
         }
 
         $filename = $this->_basePath . '/' . $this->_languageId . '.js';
-        $content =  str_replace('{language_items}', Json::encode($data), $this->_template);
-        $content =  str_replace('{language_id}', $this->_languageId , $content);
+        $content = str_replace('{language_items}', Json::encode($data), $this->_template);
+        $content = str_replace('{language_id}', $this->_languageId, $content);
 
         file_put_contents($filename, $content);
     }
