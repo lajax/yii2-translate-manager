@@ -1,9 +1,12 @@
-Yii2 - Translate Manager
-========================
-Online Translations
+# Yii2 - Translate Manager
 
-Introduction
-------------
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENCE.md)
+[![Total Downloads][ico-downloads]][link-downloads]
+
+Translation management extension for Yii 2
+
+## Introduction
 
 This module provides a simple translating interface for the multilingual elements of your project. It can auto-detect new language elements (project scan).
 Duplications are filtered out automatically during project scanning.
@@ -15,24 +18,13 @@ It also allows you to translate text on the client side (on the live webpage) wi
 On the server side it can handle database or one-dimensional/multidimensional array elements and Yii::t functions.
 You can exclude files, folders or categories to prevent them from being translated.
 
-Installation
-------------
+## Installation
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
-
-Either run
+Via [Composer](http://getcomposer.org/download/)
 
 ```
-php composer.phar require --prefer-dist lajax/yii2-translate-manager "1.*"
+composer require lajax/yii2-translate-manager
 ```
-
-or add
-
-```json
-"lajax/yii2-translate-manager": "1.*"
-```
-
-to the require section of your `composer.json` file.
 
 ### Migration
 
@@ -56,6 +48,7 @@ Or use the [namespaced migration](http://www.yiiframework.com/doc-2.0/guide-db-m
 ],
 ```
 
+Then run:
 ```
 yii migrate/up
 ```
@@ -228,8 +221,8 @@ DbManager:
 ]
 ```
 
-Usage
------
+## Usage
+
 ### Register client scripts
 
 To translate static messages in JavaScript files it is necessary to register the files.
@@ -529,16 +522,14 @@ Once feature is enabled it will insert google translation of the source into the
 (instead of original text) when you click on source field.
 
 
-Known issues
------------
+## Known issues
 
 * Scanner is scanning parent root directory [#12](https://github.com/lajax/yii2-translate-manager/pull/12).
 
   You can overwrite this behavior with the `scanRootParentDirectory` option. (See Config section for details.)
 * Frontend translation of strings in hidden tags corrupts HTML. [#45](https://github.com/lajax/yii2-translate-manager/issues/45)
 
-Coding style
------------
+## Coding style
 
 The project uses the PSR-2 coding standard.
 
@@ -554,8 +545,15 @@ You can check the code, without affecting it:
 composer cs-fix-dry-run
 ```
 
-Screenshots
------------
+## Change log
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## License
+
+The MIT License (MIT). Please see License File for more information.
+
+## Screenshots
 
 ### List of languages
 ![translate-manager-0 2-screen-1](https://res.cloudinary.com/lajax/image/upload/v1421343987/admin-languages_ikxjqz.png)
@@ -581,10 +579,16 @@ Screenshots
 ![translate-manager-0 2-screen-7](https://res.cloudinary.com/lajax/image/upload/v1421343987/frontend-translation-dialog_jivgkh.png)
 
 
-Links
------
+## Links
 
 - [GitHub](https://github.com/lajax/yii2-translate-manager)
 - [Api Docs](http://lajax.github.io/yii2-translate-manager)
-- [Packagist](https://packagist.org/packages/lajax/yii2-translate-manager)
+- [Packagist][link-packagist]
 - [Yii Extensions](http://www.yiiframework.com/extension/yii2-translate-manager)
+
+[ico-version]: https://img.shields.io/packagist/v/lajax/yii2-translate-manager.svg?style=flat
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
+[ico-downloads]: https://img.shields.io/packagist/dt/lajax/yii2-translate-manager.svg?style=flat
+
+[link-packagist]: https://packagist.org/packages/lajax/yii2-translate-manager
+[link-downloads]: https://packagist.org/packages/lajax/yii2-translate-manager
