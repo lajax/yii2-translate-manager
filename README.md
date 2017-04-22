@@ -18,6 +18,10 @@ It also allows you to translate text on the client side (on the live webpage) wi
 On the server side it can handle database or one-dimensional/multidimensional array elements and Yii::t functions.
 You can exclude files, folders or categories to prevent them from being translated.
 
+## Contributing
+
+Please read and follow the instructions in the [Contributing guide](CONTRIBUTING.md).
+
 ## Installation
 
 Via [Composer](http://getcomposer.org/download/)
