@@ -5,16 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 ### Added
- - Add bundle that supports all active languages #81
+ - Bundle that supports all active languages #81
  - Allow to override default scanners via module configuration #87
- - Add optional Google translation of the source #88
- - Add PHP-CS-Fixer config and fix coding style #95
+ - Optional Google translation of the source #88
+ - Namespaced migration support #101
 
 ### Security
  - Limit access to Import/Export actions #89
 
 ### Changed
 - Module access enhancements #86
+
+### Misc
+ - Add PHP-CS-Fixer config and fix coding style #95
 
 ## [1.6.0] - 2016-07-12
 ### Added
