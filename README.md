@@ -1,7 +1,7 @@
 # Yii2 - Translate Manager
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENCE.md)
+[![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Translation management extension for Yii 2
@@ -551,7 +551,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## License
 
-The MIT License (MIT). Please see License File for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 ## Screenshots
 
