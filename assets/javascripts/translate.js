@@ -15,10 +15,12 @@ var translate = (function () {
      * @param {object} $this
      */
     function _translateLanguage($this) {
+        var $translation = $this.closest('tr').find('.translation');
+
         var data = {
-            id: $this.data('id'),
+            id: $translation.data('id'),
             language_id: $('#language_id').val(),
-            translation: $.trim($this.closest('tr').find('.translation').val())
+            translation: $.trim($translation.val())
         };
 
         helpers.post($('#language_id').data('url'), data);
