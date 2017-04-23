@@ -116,7 +116,7 @@ var helpers = (function () {
          * Show error message.
          * @param {string} text to translate
          * @param {string} lang language code
-         * @param {callback} callback
+         * @param {callback} callback Receives an object with the following attributes: success (bool), text (string).
          */
         googleTranslate: function (text, lang, callback) {
             var xmlHttp = new XMLHttpRequest();
@@ -124,13 +124,15 @@ var helpers = (function () {
                 if (xmlHttp.readyState == 4) {
                     if (xmlHttp.status == 200) {
                         var data = JSON.parse(xmlHttp.responseText);
-                        callback(data.data.translations[0].translatedText);
+                        callback({success: true, text: data.data.translations[0].translatedText});
                     } else {
                         try {
                             console.error('Google Translate API failed with the following response:', xmlHttp.responseText);
                         } catch (error) {
                             // no console support
                         }
+
+                        callback({success: false, text: ''});
                     }
                 }
             };

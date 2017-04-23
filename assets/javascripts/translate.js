@@ -1,4 +1,4 @@
-/** 
+/**
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
  * since 1.0
@@ -41,7 +41,13 @@ var translate = (function () {
         {
             if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
                 helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
-                    $this.closest('tr').find('.translation').val(result);
+                    if (result.success) {
+                        $this.closest('tr').find('.translation').val(result.text);
+                    } else {
+                        helpers.showMessages(lajax.t('Google translation failed, source text was used as translation!'));
+                        $this.closest('tr').find('.translation').val($.trim($this.val()));
+                    }
+
                     _translateLanguage($this.closest('tr').find('button'));
                 });
             }
