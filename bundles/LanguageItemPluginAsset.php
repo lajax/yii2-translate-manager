@@ -33,7 +33,7 @@ class LanguageItemPluginAsset extends AssetBundle
         $this->sourcePath = \Yii::$app->getModule('translatemanager')->getLanguageItemsDirPath();
 
         $language = \Yii::$app->language;
-        \Yii::$app->view->registerJs("var language = '$language';", \yii\web\View::POS_HEAD);
+        \Yii::$app->view->registerJs("var tm_language = '$language';", \yii\web\View::POS_HEAD);
 
         if (file_exists(\Yii::getAlias($this->sourcePath . $language . '.js'))) {
             $this->js = [$language . '.js'];
