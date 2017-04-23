@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * Language asset bundle
+ * Contains css files necessary for language list on the backend.
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
  *

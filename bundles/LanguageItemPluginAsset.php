@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * LanguageItem Plugin asset bundle
+ * Contains the translated javascript messages for the current language.
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
  *

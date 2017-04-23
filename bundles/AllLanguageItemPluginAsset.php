@@ -3,13 +3,9 @@
 namespace lajax\translatemanager\bundles;
 
 /**
- * AllLanguageItem Plugin asset bundle
+ * Contains the translated javascript messages for **all** active languages.
  *
  * @author Semenihin Maksim <semenihin.maksim@gmail.com>
- *
- * @since 1.0
- *
- * will include all active languages
  */
 class AllLanguageItemPluginAsset extends LanguageItemPluginAsset
 {

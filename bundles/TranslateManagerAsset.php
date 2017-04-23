@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * TranslateManager asset bundle
+ * Contains css files necessary for backend interface.
  *
  * @author Lajos Molnar <lajax.m@gmail.com>
  *

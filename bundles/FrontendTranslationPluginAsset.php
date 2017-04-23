@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * FrontendTranslation Plugin asset bundle
+ * Contains javascript files necessary for modify translations on the live site (frontend translation).
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
  *
