@@ -1,4 +1,4 @@
-/** 
+/**
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
  * since 1.0
@@ -125,9 +125,12 @@ var helpers = (function () {
                     if (xmlHttp.status == 200) {
                         var data = JSON.parse(xmlHttp.responseText);
                         callback(data.data.translations[0].translatedText);
-                    }
-                    else {
-                        alert('Google Translate API failed with the following response:\n\n' + xmlHttp.responseText);
+                    } else {
+                        try {
+                            console.error('Google Translate API failed with the following response:', xmlHttp.responseText);
+                        } catch (error) {
+                            // no console support
+                        }
                     }
                 }
             };
