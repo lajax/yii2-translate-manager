@@ -44,16 +44,21 @@ var translate = (function () {
             _translateLanguage($this);
         } else {
             // google translation is enabled - translate and copy translation
-            helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
-                if (result.success) {
-                    $translation.val(result.text);
-                } else {
-                    $translation.val(sourceMessage);
-                    helpers.showMessages(lajax.t('Google translation failed, source text was used as translation!'));
-                }
+            helpers.googleTranslate(
+                sourceMessage,
+                $('#languagesourcesearch-source').val(),
+                $('#language_id').val(),
+                function (result) {
+                    if (result.success) {
+                        $translation.val(result.text);
+                    } else {
+                        $translation.val(sourceMessage);
+                        helpers.showMessages(lajax.t('Google translation failed, source text was used as translation!'));
+                    }
 
-                _translateLanguage($this);
-            });
+                    _translateLanguage($this);
+                }
+            );
         }
     }
 

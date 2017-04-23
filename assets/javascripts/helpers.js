@@ -115,10 +115,11 @@ var helpers = (function () {
         /**
          * Show error message.
          * @param {string} text to translate
-         * @param {string} lang language code
+         * @param {string} sourceLang language code of source text
+         * @param {string} targetLang language code
          * @param {callback} callback Receives an object with the following attributes: success (bool), text (string).
          */
-        googleTranslate: function (text, lang, callback) {
+        googleTranslate: function (text, sourceLang, targetLang, callback) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function() {
                 if (xmlHttp.readyState == 4) {
@@ -138,7 +139,10 @@ var helpers = (function () {
             };
 
             var url = 'https://www.googleapis.com/language/translate/v2?key='+tm_googleApiKey;
-            url += '&source=en&target='+lang.substring(0,2);
+            url += '&target=' + targetLang.substring(0,2);
+            if (sourceLang) {
+                url += '&source=' + sourceLang.substring(0, 2);
+            }
             url += '&q='+encodeURI(text);
 
             xmlHttp.open("GET", url, true);
