@@ -28,29 +28,30 @@ var translate = (function () {
      * @param {object} $this
      */
     function _copySourceToTranslation($this) {
+        var $translation = $this.closest('tr').find('.translation'),
+            isEmptyTranslation = $.trim($translation.val()).length === 0,
+            sourceMessage = $.trim($this.val());
 
-        if(typeof tm_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
-        {
-            if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-                $this.closest('tr').find('.translation').val($.trim($this.val()));
-            }
-
-            _translateLanguage($this.closest('tr').find('button'));
+        if (!isEmptyTranslation) {
+            return;
         }
-        else  // google translation is enabled - translate and copy translation ...
-        {
-            if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-                helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
-                    if (result.success) {
-                        $this.closest('tr').find('.translation').val(result.text);
-                    } else {
-                        helpers.showMessages(lajax.t('Google translation failed, source text was used as translation!'));
-                        $this.closest('tr').find('.translation').val($.trim($this.val()));
-                    }
 
-                    _translateLanguage($this.closest('tr').find('button'));
-                });
-            }
+        if (typeof tm_googleApiKey === 'undefined') {
+            // default bahavior - copy original text to translation field
+            $translation.val(sourceMessage);
+            _translateLanguage($this);
+        } else {
+            // google translation is enabled - translate and copy translation
+            helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
+                if (result.success) {
+                    $translation.val(result.text);
+                } else {
+                    $translation.val(sourceMessage);
+                    helpers.showMessages(lajax.t('Google translation failed, source text was used as translation!'));
+                }
+
+                _translateLanguage($this);
+            });
         }
     }
 
