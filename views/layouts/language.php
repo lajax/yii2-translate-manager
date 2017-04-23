@@ -27,7 +27,7 @@ TranslateManagerAsset::register($this);
         <?php $this->head() ?>
         <?php if (!empty(Yii::$app->getModule('translatemanager')->googleApiKey)): ?>
             <script type="text/javascript">
-                var x_googleApiKey = '<?= Yii::$app->getModule('translatemanager')->googleApiKey ?>';
+                var tm_googleApiKey = '<?= Yii::$app->getModule('translatemanager')->googleApiKey ?>';
             </script>
         <?php endif ?>
     </head>

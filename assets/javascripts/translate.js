@@ -29,7 +29,7 @@ var translate = (function () {
      */
     function _copySourceToTranslation($this) {
 
-        if(typeof x_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
+        if(typeof tm_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
         {
             if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
                 $this.closest('tr').find('.translation').val($.trim($this.val()));

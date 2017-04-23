@@ -137,7 +137,7 @@ var helpers = (function () {
                 }
             };
 
-            var url = 'https://www.googleapis.com/language/translate/v2?key='+x_googleApiKey;
+            var url = 'https://www.googleapis.com/language/translate/v2?key='+tm_googleApiKey;
             url += '&source=en&target='+lang.substring(0,2);
             url += '&q='+encodeURI(text);
 
