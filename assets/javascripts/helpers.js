@@ -111,42 +111,6 @@ var helpers = (function () {
          */
         showErrorMessage: function (message, id) {
             $(id).next().html(_createMessage(message, 'alert-danger'));
-        },
-        /**
-         * Show error message.
-         * @param {string} text to translate
-         * @param {string} sourceLang language code of source text
-         * @param {string} targetLang language code
-         * @param {callback} callback Receives an object with the following attributes: success (bool), text (string).
-         */
-        googleTranslate: function (text, sourceLang, targetLang, callback) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function() {
-                if (xmlHttp.readyState == 4) {
-                    if (xmlHttp.status == 200) {
-                        var data = JSON.parse(xmlHttp.responseText);
-                        callback({success: true, text: data.data.translations[0].translatedText});
-                    } else {
-                        try {
-                            console.error('Google Translate API failed with the following response:', xmlHttp.responseText);
-                        } catch (error) {
-                            // no console support
-                        }
-
-                        callback({success: false, text: ''});
-                    }
-                }
-            };
-
-            var url = 'https://www.googleapis.com/language/translate/v2?key='+tm_googleApiKey;
-            url += '&target=' + targetLang.substring(0,2);
-            if (sourceLang) {
-                url += '&source=' + sourceLang.substring(0, 2);
-            }
-            url += '&q='+encodeURI(text);
-
-            xmlHttp.open("GET", url, true);
-            xmlHttp.send(null);
         }
     };
 })();
