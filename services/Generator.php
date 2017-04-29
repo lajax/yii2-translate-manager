@@ -32,9 +32,9 @@ class Generator
     private $_languageItems = [];
 
     /**
-     * @var string JavaScript code for serving all language elements.
+     * @var string JavaScript code for serving language elements.
      */
-    private $_template = 'var languageItems = languageItems || new Object();  languageItems[\'{language_id}\']=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
+    private $_template = 'var languageItems=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
 
     /**
      * @param \lajax\translatemanager\Module $module
@@ -97,10 +97,8 @@ class Generator
         }
 
         $filename = $this->_basePath . '/' . $this->_languageId . '.js';
-        $content = str_replace('{language_items}', Json::encode($data), $this->_template);
-        $content = str_replace('{language_id}', $this->_languageId, $content);
 
-        file_put_contents($filename, $content);
+        file_put_contents($filename, str_replace('{language_items}', Json::encode($data), $this->_template));
     }
 
     /**

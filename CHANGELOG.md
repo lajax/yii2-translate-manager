@@ -5,7 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 ### Added
- - Bundle that supports all active languages #81
  - Allow to override default scanners via module configuration #87
  - Namespaced migration support #101
 
