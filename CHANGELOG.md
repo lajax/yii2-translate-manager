@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Misc
  - Add PHP-CS-Fixer config and fix coding style #95
+ - Add usage hint for the search empty command #102
 
 ## [1.6.0] - 2016-07-12
 ### Added
