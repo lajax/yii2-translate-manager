@@ -6,6 +6,8 @@ use Yii;
 use yii\db\BaseActiveRecord;
 use yii\behaviors\AttributeBehavior;
 use lajax\translatemanager\helpers\Language;
+use lajax\translatemanager\models\LanguageSource;
+use lajax\translatemanager\models\LanguageTranslate;
 
 /**
  * TranslateManager Database translate behavior.
@@ -93,9 +95,19 @@ class TranslateBehavior extends AttributeBehavior
         foreach ($this->translateAttributes as $attribute) {
             if ($owner->isAttributeChanged($attribute)) {
                 if (Yii::$app->sourceLanguage !== Yii::$app->language) {
-                    $translateSource = LanguageSource::find()
-                        ->where(['message' => $owner->getOldAttribute($attribute)])
-                        ->one();
+                    // Find the correct source with case sensitive match
+                    $sourceMessages = LanguageSource::findAll([
+                        'message' => $owner->getOldAttribute($attribute),
+                        'category' => $this->category,
+                    ]);
+                    $translateSource = null;
+                    foreach ($sourceMessages as $source) {
+                        if ($source->message === $owner->getOldAttribute($attribute)) {
+                            $translateSource = $source;
+                            break;
+                        }
+                    }
+
                     if ($translateSource !== null) {
                         if (count($translateSource->languageTranslates) > 0) {
                             foreach ($translateSource->languageTranslates as $translate) {
@@ -114,7 +126,6 @@ class TranslateBehavior extends AttributeBehavior
                         }
 
                         $owner->$attribute = $owner->getOldAttribute($attribute);
-                        $owner->save();
                     } else {
                         Language::saveMessage($owner->attributes[$attribute], $this->category);
                     }
