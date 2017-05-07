@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased]
+
+### Changed
+ - Improve TranslateBehavior saving #99
+   The attribute is now saved as translation when the language of the application is different from the source language.
+
 ## [1.7.0] - 2017-04-30
 ### Added
  - Allow to override default scanners via module configuration #87
@@ -72,6 +78,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
  - Round error in translation statistic
 
+[Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...HEAD
 [1.7.0]: https://github.com/lajax/yii2-translate-manager/compare/1.6.0...1.7.0
 [1.6.0]: https://github.com/lajax/yii2-translate-manager/compare/1.5.4...1.6.0
 [1.5.4]: https://github.com/lajax/yii2-translate-manager/compare/1.5.3...1.5.4
