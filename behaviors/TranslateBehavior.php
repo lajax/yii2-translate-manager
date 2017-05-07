@@ -10,7 +10,19 @@ use lajax\translatemanager\models\LanguageSource;
 use lajax\translatemanager\models\LanguageTranslate;
 
 /**
- * TranslateManager Database translate behavior.
+ * Behavior that translates the model attributes, and saves the changes into database.
+ *
+ * This behavior does the following:
+ *  - Replaces the specified attributes with translations after the model is loaded.
+ *  - Saves the attribute values as:
+ *      1. Source messages, if the current language is the source language.
+ *      2. Translations, if the current language is different from the source language.
+ *         This way the value stored in database is not overwritten with the translation.
+ *
+ * **Note**: If the model should be saved as translation, but the source message does not exist yet in the database
+ * then the message is saved as the source message whether the current language is the source language or not.
+ * To avoid this scan the database for existing messages when using the behavior first, and only save new records
+ * when the current language is the source language.
  *
  * Installation:
  *
