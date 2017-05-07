@@ -1,4 +1,4 @@
-/** 
+/**
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
  * since 1.0
@@ -111,33 +111,6 @@ var helpers = (function () {
          */
         showErrorMessage: function (message, id) {
             $(id).next().html(_createMessage(message, 'alert-danger'));
-        },
-        /**
-         * Show error message.
-         * @param {string} text to translate
-         * @param {string} lang language code
-         * @param {callback} callback
-         */
-        googleTranslate: function (text, lang, callback) {
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function() {
-                if (xmlHttp.readyState == 4) {
-                    if (xmlHttp.status == 200) {
-                        var data = JSON.parse(xmlHttp.responseText);
-                        callback(data.data.translations[0].translatedText);
-                    }
-                    else {
-                        alert('Google Translate API failed with the following response:\n\n' + xmlHttp.responseText);
-                    }
-                }
-            };
-
-            var url = 'https://www.googleapis.com/language/translate/v2?key='+x_googleApiKey;
-            url += '&source=en&target='+lang.substring(0,2);
-            url += '&q='+encodeURI(text);
-
-            xmlHttp.open("GET", url, true);
-            xmlHttp.send(null);
         }
     };
 })();

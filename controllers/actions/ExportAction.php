@@ -8,24 +8,12 @@ use yii\web\Response;
 use yii\web\XmlResponseFormatter;
 use lajax\translatemanager\Module;
 use lajax\translatemanager\models\ExportForm;
-use lajax\translatemanager\bundles\LanguageAsset;
-use lajax\translatemanager\bundles\LanguagePluginAsset;
 
 /**
  * Class for exporting translations.
  */
 class ExportAction extends \yii\base\Action
 {
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        LanguageAsset::register($this->controller->view);
-        LanguagePluginAsset::register($this->controller->view);
-        parent::init();
-    }
-
     /**
      * Show export form or generate export file on post
      *

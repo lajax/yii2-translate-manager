@@ -16,6 +16,7 @@ use lajax\translatemanager\models\Language as Lang;
 /* @var $language_id string */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel lajax\translatemanager\models\searches\LanguageSourceSearch */
+/* @var $searchEmptyCommand string */
 
 $this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
@@ -59,7 +60,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'format' => 'raw',
                 'attribute' => 'translation',
-                'filterInputOptions' => ['class' => 'form-control', 'id' => 'translation'],
+                'filterInputOptions' => [
+                    'class' => 'form-control',
+                    'id' => 'translation',
+                    'placeholder' => $searchEmptyCommand ? Yii::t('language', 'Enter "{command}" to search for empty translations.', ['command' => $searchEmptyCommand]) : '',
+                ],
                 'label' => Yii::t('language', 'Translation'),
                 'content' => function ($data) {
                     return Html::textarea('LanguageTranslate[' . $data->id . ']', $data->translation, ['class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]);

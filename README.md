@@ -1,9 +1,12 @@
-Yii2 - Translate Manager
-========================
-Online Translations
+# Yii2 - Translate Manager
 
-Introduction
-------------
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Total Downloads][ico-downloads]][link-downloads]
+
+Translation management extension for Yii 2
+
+## Introduction
 
 This module provides a simple translating interface for the multilingual elements of your project. It can auto-detect new language elements (project scan).
 Duplications are filtered out automatically during project scanning.
@@ -15,41 +18,46 @@ It also allows you to translate text on the client side (on the live webpage) wi
 On the server side it can handle database or one-dimensional/multidimensional array elements and Yii::t functions.
 You can exclude files, folders or categories to prevent them from being translated.
 
-Installation
-------------
+## Contributing
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+Please read and follow the instructions in the [Contributing guide](CONTRIBUTING.md).
 
-Either run
+## Installation
+
+Via [Composer](http://getcomposer.org/download/)
 
 ```
-php composer.phar require --prefer-dist lajax/yii2-translate-manager "1.*"
+composer require lajax/yii2-translate-manager
 ```
 
-or add
-
-```json
-"lajax/yii2-translate-manager": "1.*"
-```
-
-to the require section of your `composer.json` file.
-
-###Migration
-
+### Migration
 
 Run the following command in Terminal for database migration:
 
-Linux/Unix:
 ```
 yii migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migrations
 ```
 
-Windows:
-```
-yii.bat migrate/up --migrationPath=@vendor/lajax/yii2-translate-manager/migrations
+Or use the [namespaced migration](http://www.yiiframework.com/doc-2.0/guide-db-migrations.html#namespaced-migrations) (requires at least Yii 2.0.10):
+
+```php
+// Add namespace to console config:
+'controllerMap' => [
+    'migrate' => [
+        'class' => 'yii\console\controllers\MigrateController',
+        'migrationNamespaces' => [
+            'lajax\translatemanager\migrations\namespaced',
+        ],
+    ],
+],
 ```
 
-###Config
+Then run:
+```
+yii migrate/up
+```
+
+### Config
 
 A simple exmple of turning on Yii database multilingual.
 
@@ -122,7 +130,6 @@ A more complex example including database table with multilingual support is bel
             '\lajax\translatemanager\services\scanners\ScannerJavaScriptFunction',
             '\lajax\translatemanager\services\scanners\ScannerDatabase',
         ],
-        'googleApiKey' => 'your_google_API_Key', // if set - google translation will be inserted into translation field when you click on the source field.
     ],
 ],
 ```
@@ -217,9 +224,9 @@ DbManager:
 ]
 ```
 
-Usage
------
-###Register client scripts
+## Usage
+
+### Register client scripts
 
 To translate static messages in JavaScript files it is necessary to register the files.
 
@@ -245,7 +252,7 @@ class Controller extends \yii\web\Controller {
 }
 ```
 
-###ToggleTranslate button
+### ToggleTranslate button
 
 Simple example for displaying a button to switch to front end translation mode.
 (The button will only appear for users who have the necessary privileges for translating!)
@@ -265,7 +272,7 @@ A more complex example for displaying the button:
 ]);
 ```
 
-###Placing multilingual elements in the source code.
+### Placing multilingual elements in the source code.
 
 JavaScript:
 
@@ -459,7 +466,7 @@ class Category extends \yii\db\ActiveRecord {
 }
 ```
 
-###URLs
+### URLs
 
 URLs for the translating tool:
 
@@ -488,7 +495,7 @@ $menuItems = [
 ];
 ```
 
-###Console commands
+### Console commands
 
 Register the command
 
@@ -505,39 +512,14 @@ Use it with the Yii CLI
 ./yii translate/optimize
 ```
 
-###Using google translate api
-
-Google translate api is a paid service. At the moment of writing the price is $20 USD per 1 million characters trsanslated.
-
-In order to activate the feature you need to have Google account, generate google Api Key, and enable this feature
-by adding 'googleApiKey' to 'translatemanager' module configuration:
-
-```php
-
-'modules' => [
-
-    'translatemanager' => [
-
-        // ...
-
-        'googleApiKey' => `Your_Google_API_Key',
-     ],
-],
-```
-Once feature is enabled it will insert google translation of the source into the empty translation field
-(instead of original text) when you click on source field.
-
-
-Known issues
------------
+## Known issues
 
 * Scanner is scanning parent root directory [#12](https://github.com/lajax/yii2-translate-manager/pull/12).
 
   You can overwrite this behavior with the `scanRootParentDirectory` option. (See Config section for details.)
 * Frontend translation of strings in hidden tags corrupts HTML. [#45](https://github.com/lajax/yii2-translate-manager/issues/45)
 
-Coding style
------------
+## Coding style
 
 The project uses the PSR-2 coding standard.
 
@@ -553,37 +535,50 @@ You can check the code, without affecting it:
 composer cs-fix-dry-run
 ```
 
-Screenshots
------------
+## Change log
 
-###List of languages
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Screenshots
+
+### List of languages
 ![translate-manager-0 2-screen-1](https://res.cloudinary.com/lajax/image/upload/v1421343987/admin-languages_ikxjqz.png)
 
 
-###Scanning project
+### Scanning project
 ![translate-manager-0 2-screen-2](https://res.cloudinary.com/lajax/image/upload/v1424605567/admin-scan-2_lig4wn.png)
 
 
-###Optimise database
+### Optimise database
 ![translate-manager-0 2-screen-3](https://res.cloudinary.com/lajax/image/upload/v1424606158/admin-optimise-2_nf6u3t.png)
 
 
-###Translate on the admin interface
+### Translate on the admin interface
 ![translate-manager-0 2-screen-4](https://res.cloudinary.com/lajax/image/upload/v1421382395/admin-translation_p9uavl.png)
 
 
-###Front end in translating mode
+### Front end in translating mode
 ![translate-manager-0 2-screen-6](https://res.cloudinary.com/lajax/image/upload/v1421343986/frontend-translation-toggle_fsqflh.png)
 
 
-###Translate on the front end
+### Translate on the front end
 ![translate-manager-0 2-screen-7](https://res.cloudinary.com/lajax/image/upload/v1421343987/frontend-translation-dialog_jivgkh.png)
 
 
-Links
------
+## Links
 
 - [GitHub](https://github.com/lajax/yii2-translate-manager)
 - [Api Docs](http://lajax.github.io/yii2-translate-manager)
-- [Packagist](https://packagist.org/packages/lajax/yii2-translate-manager)
+- [Packagist][link-packagist]
 - [Yii Extensions](http://www.yiiframework.com/extension/yii2-translate-manager)
+
+[ico-version]: https://img.shields.io/packagist/v/lajax/yii2-translate-manager.svg?style=flat
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat
+[ico-downloads]: https://img.shields.io/packagist/dt/lajax/yii2-translate-manager.svg?style=flat
+
+[link-packagist]: https://packagist.org/packages/lajax/yii2-translate-manager
+[link-downloads]: https://packagist.org/packages/lajax/yii2-translate-manager

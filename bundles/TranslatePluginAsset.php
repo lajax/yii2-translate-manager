@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * Trasnslation Plugin asset bundle
+ * Contains javascript files necessary for modify translations on the backend.
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
  *
@@ -31,5 +31,6 @@ class TranslatePluginAsset extends AssetBundle
      */
     public $depends = [
         'yii\web\JqueryAsset',
+        'lajax\translatemanager\bundles\TranslationPluginAsset',
     ];
 }

@@ -1,4 +1,4 @@
-/** 
+/**
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
  * since 1.0
@@ -15,10 +15,12 @@ var translate = (function () {
      * @param {object} $this
      */
     function _translateLanguage($this) {
+        var $translation = $this.closest('tr').find('.translation');
+
         var data = {
-            id: $this.data('id'),
+            id: $translation.data('id'),
             language_id: $('#language_id').val(),
-            translation: $.trim($this.closest('tr').find('.translation').val())
+            translation: $.trim($translation.val())
         };
 
         helpers.post($('#language_id').data('url'), data);
@@ -28,24 +30,16 @@ var translate = (function () {
      * @param {object} $this
      */
     function _copySourceToTranslation($this) {
+        var $translation = $this.closest('tr').find('.translation'),
+            isEmptyTranslation = $.trim($translation.val()).length === 0,
+            sourceMessage = $.trim($this.val());
 
-        if(typeof x_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
-        {
-            if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-                $this.closest('tr').find('.translation').val($.trim($this.val()));
-            }
+        if (!isEmptyTranslation) {
+            return;
+        }
 
-            _translateLanguage($this.closest('tr').find('button'));
-        }
-        else  // google translation is enabled - translate and copy translation ...
-        {
-            if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-                helpers.googleTranslate($.trim($this.val()), $('#language_id').val(), function(result) {
-                    $this.closest('tr').find('.translation').val(result);
-                    _translateLanguage($this.closest('tr').find('button'));
-                });
-            }
-        }
+        $translation.val(sourceMessage);
+        _translateLanguage($this);
     }
 
     return {

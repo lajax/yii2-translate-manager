@@ -7,24 +7,12 @@ use lajax\translatemanager\services\Generator;
 use Yii;
 use yii\web\UploadedFile;
 use lajax\translatemanager\models\ImportForm;
-use lajax\translatemanager\bundles\LanguageAsset;
-use lajax\translatemanager\bundles\LanguagePluginAsset;
 
 /**
  * Class for exporting translations.
  */
 class ImportAction extends \yii\base\Action
 {
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        LanguageAsset::register($this->controller->view);
-        LanguagePluginAsset::register($this->controller->view);
-        parent::init();
-    }
-
     /**
      * Show import form and import the uploaded file if posted
      *

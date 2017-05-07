@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * LanguageItem Plugin asset bundle
+ * Contains the translated javascript messages for the current language.
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
  *
@@ -31,10 +31,10 @@ class LanguageItemPluginAsset extends AssetBundle
     public function init()
     {
         $this->sourcePath = \Yii::$app->getModule('translatemanager')->getLanguageItemsDirPath();
-        if (file_exists(\Yii::getAlias($this->sourcePath . \Yii::$app->language . '.js'))) {
-            $this->js = [
-                \Yii::$app->language . '.js',
-            ];
+        $language = \Yii::$app->language;
+
+        if (file_exists(\Yii::getAlias($this->sourcePath . $language . '.js'))) {
+            $this->js = [$language . '.js'];
         } else {
             $this->sourcePath = null;
         }

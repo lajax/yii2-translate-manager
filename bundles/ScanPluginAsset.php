@@ -5,7 +5,7 @@ namespace lajax\translatemanager\bundles;
 use yii\web\AssetBundle;
 
 /**
- * Scan Plugin asset bundle
+ * Contains javascript files necessary for message scan on the backend.
  *
  * @author Lajos Molnár <lajax.m@gmail.com>
  *
