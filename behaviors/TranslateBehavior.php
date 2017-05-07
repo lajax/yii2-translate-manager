@@ -48,6 +48,11 @@ class TranslateBehavior extends AttributeBehavior
     public $category = 'database';
 
     /**
+     * @var BaseActiveRecord the owner model of this behavior
+     */
+    public $owner;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -70,68 +75,88 @@ class TranslateBehavior extends AttributeBehavior
     }
 
     /**
-     * Translates a message to the specified language.
+     * Translates the attributes to the current language.
      *
      * @param \yii\base\Event $event
      */
     public function translateAttributes($event)
     {
-        /* @var $owner BaseActiveRecord */
-        $owner = $this->owner;
         foreach ($this->translateAttributes as $attribute) {
-            $owner->{$attribute} = Yii::t($this->category, $owner->attributes[$attribute]);
+            $this->owner->{$attribute} = Yii::t($this->category, $this->owner->attributes[$attribute]);
         }
     }
 
     /**
-     * Saveing new language element by category.
+     * Saves new language element by category.
      *
      * @param \yii\base\Event $event
      */
     public function saveAttributes($event)
     {
-        /* @var $owner BaseActiveRecord */
-        $owner = $this->owner;
+        $isAppInSourceLanguage = Yii::$app->sourceLanguage === Yii::$app->language;
+
         foreach ($this->translateAttributes as $attribute) {
-            if ($owner->isAttributeChanged($attribute)) {
-                if (Yii::$app->sourceLanguage !== Yii::$app->language) {
-                    // Find the correct source with case sensitive match
-                    $sourceMessages = LanguageSource::findAll([
-                        'message' => $owner->getOldAttribute($attribute),
-                        'category' => $this->category,
-                    ]);
-                    $translateSource = null;
-                    foreach ($sourceMessages as $source) {
-                        if ($source->message === $owner->getOldAttribute($attribute)) {
-                            $translateSource = $source;
-                            break;
-                        }
-                    }
+            if (!$this->owner->isAttributeChanged($attribute)) {
+                continue;
+            }
 
-                    if ($translateSource !== null) {
-                        if (count($translateSource->languageTranslates) > 0) {
-                            foreach ($translateSource->languageTranslates as $translate) {
-                                if ($translate->language === Yii::$app->language) {
-                                    $translate->translation = $owner->attributes[$attribute];
-                                    $translate->save();
-                                    break;
-                                }
-                            }
-                        } else {
-                            $translate = new LanguageTranslate();
-                            $translate->id = $translateSource->id;
-                            $translate->language = Yii::$app->language;
-                            $translate->translation = $owner->attributes[$attribute];
-                            $translate->save();
-                        }
+            if ($isAppInSourceLanguage || !$this->saveAttributeValueAsTranslation($attribute)) {
+                Language::saveMessage($this->owner->attributes[$attribute], $this->category);
+            }
+        }
+    }
 
-                        $owner->$attribute = $owner->getOldAttribute($attribute);
-                    } else {
-                        Language::saveMessage($owner->attributes[$attribute], $this->category);
-                    }
-                } else {
-                    Language::saveMessage($owner->attributes[$attribute], $this->category);
-                }
+    /**
+     * @param string $attribute The name of the attribute.
+     *
+     * @return bool Whether the translation is saved.
+     */
+    private function saveAttributeValueAsTranslation($attribute)
+    {
+        $sourceMessage = $this->owner->getOldAttribute($attribute);
+        $translatedMessage = $this->owner->attributes[$attribute];
+
+        // Restore the original value, so it won't be replaced with the translation in the database.
+        $this->owner->{$attribute} = $sourceMessage;
+
+        $translateSource = $this->findSourceMessage($sourceMessage);
+        if (!$translateSource) {
+            return false; // The source does not exist, the message cannot be saved as translation.
+        }
+
+        $translation = new LanguageTranslate();
+        foreach ($translateSource->languageTranslates as $tmpTranslate) {
+            if ($tmpTranslate->language === Yii::$app->language) {
+                $translation = $tmpTranslate;
+                break;
+            }
+        }
+
+        if ($translation->isNewRecord) {
+            $translation->id = $translateSource->id;
+            $translation->language = Yii::$app->language;
+        }
+
+        $translation->translation = $translatedMessage;
+        $translation->save();
+
+        return true;
+    }
+
+    /**
+     * Finds the source record with case sensitive match.
+     *
+     * @param string $message
+     *
+     * @return LanguageSource|null Null if the source is not found.
+     */
+    private function findSourceMessage($message)
+    {
+        $sourceMessages = LanguageSource::findAll(['message' => $message, 'category' => $this->category]);
+
+        foreach ($sourceMessages as $source) {
+            if ($source->message === $message) {
+                return $source;
             }
         }
     }
