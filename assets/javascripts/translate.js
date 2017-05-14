@@ -42,10 +42,26 @@ var translate = (function () {
         _translateLanguage($this);
     }
 
+    /**
+     * @param {$} $btn
+     */
+    function _translateText($btn) {
+        var $translation = $btn.closest('tr').find('.translation');
+        console.log($translation);
+
+        helpers.post('/translatemanager/language/translate-text', {
+            id: $translation.data('id'),
+            language_id: $('#language_id').val()
+        });
+    }
+
     return {
         init: function () {
             $('#translates').on('click', '.source', function () {
                 _copySourceToTranslation($(this));
+            });
+            $('#translates').on('click', '.js-translate-text', function () {
+                _translateText($(this));
             });
             $('#translates').on('click', 'button', function () {
                 _translateLanguage($(this));
