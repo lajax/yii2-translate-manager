@@ -30,7 +30,7 @@ var lajax = (function () {
             if (typeof (languageItems) !== 'undefined' && typeof (languageItems.getLanguageItems) === 'function') {
                 var $messages = languageItems.getLanguageItems();
                 if (typeof ($messages) !== 'undefined') {
-                    var hash = md5(message);
+                    var hash = hex_md5(message);
                     if (typeof ($messages[hash]) !== 'undefined') {
                         message = $messages[hash];
                     }
