@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
  - Improve TranslateBehavior saving #99
    The attribute is now saved as translation when the language of the application is different from the source language.
 
+## [1.7.2] - 2018-02-23
+### Minor
+ - Restrict version constraints for Yii dependencies in composer.json #116
+
 ## [1.7.1] - 2017-10-30
 ### Fixed
  - Fix url creation in translate action #108
@@ -83,7 +87,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
  - Round error in translation statistic
 
+<<<<<<< HEAD
 [Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...HEAD
+=======
+[1.7.2]: https://github.com/lajax/yii2-translate-manager/compare/1.7.1...1.7.2
+>>>>>>> 1.7
 [1.7.1]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...1.7.1
 [1.7.0]: https://github.com/lajax/yii2-translate-manager/compare/1.6.0...1.7.0
 [1.6.0]: https://github.com/lajax/yii2-translate-manager/compare/1.5.4...1.6.0
