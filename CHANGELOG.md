@@ -87,11 +87,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
  - Round error in translation statistic
 
-<<<<<<< HEAD
-[Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...HEAD
-=======
+[Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.7.2...HEAD
 [1.7.2]: https://github.com/lajax/yii2-translate-manager/compare/1.7.1...1.7.2
->>>>>>> 1.7
 [1.7.1]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...1.7.1
 [1.7.0]: https://github.com/lajax/yii2-translate-manager/compare/1.6.0...1.7.0
 [1.6.0]: https://github.com/lajax/yii2-translate-manager/compare/1.5.4...1.6.0
