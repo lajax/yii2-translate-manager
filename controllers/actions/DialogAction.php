@@ -22,10 +22,10 @@ class DialogAction extends \yii\base\Action
      */
     public function run()
     {
-        $languageSource = LanguageSource::findOne([
+        $languageSource = LanguageSource::find()->where([
             'category' => Yii::$app->request->post('category', ''),
             'MD5(message)' => Yii::$app->request->post('hash', ''),
-        ]);
+        ])->one();
 
         if (!$languageSource) {
             return '<div id="translate-manager-error">' . Yii::t('language', 'Text not found in database! Please run project scan before translating!') . '</div>';
