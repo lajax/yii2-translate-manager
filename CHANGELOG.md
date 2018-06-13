@@ -86,7 +86,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
  - Import/export feature #31
 
 ### Changed
- - Autocofus translation textarea in frontend translation dialog #33
+ - Autofocus translation textarea in frontend translation dialog #33
 
 ### Fixed
  - Round error in translation statistic
