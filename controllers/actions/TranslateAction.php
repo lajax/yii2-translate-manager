@@ -42,6 +42,7 @@ class TranslateAction extends \yii\base\Action
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
             'searchEmptyCommand' => $this->controller->module->searchEmptyCommand,
+            'isTranslationApiAvailable' => !empty($this->controller->module->translator),
             'language_id' => Yii::$app->request->get('language_id', ''),
         ]);
     }

@@ -287,6 +287,14 @@ class Module extends \yii\base\Module
     public $scanners = [];
 
     /**
+     * @var array Configuration for a third-party translator (e.g.: Google, Yandex, etc.) that can be used for
+     * text translation.
+     *
+     * The translator should implement the `lajax\translatemanager\translation\Translator` interface.
+     */
+    public $translator;
+
+    /**
      * @inheritdoc
      */
     public function beforeAction($action)

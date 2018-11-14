@@ -17,6 +17,7 @@ use lajax\translatemanager\models\Language as Lang;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel lajax\translatemanager\models\searches\LanguageSourceSearch */
 /* @var $searchEmptyCommand string */
+/* @var $isTranslationApiAvailable bool */
 
 $this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
@@ -53,8 +54,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'message',
                 'filterInputOptions' => ['class' => 'form-control', 'id' => 'message'],
                 'label' => Yii::t('language', 'Source'),
-                'content' => function ($data) {
-                    return Html::textarea('LanguageSource[' . $data->id . ']', $data->source, ['class' => 'form-control source', 'readonly' => 'readonly']);
+                'content' => function ($data) use ($isTranslationApiAvailable) {
+                    $content = Html::textarea('LanguageSource[' . $data->id . ']', $data->source, ['class' => 'form-control source', 'readonly' => 'readonly']);
+
+                    if ($isTranslationApiAvailable) {
+                        $content .= Html::button(
+                            '<i class="glyphicon glyphicon-arrow-right"></i> Translate',
+                            ['class' => 'btn btn-default pull-right js-translate-text']
+                        );
+                    }
+
+                    return $content;
                 },
             ],
             [
