@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [1.8.0] - 2019-08-25
+
 ### Added
  - Add `onlyCategories` option to Module settings #128
 
@@ -94,7 +96,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
  - Round error in translation statistic
 
-[Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.7.3...HEAD
+[Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.8.0...HEAD
+[1.8.0]: https://github.com/lajax/yii2-translate-manager/compare/1.7.3...1.8.0
 [1.7.3]: https://github.com/lajax/yii2-translate-manager/compare/1.7.2...1.7.3
 [1.7.2]: https://github.com/lajax/yii2-translate-manager/compare/1.7.1...1.7.2
 [1.7.1]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...1.7.1
