@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
  - Add `onlyCategories` option to Module settings #128
 
 ### Changed
- - Improve TranslateBehavior saving #99
+ - Improve TranslateBehavior saving #99  
    The attribute is now saved as translation when the language of the application is different from the source language.
 
 ## [1.7.3] - 2018-04-04
