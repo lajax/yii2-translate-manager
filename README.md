@@ -111,6 +111,7 @@ A more complex example including database table with multilingual support is bel
         'jsTranslators' => ['lajax.t'], // list of the js function for translating messages.
         'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
         'ignoredCategories' => ['yii'], // these categories won't be included in the language database.
+        'onlyCategories' => ['yii'],    // only these categories will be included in the language database (cannot be used together with "ignoredCategories").
         'ignoredItems' => ['config'],   // these files will not be processed.
         'scanTimeLimit' => null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
         'searchEmptyCommand' => '!',    // the search string to enter in the 'Translation' search field to find not yet translated items, set to null to disable this feature
