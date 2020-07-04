@@ -270,7 +270,7 @@ abstract class ScannerFile extends \yii\console\controllers\MessageController
     protected function isValidCategory($category)
     {
         if ($this->module->onlyCategories) {
-            return in_array($category, $this->module->ignoredCategories);
+            return in_array($category, $this->module->onlyCategories);
         }
 
         if ($this->module->ignoredCategories) {
