@@ -4,9 +4,15 @@
  */
 
 #translates textarea {
-    height:47px;
+    margin: 0 !important;
+    max-width: 1000px !important;
+    max-height: 1000px !important;
 }
 
 #translates.ar-AR textarea.translation {
     direction: rtl;
+}
+
+#translates td {
+    width: 400px;
 }
