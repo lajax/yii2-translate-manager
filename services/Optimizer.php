@@ -4,6 +4,7 @@ namespace lajax\translatemanager\services;
 
 use yii\helpers\Console;
 use lajax\translatemanager\models\LanguageSource;
+use lajax\translatemanager\models\LanguageTranslate;
 
 /**
  * Optimizer class for optimizing database tables
@@ -52,6 +53,9 @@ class Optimizer
         $this->_initLanguageElements($languageSourceIds);
 
         LanguageSource::deleteAll(['id' => $languageSourceIds]);
+
+        $numberOfDeletetRows = LanguageTranslate::deleteAll(['translation' => '']);
+        $this->_scanner->stdout('Removed empty elements - ' . $numberOfDeletetRows, Console::FG_RED);
 
         $this->_scanner->stdout('Deleted language elements - END', Console::FG_RED);
 
