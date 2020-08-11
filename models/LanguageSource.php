@@ -14,6 +14,7 @@ use Yii;
  * This is the model class for table "language_source".
  *
  * @property string $id
+ * @property string $sync_id
  * @property string $category
  * @property string $message
  * @property string $source
@@ -54,6 +55,7 @@ class LanguageSource extends \yii\db\ActiveRecord
         return [
             [['message'], 'string'],
             [['category'], 'string', 'max' => 32],
+            [['sync_id'], 'string', 'max' => 256],
         ];
     }
 
@@ -64,6 +66,7 @@ class LanguageSource extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('model', 'ID'),
+            'sync_id' => Yii::t('model', 'Sync ID'),
             'category' => Yii::t('model', 'Category'),
             'message' => Yii::t('model', 'Message'),
         ];
@@ -80,10 +83,11 @@ class LanguageSource extends \yii\db\ActiveRecord
     {
         $data = [];
         foreach ($languageItems as $category => $messages) {
-            foreach (array_keys($messages) as $message) {
+            foreach ($messages as $message => $sync_id) {
                 $data[] = [
+                    $sync_id === true ? '' : $sync_id,
                     $category,
-                    $message,
+                    $message
                 ];
             }
         }
@@ -92,7 +96,7 @@ class LanguageSource extends \yii\db\ActiveRecord
         for ($i = 0; $i < $count; $i += self::INSERT_LANGUAGE_ITEMS_LIMIT) {
             static::getDb()
                 ->createCommand()
-                ->batchInsert(static::tableName(), ['category', 'message'], array_slice($data, $i, self::INSERT_LANGUAGE_ITEMS_LIMIT))
+                ->batchInsert(static::tableName(), ['sync_id', 'category', 'message'], array_slice($data, $i, self::INSERT_LANGUAGE_ITEMS_LIMIT))
                 ->execute();
         }
 

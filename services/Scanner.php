@@ -46,6 +46,16 @@ class Scanner
     private $_languageElements = [];
 
     /**
+     * @var array for storing updatable LanguageSource ids.
+     */
+    private $_updatableLanguageSourceIds = [];
+
+    /**
+     * @var array for storing updated LanguageSource ids.
+     */
+    private $_updatedLanguageSourceIds = [];
+
+    /**
      * @var array for storing removabla LanguageSource ids.
      */
     private $_removableLanguageSourceIds = [];
@@ -104,7 +114,17 @@ class Scanner
      */
     public function getRemovableLanguageSourceIds()
     {
-        return $this->_removableLanguageSourceIds;
+        return array_diff_key($this->_removableLanguageSourceIds, $this->_updatableLanguageSourceIds);
+    }
+
+    /**
+     * Returns removable LanguageSource ids.
+     *
+     * @return array
+     */
+    public function getUpdatedLanguageSourceIds()
+    {
+        return $this->_updatedLanguageSourceIds;
     }
 
     /**
@@ -133,7 +153,7 @@ class Scanner
         foreach ($languageSources as $languageSource) {
             if (isset($this->_languageElements[$languageSource->category][$languageSource->message])) {
                 unset($this->_languageElements[$languageSource->category][$languageSource->message]);
-            } else {
+            } elseif(empty($this->_updatableLanguageSourceIds[$languageSource->id])) {
                 $this->_removableLanguageSourceIds[$languageSource->id] = $languageSource->id;
             }
         }
@@ -156,9 +176,29 @@ class Scanner
      * @param string $category
      * @param string $message
      */
-    public function addLanguageItem($category, $message)
+    public function addLanguageItem($category, $message, $sync_id = true)
     {
-        $this->_languageElements[$category][$message] = true;
+        $updated = false;
+        if($sync_id !== true) {
+            $LanguageSource = LanguageSource::findOne(['sync_id' => $sync_id, 'category' => $category]);
+            if($LanguageSource) {
+                $updated = true;
+                if($LanguageSource->message !== $message) {
+                    $LanguageSource->message = $message;
+                    if($LanguageSource->save()) {
+                        $this->_updatedLanguageSourceIds[$LanguageSource->id] = $LanguageSource->id;
+                        foreach($LanguageSource->languageTranslates as $LanguageTranslate) {
+                            $LanguageTranslate->status = 'pending';
+                            $LanguageTranslate->save();
+                        }
+                    }
+                }
+                $this->_updatableLanguageSourceIds[$LanguageSource->id] = $LanguageSource->id;
+            }
+        }
+        if($sync_id === true || !$updated) {
+            $this->_languageElements[$category][$message] = $sync_id;
+        }
 
         $coloredCategory = Console::ansiFormat($category, [Console::FG_YELLOW]);
         $coloredMessage = Console::ansiFormat($message, [Console::FG_YELLOW]);
@@ -176,11 +216,12 @@ class Scanner
      * [
      *      [
      *          'category' => 'language',
-     *          'message' => 'Active'
+     *          'message' => 'Active',
      *      ],
      *      [
      *          'category' => 'language',
      *          'message' => 'Inactive'
+     *          'sync_id' => 'blog_title_8436',
      *      ],
      * ]
      * ~~~
@@ -188,7 +229,7 @@ class Scanner
     public function addLanguageItems($languageItems)
     {
         foreach ($languageItems as $languageItem) {
-            $this->addLanguageItem($languageItem['category'], $languageItem['message']);
+            $this->addLanguageItem($languageItem['category'], $languageItem['message'], $languageItem['sync_id'] ?? true);
         }
     }
 

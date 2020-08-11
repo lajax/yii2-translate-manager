@@ -90,15 +90,27 @@ class ScannerDatabase
     {
         $this->_scanner->stdout('Extracting mesages from ' . $tables['table'] . '.' . implode(',', $tables['columns']), Console::FG_GREEN);
         $query = new \yii\db\Query();
-        $data = $query->select($tables['columns'])
+        $selectColumns = $tables['columns'];
+
+        if($tables['synchronize']) {
+            $pkFields = Yii::$app->{$tables['connection']}
+                ->createCommand('SHOW INDEX FROM '.$tables['table'].' WHERE Key_name = \'PRIMARY\' ')->queryAll();
+            $pkFields = array_map(function ($e) {
+                return $e['Column_name'];
+            }, $pkFields);
+            $selectColumns = array_merge($pkFields, $selectColumns);
+        }
+
+        $data = $query->select($selectColumns)
             ->from($tables['table'])
             ->createCommand(Yii::$app->{$tables['connection']})
             ->queryAll();
         $category = $this->_getCategory($tables);
-        foreach ($data as $columns) {
-            $columns = array_map('trim', $columns);
-            foreach ($columns as $column) {
-                $this->_scanner->addLanguageItem($category, $column);
+        foreach ($data as $dataRow) {
+            $dataRow = array_map('trim', $dataRow);
+            foreach ($tables['columns'] as $scanedColumn) {
+                $sync_id = $tables['synchronize'] ? implode('_', array_slice($dataRow, 0, sizeof($pkFields))).'_'.$scanedColumn : true;
+                $this->_scanner->addLanguageItem($category, $dataRow[$scanedColumn], $sync_id);
             }
         }
     }

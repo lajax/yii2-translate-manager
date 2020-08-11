@@ -32,6 +32,7 @@ class SaveAction extends \yii\base\Action
             new LanguageTranslate(['id' => $id, 'language' => $languageId]);
 
         $languageTranslate->translation = Yii::$app->request->post('translation', '');
+        $languageTranslate->status = 'done';
         if ($languageTranslate->validate() && $languageTranslate->save()) {
             $generator = new Generator($this->controller->module, $languageId);
 

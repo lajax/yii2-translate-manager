@@ -18,8 +18,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Yii::t('language', '{n, plural, =0{No new entries} =1{One new entry} other{# new entries}} were added!', ['n' => $newDataProvider->totalCount]) ?>
 </div>
 
-<?= $this->render('__scanNew', [
-    'newDataProvider' => $newDataProvider,
+<?= $this->render('__scanList', [
+    'dataProvider' => $newDataProvider,
+]) ?>
+
+<div id="w2-warning" class="alert-warning alert fade in">
+    <?= Yii::t('language', '{n, plural, =0{No new entries} =1{One new entry} other{# new entries}} were updated!', ['n' => $updatedDataProvider->totalCount]) ?>
+</div>
+
+<?= $this->render('__scanList', [
+    'dataProvider' => $updatedDataProvider,
 ]) ?>
 
 <div id="w2-danger" class="alert-danger alert fade in">

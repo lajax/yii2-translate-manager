@@ -122,6 +122,7 @@ A more complex example including database table with multilingual support is bel
                 'connection' => 'db',   // connection identifier
                 'table' => '{{%language}}',         // table name
                 'columns' => ['name', 'name_ascii'],// names of multilingual fields
+                'synchronize' => true,  // save translates on changing source value. Translates will have 'pending' status till update. 
                 'category' => 'database-table-name',// the category is the database table name
             ]
         ],
