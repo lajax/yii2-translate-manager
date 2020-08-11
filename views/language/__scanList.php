@@ -6,19 +6,19 @@
  */
 
 /* @var $this \yii\web\View */
-/* @var $newDataProvider \yii\data\ArrayDataProvider */
+/* @var $dataProvider \yii\data\ArrayDataProvider */
 
 use yii\grid\GridView;
 
 ?>
 
-<?php if ($newDataProvider->totalCount > 0) : ?>
+<?php if ($dataProvider->totalCount > 0) : ?>
 
     <?=
 
     GridView::widget([
         'id' => 'added-source',
-        'dataProvider' => $newDataProvider,
+        'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'category',

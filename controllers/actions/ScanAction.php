@@ -36,10 +36,12 @@ class ScanAction extends \yii\base\Action
         $scanner->run();
 
         $newDataProvider = $this->controller->createLanguageSourceDataProvider($scanner->getNewLanguageElements());
+        $updatedDataProvider = $this->_createLanguageSourceDataProvider($scanner->getUpdatedLanguageSourceIds());
         $oldDataProvider = $this->_createLanguageSourceDataProvider($scanner->getRemovableLanguageSourceIds());
 
         return $this->controller->render('scan', [
             'newDataProvider' => $newDataProvider,
+            'updatedDataProvider' => $updatedDataProvider,
             'oldDataProvider' => $oldDataProvider,
         ]);
     }

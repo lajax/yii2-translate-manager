@@ -67,7 +67,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'label' => Yii::t('language', 'Translation'),
                 'content' => function ($data) {
-                    return Html::textarea('LanguageTranslate[' . $data->id . ']', $data->translation, ['class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]);
+                    return Html::textarea('LanguageTranslate[' . $data->id . ']', $data->translation, ['class' => 'form-control translation', 'data-id' => $data->id, 'tabindex' => $data->id]) . 
+                        (isset($data->languageTranslate) && $data->languageTranslate->status == 'pending' ? '<span class="label label-warning pending-label">Pending</span>' : '');
                 },
             ],
             [

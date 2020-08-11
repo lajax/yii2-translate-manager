@@ -44,7 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'attribute' => Yii::t('language', 'Statistic'),
                 'content' => function ($language) {
-                    return '<span class="statistic"><span style="width:' . $language->gridStatistic . '%"></span><i>' . $language->gridStatistic . '%</i></span>';
+                    return '<span class="statistic">
+                        <span class="done" style="width:' . $language->gridStatistic['done'] . '%"></span>
+                        <span class="pending" style="width:' . $language->gridStatistic['pending'] . '%"></span>
+                        <i>' . $language->gridStatistic['done'] . '%</i>
+                    </span>';
                 },
             ],
             [

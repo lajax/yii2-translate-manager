@@ -174,17 +174,16 @@ class Language extends \yii\db\ActiveRecord
             }
 
             $languageTranslates = LanguageTranslate::find()
-                ->select(['language', 'COUNT(*) AS cnt'])
+                ->select(['language', 'status', 'COUNT(*) AS cnt'])
                 ->andWhere('translation IS NOT NULL')
-                ->groupBy(['language'])
+                ->groupBy(['language', 'status'])
                 ->all();
-
             foreach ($languageTranslates as $languageTranslate) {
-                $statistics[$languageTranslate->language] = floor(($languageTranslate->cnt / $count) * 100);
+                $statistics[$languageTranslate->language][$languageTranslate->status] = floor(($languageTranslate->cnt / $count) * 100);
             }
         }
 
-        return isset($statistics[$this->language_id]) ? $statistics[$this->language_id] : 0;
+        return isset($statistics[$this->language_id]) ? array_merge(['done' => 0, 'pending' => 0], $statistics[$this->language_id]) : ['done' => 0, 'pending' => 0];
     }
 
     /**

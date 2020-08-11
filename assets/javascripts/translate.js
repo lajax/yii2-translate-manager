@@ -16,7 +16,7 @@ var translate = (function () {
      */
     function _translateLanguage($this) {
         var $translation = $this.closest('tr').find('.translation');
-
+        $this.closest('tr').find('.pending-label').remove();
         var data = {
             id: $translation.data('id'),
             language_id: $('#language_id').val(),

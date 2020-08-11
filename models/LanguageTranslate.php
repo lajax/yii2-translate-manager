@@ -14,6 +14,7 @@ use Yii;
  * This is the model class for table "language_translate".
  *
  * @property string $id
+ * @property string $status
  * @property string $language
  * @property string $translation
  * @property LanguageSource $LanguageSource
@@ -58,6 +59,7 @@ class LanguageTranslate extends \yii\db\ActiveRecord
             [['language'], 'exist', 'targetClass' => '\lajax\translatemanager\models\Language', 'targetAttribute' => 'language_id'],
             [['translation'], 'string'],
             [['language'], 'string', 'max' => 5],
+            [['status'], 'string', 'max' => 15],
         ];
     }
 
@@ -68,6 +70,7 @@ class LanguageTranslate extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('model', 'ID'),
+            'status' => Yii::t('model', 'Status'),
             'language' => Yii::t('model', 'Language'),
             'translation' => Yii::t('model', 'Translation'),
         ];

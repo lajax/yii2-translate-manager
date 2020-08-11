@@ -10,10 +10,18 @@ span.statistic {
     position:relative;
     cursor:help;
 }
-span.statistic span {
+span.statistic span.done {
     height:18px;
     background:#5CB85C;
     display:block;
+    float: left;
+}
+
+span.statistic span.pending {
+    height:18px;
+    background:#F0D91B;
+    display:block;
+    float: left;
 }
 
 span.statistic i {
