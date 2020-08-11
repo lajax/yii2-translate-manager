@@ -27,13 +27,30 @@ class SaveAction extends \yii\base\Action
 
         $id = Yii::$app->request->post('id', 0);
         $languageId = Yii::$app->request->post('language_id', Yii::$app->language);
+        $translation = Yii::$app->request->post('translation', '');
 
-        $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]) ?:
-            new LanguageTranslate(['id' => $id, 'language' => $languageId]);
+        $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]);
 
-        $languageTranslate->translation = Yii::$app->request->post('translation', '');
-        $languageTranslate->status = 'done';
-        if ($languageTranslate->validate() && $languageTranslate->save()) {
+        $regenerate = false;
+
+        if (trim($translation) == '') {
+            if ($languageTranslate && $languageTranslate->delete()) {
+                $regenerate = true;
+            } else {
+                return [];
+            }
+        } else {
+            $languageTranslate = $languageTranslate ?:
+                new LanguageTranslate(['id' => $id, 'language' => $languageId]);
+            $languageTranslate->translation = $translation;
+            $languageTranslate->status = 'done';
+
+            if ($languageTranslate->validate() && $languageTranslate->save()) {
+                $regenerate = true;
+            }
+        }
+
+        if ($regenerate) {
             $generator = new Generator($this->controller->module, $languageId);
 
             $generator->run();
