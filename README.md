@@ -59,7 +59,7 @@ yii migrate/up
 
 ### Config
 
-A simple exmple of turning on Yii database multilingual.
+A simple example of turning on Yii database multilingual.
 
 ```php
 'language' => 'en-US',
