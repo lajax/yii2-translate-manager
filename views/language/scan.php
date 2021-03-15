@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
 
 <div id="w2-danger" class="alert-danger alert fade in">
-    <?= Yii::t('language', '{n, plural, =0{No entries} =1{One entry} other{# entries}} remove!', ['n' => $oldDataProvider->totalCount]) ?>
+    <?= Yii::t('language', '{n, plural, =0{No entries} =1{One entry} other{# entries}} removed!', ['n' => $oldDataProvider->totalCount]) ?>
 </div>
 
 <?= $this->render('__scanOld', [
