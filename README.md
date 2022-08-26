@@ -111,6 +111,7 @@ A more complex example including database table with multilingual support is bel
         'jsTranslators' => ['lajax.t'], // list of the js function for translating messages.
         'patterns' => ['*.js', '*.php'],// list of file extensions that contain language elements.
         'ignoredCategories' => ['yii'], // these categories won't be included in the language database.
+        'onlyCategories' => ['yii'],    // only these categories will be included in the language database (cannot be used together with "ignoredCategories").
         'ignoredItems' => ['config'],   // these files will not be processed.
         'scanTimeLimit' => null,        // increase to prevent "Maximum execution time" errors, if null the default max_execution_time will be used
         'searchEmptyCommand' => '!',    // the search string to enter in the 'Translation' search field to find not yet translated items, set to null to disable this feature
@@ -420,7 +421,17 @@ class Category extends \yii\db\ActiveRecord {
 
 * With behavior (since 1.5.3):
 
-    **Note:** This will replace the model's original attribute values!
+    This behavior does the following:
+    - Replaces the specified attributes with translations after the model is loaded.
+    - Saves the attribute values as:
+        1. Source messages, if the current language is the source language.
+        2. Translations, if the current language is different from the source language.
+           This way the value stored in database is not overwritten with the translation.
+
+    **Note**: If the model should be saved as translation, but the source message does not exist yet in the database
+    then the message is saved as the source message whether the current language is the source language or not.
+    To avoid this scan the database for existing messages when using the behavior first, and only save new records
+    when the current language is the source language.
 
 ```php
 namespace common\models;

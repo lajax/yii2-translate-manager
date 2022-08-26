@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased]
+
+## [1.8.1] - 2020-07-04
+### Fixed
+ - Fix `onlyCategories` option not applied correctly #135 (bjornhij)
+
+## [1.8.0] - 2019-08-25
+
+### Added
+ - Add `onlyCategories` option to Module settings #128
+
+### Changed
+ - Improve TranslateBehavior saving #99
+   The attribute is now saved as translation when the language of the application is different from the source language.
+
 ## [1.7.3] - 2018-04-04
 ### Fixed
  - Fix invalid column name in findOne() condition #118
@@ -80,11 +95,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
  - Import/export feature #31
 
 ### Changed
- - Autocofus translation textarea in frontend translation dialog #33
+ - Autofocus translation textarea in frontend translation dialog #33
 
 ### Fixed
  - Round error in translation statistic
 
+[Unreleased]: https://github.com/lajax/yii2-translate-manager/compare/1.8.1...HEAD
+[1.8.1]: https://github.com/lajax/yii2-translate-manager/compare/1.8.0...1.8.1
+[1.8.0]: https://github.com/lajax/yii2-translate-manager/compare/1.7.3...1.8.0
 [1.7.3]: https://github.com/lajax/yii2-translate-manager/compare/1.7.2...1.7.3
 [1.7.2]: https://github.com/lajax/yii2-translate-manager/compare/1.7.1...1.7.2
 [1.7.1]: https://github.com/lajax/yii2-translate-manager/compare/1.7.0...1.7.1

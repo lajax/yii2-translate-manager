@@ -1,6 +1,6 @@
 {
     "name": "lajax/yii2-translate-manager",
-    "description": "Online Translate",
+    "description": "Translation management extension for Yii 2",
     "type": "yii2-extension",
     "keywords": ["yii2", "extension", "translate", "language", "module"],
     "license": "MIT",

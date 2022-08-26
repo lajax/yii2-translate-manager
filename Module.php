@@ -3,6 +3,7 @@
 namespace lajax\translatemanager;
 
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
@@ -121,9 +122,14 @@ class Module extends \yii\base\Module
     public $roles = [];
 
     /**
-     * @var array list of the categories being ignored.
+     * @var string[] List of the categories being ignored.
      */
     public $ignoredCategories = [];
+
+    /**
+     * @var string[] List of the categories to be scanned. If empty, all categories will be scanned.
+     */
+    public $onlyCategories = [];
 
     /**
      * @var array directories/files being ignored.
@@ -285,6 +291,18 @@ class Module extends \yii\base\Module
      * @var array Scanners can be overriden here. If not set original set of scanners will be used from Scanner
      */
     public $scanners = [];
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function init()
+    {
+        parent::init();
+
+        if ($this->onlyCategories && $this->ignoredCategories) {
+            throw new InvalidConfigException("Please configure either 'ignoredCategories', or 'onlyCategories'!");
+        }
+    }
 
     /**
      * @inheritdoc
