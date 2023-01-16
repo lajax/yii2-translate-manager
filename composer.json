@@ -17,7 +17,7 @@
     "require": {
         "yiisoft/yii2": "~2.0.0",
         "yiisoft/yii2-jui": "~2.0.0",
-        "yiisoft/yii2-bootstrap": "~2.0.0"
+        "yiisoft/yii2-bootstrap5": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.1"
